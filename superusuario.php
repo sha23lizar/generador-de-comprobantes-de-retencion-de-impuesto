@@ -663,7 +663,7 @@ if (isset($_SESSION['Super'])) {
                                     <label for="">Direccion del Proveedor</label>
 
                                     <input type="text" class="form-control" id="dirreccionProveedor" name='direccionProveedor' placeholder="ejemplo: Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
-
+ 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
                                     </div>
