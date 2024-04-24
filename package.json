@@ -1,0 +1,14 @@
+{
+  "name": "generador-de-comprobante-de-retencion-de-impuesto-master",
+  "version": "1.0.0",
+  "description": "![](docs/screenshot.png)",
+  "main": "index.js",
+  "scripts": {
+    "db": "json-server --watch ./respaldo/database.json --port 3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^1.0.0-alpha.23"
+  }
+}

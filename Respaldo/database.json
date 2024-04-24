@@ -1,0 +1,309 @@
+{
+  "proveedores": [
+    {
+      "rif": "J-12345678-9",
+      "razonsocial": "Comercial unique center, C.A",
+      "direccion": "Av. Los Incas 123",
+      "seudonimo": "unique"
+    },
+    {
+      "rif": "J123456789",
+      "razonsocial": "Empresa ABC",
+      "direccion": "Calle Principal 123",
+      "seudonimo": "Juan Pérez"
+    },
+    {
+      "rif": "R987654321",
+      "razonsocial": "Empresa XYZ",
+      "direccion": "Avenida Secundaria 456",
+      "seudonimo": "María González"
+    },
+    {
+      "rif": "R543210987",
+      "razonsocial": "Empresa DEF",
+      "direccion": "Plaza Mayor 789",
+      "seudonimo": "Carlos Rodríguez"
+    },
+    {
+      "rif": "R135792468",
+      "razonsocial": "Empresa GHI",
+      "direccion": "Calle Comercial 123",
+      "seudonimo": "Ana López"
+    },
+    {
+      "rif": "R246801357",
+      "razonsocial": "Empresa JKL",
+      "direccion": "Avenida Industrial 456",
+      "seudonimo": "Pedro Martínez"
+    },
+    {
+      "rif": "R765432109",
+      "razonsocial": "Empresa MNO",
+      "direccion": "Calle Uno 789",
+      "seudonimo": "Sofía Ramírez"
+    },
+    {
+      "rif": "R111111111",
+      "razonsocial": "Empresa AAA",
+      "direccion": "Avenida Dos 123",
+      "seudonimo": "Luis González"
+    },
+    {
+      "rif": "R222222222",
+      "razonsocial": "Empresa BBB",
+      "direccion": "Calle Tres 456",
+      "seudonimo": "Laura Pérez"
+    },
+    {
+      "rif": "R333333333",
+      "razonsocial": "Empresa CCC",
+      "direccion": "Avenida Cuatro 789",
+      "seudonimo": "Diego Sánchez"
+    },
+    {
+      "rif": "R444444444",
+      "razonsocial": "Empresa DDD",
+      "direccion": "Plaza Central 123",
+      "seudonimo": "Elena Fernández"
+    },
+    {
+      "rif": "J-12345678-9",
+      "razonsocial": "Comercial unique center, C.A",
+      "direccion": "Av. Los Incas 123",
+      "seudonimo": "unique"
+    },
+    {
+      "rif": "J123456789",
+      "razonsocial": "Empresa ABC",
+      "direccion": "Calle Principal 123",
+      "seudonimo": "Juan Pérez"
+    },
+    {
+      "rif": "R987654321",
+      "razonsocial": "Empresa XYZ",
+      "direccion": "Avenida Secundaria 456",
+      "seudonimo": "María González"
+    },
+    {
+      "rif": "R543210987",
+      "razonsocial": "Empresa DEF",
+      "direccion": "Plaza Mayor 789",
+      "seudonimo": "Carlos Rodríguez"
+    },
+    {
+      "rif": "R135792468",
+      "razonsocial": "Empresa GHI",
+      "direccion": "Calle Comercial 123",
+      "seudonimo": "Ana López"
+    },
+    {
+      "rif": "R246801357",
+      "razonsocial": "Empresa JKL",
+      "direccion": "Avenida Industrial 456",
+      "seudonimo": "Pedro Martínez"
+    },
+    {
+      "rif": "R765432109",
+      "razonsocial": "Empresa MNO",
+      "direccion": "Calle Uno 789",
+      "seudonimo": "Sofía Ramírez"
+    },
+    {
+      "rif": "R111111111",
+      "razonsocial": "Empresa AAA",
+      "direccion": "Avenida Dos 123",
+      "seudonimo": "Luis González"
+    },
+    {
+      "rif": "R222222222",
+      "razonsocial": "Empresa BBB",
+      "direccion": "Calle Tres 456",
+      "seudonimo": "Laura Pérez"
+    },
+    {
+      "rif": "R333333333",
+      "razonsocial": "Empresa CCC",
+      "direccion": "Avenida Cuatro 789",
+      "seudonimo": "Diego Sánchez"
+    },
+    {
+      "rif": "R444444444",
+      "razonsocial": "Empresa DDD",
+      "direccion": "Plaza Central 123",
+      "seudonimo": "Elena Fernández"
+    },
+    {
+      "rif": "J-12345678-9",
+      "razonsocial": "Comercial unique center, C.A",
+      "direccion": "Av. Los Incas 123",
+      "seudonimo": "unique"
+    },
+    {
+      "rif": "J123456789",
+      "razonsocial": "Empresa ABC",
+      "direccion": "Calle Principal 123",
+      "seudonimo": "Juan Pérez"
+    },
+    {
+      "rif": "R987654321",
+      "razonsocial": "Empresa XYZ",
+      "direccion": "Avenida Secundaria 456",
+      "seudonimo": "María González"
+    },
+    {
+      "rif": "R543210987",
+      "razonsocial": "Empresa DEF",
+      "direccion": "Plaza Mayor 789",
+      "seudonimo": "Carlos Rodríguez"
+    },
+    {
+      "rif": "R135792468",
+      "razonsocial": "Empresa GHI",
+      "direccion": "Calle Comercial 123",
+      "seudonimo": "Ana López"
+    },
+    {
+      "rif": "R246801357",
+      "razonsocial": "Empresa JKL",
+      "direccion": "Avenida Industrial 456",
+      "seudonimo": "Pedro Martínez"
+    },
+    {
+      "rif": "R765432109",
+      "razonsocial": "Empresa MNO",
+      "direccion": "Calle Uno 789",
+      "seudonimo": "Sofía Ramírez"
+    },
+    {
+      "rif": "R111111111",
+      "razonsocial": "Empresa AAA",
+      "direccion": "Avenida Dos 123",
+      "seudonimo": "Luis González"
+    },
+    {
+      "rif": "R222222222",
+      "razonsocial": "Empresa BBB",
+      "direccion": "Calle Tres 456",
+      "seudonimo": "Laura Pérez"
+    },
+    {
+      "rif": "R333333333",
+      "razonsocial": "Empresa CCC",
+      "direccion": "Avenida Cuatro 789",
+      "seudonimo": "Diego Sánchez"
+    },
+    {
+      "rif": "R444444444",
+      "razonsocial": "Empresa DDD",
+      "direccion": "Plaza Central 123",
+      "seudonimo": "Elena Fernández"
+    }
+  ],
+  "comprobantes": [
+    {
+      "id": "54fb",
+      "nroComprobante": {},
+      "proveedor": "Empresa ABC",
+      "rifProveedor": "J123456789",
+      "direccionProveedor": "Calle Principal 123",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "190.10",
+      "impuestoIva": "30.42",
+      "ivaRetenido": "22.82"
+    },
+    {
+      "id": "3418",
+      "nroComprobante": {},
+      "proveedor": "Empresa ABC",
+      "rifProveedor": "J123456789",
+      "direccionProveedor": "Calle Principal 123",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "190.10",
+      "impuestoIva": "30.42",
+      "ivaRetenido": "22.82"
+    },
+    {
+      "id": "3a09",
+      "nroComprobante": {},
+      "proveedor": "Empresa ABC",
+      "rifProveedor": "J123456789",
+      "direccionProveedor": "Calle Principal 123",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "190.10",
+      "impuestoIva": "30.42",
+      "ivaRetenido": "22.82"
+    },
+    {
+      "id": "dd5f",
+      "nroComprobante": {},
+      "proveedor": "Empresa ABC",
+      "rifProveedor": "J123456789",
+      "direccionProveedor": "Calle Principal 123",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "190.10",
+      "impuestoIva": "30.42",
+      "ivaRetenido": "22.82"
+    },
+    {
+      "id": "ff8a",
+      "nroComprobante": {},
+      "proveedor": "Empresa ABC",
+      "rifProveedor": "J123456789",
+      "direccionProveedor": "Calle Principal 123",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "190.10",
+      "impuestoIva": "30.42",
+      "ivaRetenido": "22.82"
+    },
+    {
+      "id": "c977",
+      "nroComprobante": {},
+      "proveedor": "Comercial unique center, C.A",
+      "rifProveedor": "J-12345678-9",
+      "direccionProveedor": "Av. Los Incas 123",
+      "fEmision": "2024-05-05",
+      "fEntrega": "2024-04-07",
+      "fFactura": "2024-04-26",
+      "nroControl": "fsdfsdf",
+      "totalFacturado": "0",
+      "baseImponible": "0",
+      "impuestoIva": "0",
+      "ivaRetenido": "0"
+    },
+    {
+      "id": "2b2a",
+      "nroComprobante": {},
+      "proveedor": "Empresa XYZ",
+      "rifProveedor": "R987654321",
+      "direccionProveedor": "Avenida Secundaria 456",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "190.10",
+      "impuestoIva": "30.42",
+      "ivaRetenido": "22.82"
+    }
+  ]
+}

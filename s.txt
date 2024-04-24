@@ -1,0 +1,49 @@
+nro
+Proveedor
+F.emision
+F.entrega
+F.factura
+N.factura
+total facturado
+base imponible
+impuesto iva (16%)
+iva retenido (75%)
+
+
+<th class="text-center">Nro</th>
+<th class="text-center">Proveedor</th>
+<th class="text-center">F.emision</th>
+<th class="text-center">F.entrega</th>
+<th class="text-center">F.factura</th>
+<th class="text-center">N.Control</th>
+<th class="text-center">total facturado</th>
+<th class="text-center">base imponible</th>
+<th class="text-center">impuesto iva (16%)</th>
+<th class="text-center">iva retenido (75%)</th>
+
+
+
+20240100000846
+Comercial unique center, C.A
+11-01-2024
+15-01-2024
+16-01-2024
+00006790
+Z1B8046526
+359.69
+310.08
+49.61
+37.21
+
+
+rif
+
+
+Proveedores
+rif
+nombre o razon social
+direccion
+
+j-298400870
+Variedades Sion. CA
+Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela
