@@ -20,7 +20,7 @@ if (isset($_SESSION['Super'])) {
         <meta name="msapplication-tap-highlight" content="no">
         
         <link href="./css/main.css" rel="stylesheet">
-        <!-- <link href="./css/datatables.min.css" rel="stylesheet"> -->
+        <link href="./css/datatables.min.css" rel="stylesheet">
         
         
         
@@ -34,7 +34,7 @@ if (isset($_SESSION['Super'])) {
         <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/fotopreview.js"></script> -->
 
         <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
-        <!-- <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script> -->
+        <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
         <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
         <script type="module" src="./assets/scripts/pagina-principal.js"></script>
@@ -293,7 +293,7 @@ if (isset($_SESSION['Super'])) {
                                     ?>
 
                                     <div class="table-responsive p-2">
-                                        <table id="tabla" class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <table id="tabla" class="align-middle mb-0 table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">Nro</th>
@@ -376,7 +376,7 @@ if (isset($_SESSION['Super'])) {
                                                     </tr>
                                                 <?php } ?>
                                             </tbody> -->
-                                            <tbody>
+                                            <!-- <tbody>
                                                 <tr>
                                                     <th class="text-center">20240100000846</th>
                                                     <th class="text-center">Comercial unique center, C.A</th>
@@ -399,7 +399,7 @@ if (isset($_SESSION['Super'])) {
                                                             </button>
                                                         </div>
                                                     </td>
-                                            </tbody>
+                                            </tbody> -->
                                         </table>
                                     </div>
                                     <div class="d-block text-center card-footer">
@@ -575,8 +575,7 @@ if (isset($_SESSION['Super'])) {
                                     <label for="paciente">Nro de Comprobante</label>
 
                                     <!-- <input type="text" value="" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" onkeydown="javascript: return ((isNaN(event.target.value) && event.target.value.length < 14 && event.target.value > -1 ))" required> -->
-
-                                    <input disabled type="text" value="" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 2024010000846" pattern="[0-9]{13}" minlength="13" maxlength="13" required>
+                                    <input type="text" value="" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 2024010000846" pattern="[0-9]{13}" minlength="13" maxlength="13" required>
 
                                     <div class="invalid-feedback">
                                         Debe colocar 14 numeros.

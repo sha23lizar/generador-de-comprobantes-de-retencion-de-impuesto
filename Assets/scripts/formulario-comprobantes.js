@@ -1,6 +1,6 @@
 
 export class FormularioComprobantes {
-    constructor(contentForm, servidor) {
+    constructor(contentForm, servidor, datatable) {
         this.servidor = servidor
         this.btnsTogles = document.querySelectorAll(`a[href='${contentForm}']`)
 
@@ -53,7 +53,7 @@ export class FormularioComprobantes {
             btn.addEventListener("click", (e) => {
 
             })
-            btn.click()
+            // btn.click()
         })
 
         this.form.addEventListener('submit', (e) => {
@@ -63,6 +63,7 @@ export class FormularioComprobantes {
                 let data = this.obtenerData()
                 this.resetAll()
                 this.servidor.post(data)
+                datatable.add(data)
 
             } 
         })
@@ -110,7 +111,7 @@ export class FormularioComprobantes {
 
     obtenerData() {
         const data = {}
-        data.nroComprobante = this.inputNroComprobante
+        data.nroComprobante = this.inputNroComprobante.value
         data.proveedor = this.inputProveedor.value
         data.rifProveedor = this.inputRif.value
         data.direccionProveedor = this.inputDireccion.value
