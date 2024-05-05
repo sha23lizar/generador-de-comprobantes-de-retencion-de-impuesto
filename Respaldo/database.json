@@ -4,199 +4,232 @@
       "rif": "J-12345678-9",
       "razonsocial": "Comercial unique center, C.A",
       "direccion": "Av. Los Incas 123",
-      "seudonimo": "unique"
+      "seudonimo": "unique",
+      "id": "5b5d"
     },
     {
       "rif": "J123456789",
       "razonsocial": "Empresa ABC",
       "direccion": "Calle Principal 123",
-      "seudonimo": "Juan Pérez"
+      "seudonimo": "Juan Pérez",
+      "id": "36e3"
     },
     {
       "rif": "R987654321",
       "razonsocial": "Empresa XYZ",
       "direccion": "Avenida Secundaria 456",
-      "seudonimo": "María González"
+      "seudonimo": "María González",
+      "id": "067c"
     },
     {
       "rif": "R543210987",
       "razonsocial": "Empresa DEF",
       "direccion": "Plaza Mayor 789",
-      "seudonimo": "Carlos Rodríguez"
+      "seudonimo": "Carlos Rodríguez",
+      "id": "1aee"
     },
     {
       "rif": "R135792468",
       "razonsocial": "Empresa GHI",
       "direccion": "Calle Comercial 123",
-      "seudonimo": "Ana López"
+      "seudonimo": "Ana López",
+      "id": "fa09"
     },
     {
       "rif": "R246801357",
       "razonsocial": "Empresa JKL",
       "direccion": "Avenida Industrial 456",
-      "seudonimo": "Pedro Martínez"
+      "seudonimo": "Pedro Martínez",
+      "id": "d5a2"
     },
     {
       "rif": "R765432109",
       "razonsocial": "Empresa MNO",
       "direccion": "Calle Uno 789",
-      "seudonimo": "Sofía Ramírez"
+      "seudonimo": "Sofía Ramírez",
+      "id": "6079"
     },
     {
       "rif": "R111111111",
       "razonsocial": "Empresa AAA",
       "direccion": "Avenida Dos 123",
-      "seudonimo": "Luis González"
+      "seudonimo": "Luis González",
+      "id": "dbac"
     },
     {
       "rif": "R222222222",
       "razonsocial": "Empresa BBB",
       "direccion": "Calle Tres 456",
-      "seudonimo": "Laura Pérez"
+      "seudonimo": "Laura Pérez",
+      "id": "f9a0"
     },
     {
       "rif": "R333333333",
       "razonsocial": "Empresa CCC",
       "direccion": "Avenida Cuatro 789",
-      "seudonimo": "Diego Sánchez"
+      "seudonimo": "Diego Sánchez",
+      "id": "8f44"
     },
     {
       "rif": "R444444444",
       "razonsocial": "Empresa DDD",
       "direccion": "Plaza Central 123",
-      "seudonimo": "Elena Fernández"
+      "seudonimo": "Elena Fernández",
+      "id": "c8eb"
     },
     {
       "rif": "J-12345678-9",
       "razonsocial": "Comercial unique center, C.A",
       "direccion": "Av. Los Incas 123",
-      "seudonimo": "unique"
+      "seudonimo": "unique",
+      "id": "f547"
     },
     {
       "rif": "J123456789",
       "razonsocial": "Empresa ABC",
       "direccion": "Calle Principal 123",
-      "seudonimo": "Juan Pérez"
+      "seudonimo": "Juan Pérez",
+      "id": "c5d6"
     },
     {
       "rif": "R987654321",
       "razonsocial": "Empresa XYZ",
       "direccion": "Avenida Secundaria 456",
-      "seudonimo": "María González"
+      "seudonimo": "María González",
+      "id": "013e"
     },
     {
       "rif": "R543210987",
       "razonsocial": "Empresa DEF",
       "direccion": "Plaza Mayor 789",
-      "seudonimo": "Carlos Rodríguez"
+      "seudonimo": "Carlos Rodríguez",
+      "id": "9dc5"
     },
     {
       "rif": "R135792468",
       "razonsocial": "Empresa GHI",
       "direccion": "Calle Comercial 123",
-      "seudonimo": "Ana López"
+      "seudonimo": "Ana López",
+      "id": "1f10"
     },
     {
       "rif": "R246801357",
       "razonsocial": "Empresa JKL",
       "direccion": "Avenida Industrial 456",
-      "seudonimo": "Pedro Martínez"
+      "seudonimo": "Pedro Martínez",
+      "id": "5ebb"
     },
     {
       "rif": "R765432109",
       "razonsocial": "Empresa MNO",
       "direccion": "Calle Uno 789",
-      "seudonimo": "Sofía Ramírez"
+      "seudonimo": "Sofía Ramírez",
+      "id": "e0ab"
     },
     {
       "rif": "R111111111",
       "razonsocial": "Empresa AAA",
       "direccion": "Avenida Dos 123",
-      "seudonimo": "Luis González"
+      "seudonimo": "Luis González",
+      "id": "a8d7"
     },
     {
       "rif": "R222222222",
       "razonsocial": "Empresa BBB",
       "direccion": "Calle Tres 456",
-      "seudonimo": "Laura Pérez"
+      "seudonimo": "Laura Pérez",
+      "id": "702c"
     },
     {
       "rif": "R333333333",
       "razonsocial": "Empresa CCC",
       "direccion": "Avenida Cuatro 789",
-      "seudonimo": "Diego Sánchez"
+      "seudonimo": "Diego Sánchez",
+      "id": "7d6b"
     },
     {
       "rif": "R444444444",
       "razonsocial": "Empresa DDD",
       "direccion": "Plaza Central 123",
-      "seudonimo": "Elena Fernández"
+      "seudonimo": "Elena Fernández",
+      "id": "8575"
     },
     {
       "rif": "J-12345678-9",
       "razonsocial": "Comercial unique center, C.A",
       "direccion": "Av. Los Incas 123",
-      "seudonimo": "unique"
+      "seudonimo": "unique",
+      "id": "4896"
     },
     {
       "rif": "J123456789",
       "razonsocial": "Empresa ABC",
       "direccion": "Calle Principal 123",
-      "seudonimo": "Juan Pérez"
+      "seudonimo": "Juan Pérez",
+      "id": "de30"
     },
     {
       "rif": "R987654321",
       "razonsocial": "Empresa XYZ",
       "direccion": "Avenida Secundaria 456",
-      "seudonimo": "María González"
+      "seudonimo": "María González",
+      "id": "a7d3"
     },
     {
       "rif": "R543210987",
       "razonsocial": "Empresa DEF",
       "direccion": "Plaza Mayor 789",
-      "seudonimo": "Carlos Rodríguez"
+      "seudonimo": "Carlos Rodríguez",
+      "id": "a88d"
     },
     {
       "rif": "R135792468",
       "razonsocial": "Empresa GHI",
       "direccion": "Calle Comercial 123",
-      "seudonimo": "Ana López"
+      "seudonimo": "Ana López",
+      "id": "f567"
     },
     {
       "rif": "R246801357",
       "razonsocial": "Empresa JKL",
       "direccion": "Avenida Industrial 456",
-      "seudonimo": "Pedro Martínez"
+      "seudonimo": "Pedro Martínez",
+      "id": "6eb6"
     },
     {
       "rif": "R765432109",
       "razonsocial": "Empresa MNO",
       "direccion": "Calle Uno 789",
-      "seudonimo": "Sofía Ramírez"
+      "seudonimo": "Sofía Ramírez",
+      "id": "a619"
     },
     {
       "rif": "R111111111",
       "razonsocial": "Empresa AAA",
       "direccion": "Avenida Dos 123",
-      "seudonimo": "Luis González"
+      "seudonimo": "Luis González",
+      "id": "e724"
     },
     {
       "rif": "R222222222",
       "razonsocial": "Empresa BBB",
       "direccion": "Calle Tres 456",
-      "seudonimo": "Laura Pérez"
+      "seudonimo": "Laura Pérez",
+      "id": "ce88"
     },
     {
       "rif": "R333333333",
       "razonsocial": "Empresa CCC",
       "direccion": "Avenida Cuatro 789",
-      "seudonimo": "Diego Sánchez"
+      "seudonimo": "Diego Sánchez",
+      "id": "5739"
     },
     {
       "rif": "R444444444",
       "razonsocial": "Empresa DDD",
       "direccion": "Plaza Central 123",
-      "seudonimo": "Elena Fernández"
+      "seudonimo": "Elena Fernández",
+      "id": "1a7b"
     }
   ],
   "comprobantes": [
@@ -216,8 +249,38 @@
       "ivaRetenido": "22.82"
     },
     {
-      "id": "4da8",
-      "nroComprobante": "1231231231231",
+      "id": "81c2",
+      "nroComprobante": "1928192891801",
+      "proveedor": "Empresa BBB",
+      "rifProveedor": "R222222222",
+      "direccionProveedor": "Calle Tres 456",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "180.10",
+      "baseImponible": "150.10",
+      "impuestoIva": "24.02",
+      "ivaRetenido": "18.02"
+    },
+    {
+      "id": "3c6c",
+      "nroComprobante": "0000123123123",
+      "proveedor": "Empresa AAA",
+      "rifProveedor": "R111111111",
+      "direccionProveedor": "Avenida Dos 123",
+      "fEmision": "2024-04-05",
+      "fEntrega": "2024-04-18",
+      "fFactura": "2024-04-20",
+      "nroControl": "sdsdasd",
+      "totalFacturado": "12440",
+      "baseImponible": "1280",
+      "impuestoIva": "204.80",
+      "ivaRetenido": "153.60"
+    },
+    {
+      "id": "fd57",
+      "nroComprobante": "2021030000010",
       "proveedor": "Comercial unique center, C.A",
       "rifProveedor": "J-12345678-9",
       "direccionProveedor": "Av. Los Incas 123",
@@ -226,9 +289,114 @@
       "fFactura": "2024-04-25",
       "nroControl": "Z1B8046526",
       "totalFacturado": "190.10",
+      "baseImponible": "150.10",
+      "impuestoIva": "24.02",
+      "ivaRetenido": "18.02"
+    },
+    {
+      "id": "abdf",
+      "nroComprobante": "2024010000012",
+      "proveedor": "Empresa CCC",
+      "rifProveedor": "R333333333",
+      "direccionProveedor": "Avenida Cuatro 789",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "140.10",
+      "impuestoIva": "22.42",
+      "ivaRetenido": "16.82"
+    },
+    {
+      "id": "6bf4",
+      "nroComprobante": "5465465498989",
+      "proveedor": "Empresa CCC",
+      "rifProveedor": "R333333333",
+      "direccionProveedor": "Avenida Cuatro 789",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
       "baseImponible": "190.10",
       "impuestoIva": "30.42",
       "ivaRetenido": "22.82"
+    },
+    {
+      "id": "e012",
+      "nroComprobante": "2020300677000",
+      "proveedor": "Empresa JKL",
+      "rifProveedor": "R246801357",
+      "direccionProveedor": "calle paez casa nro 15 ciudad bolivar",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "Z1B8046526",
+      "totalFacturado": "190.10",
+      "baseImponible": "190.10",
+      "impuestoIva": "30.42",
+      "ivaRetenido": "22.82"
+    },
+    {
+      "id": "062f",
+      "nroComprobante": "2020300677000",
+      "proveedor": "Comercial unique center, C.A",
+      "rifProveedor": "J-12345678-9",
+      "direccionProveedor": "Av. Los Incas 123",
+      "fEmision": "2024-04-03",
+      "fEntrega": "2024-04-27",
+      "fFactura": "2024-04-16",
+      "nroControl": "z2b3034r",
+      "totalFacturado": "110.10",
+      "baseImponible": "101.10",
+      "impuestoIva": "16.18",
+      "ivaRetenido": "12.13"
+    },
+    {
+      "id": "4f02",
+      "nroComprobante": "2020300677000",
+      "proveedor": "Empresa JKL",
+      "rifProveedor": "R246801357",
+      "direccionProveedor": "calle paez casa nro 15 ciudad bolivar",
+      "fEmision": "2024-04-02",
+      "fEntrega": "2024-04-02",
+      "fFactura": "2024-04-02",
+      "nroControl": "Z23RT5678",
+      "totalFacturado": "100",
+      "baseImponible": "100",
+      "impuestoIva": "16.00",
+      "ivaRetenido": "12.00"
+    },
+    {
+      "id": "12f3",
+      "nroComprobante": "444444444444",
+      "proveedor": "Empresa AAA",
+      "rifProveedor": "R111111111",
+      "direccionProveedor": "Avenida Dos 123",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "QZ803RT3",
+      "totalFacturado": "111",
+      "baseImponible": "111",
+      "impuestoIva": "17.76",
+      "ivaRetenido": "13.32"
+    },
+    {
+      "id": "58cb",
+      "nroComprobante": "444444487444",
+      "proveedor": "Empresa ABC",
+      "rifProveedor": "J123456789",
+      "direccionProveedor": "Calle Principal 123",
+      "fEmision": "2024-04-25",
+      "fEntrega": "2024-04-25",
+      "fFactura": "2024-04-25",
+      "nroControl": "QZ803RT3",
+      "totalFacturado": "111",
+      "baseImponible": "111",
+      "impuestoIva": "17.76",
+      "ivaRetenido": "13.32"
     }
   ]
 }

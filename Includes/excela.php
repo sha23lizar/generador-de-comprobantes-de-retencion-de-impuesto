@@ -4,25 +4,23 @@ include "bd.inc.php";
  
 if(isset($_GET['export'])){
 if($_GET['export'] == 'true'){
-$query = mysqli_query($conn, 'select * from acompanantes'); // Get data from Database from table
+$query = mysqli_query($conn, 'select * from proveedor'); // Get data from Database from table
  
  
     $delimiter = ";";
-    $filename = "acompanantes/" . date('d/m/Y') . ".csv"; // Create file name
+    $filename = "proveedor/" . date('d/m/Y') . ".csv"; // Create file name
      
     //create a file pointer
     $f = fopen('php://output', 'w'); 
      
     //set column headers
-    $fields = array('ida', 'acompanante', 'cedula', 'edad', 'sexo', 'estado', 'municipio',
-     'parroquia', 'fechai', 'fechae');
+    $fields = array('id', 'nombreProveedor', 'rifProveedor', 'direccionProveedor');
     fputcsv($f, $fields, $delimiter);
      
     //output each row of the data, format line as csv and write to file pointer
     while($row = $query->fetch_assoc()){
         
-        $lineData = array($row['ida'], $row['acompanante'], $row['cedula'], $row['edad'], $row['sexo'], $row['estado'], $row['municipio'],
-         $row['parroquia'], $row['fechai'], $row['fechae']);
+        $lineData = array($row['id'], $row['nombreProveedor'], $row['rifProveedor'], $row['direccionProveedor']);
         fputcsv($f, $lineData, $delimiter);
     }
      

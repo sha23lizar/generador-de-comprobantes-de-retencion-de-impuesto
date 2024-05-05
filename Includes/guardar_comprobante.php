@@ -1,6 +1,7 @@
 <?php
 // Verifica si se ha enviado el formulario
-if (isset($_POST['submit1'])) {
+// if (isset($_POST['submit1'])) {
+if (true) {
     // Conexión a la base de datos (debes llenar los detalles de conexión)
     $servername = "localhost";
     $username = "root";
@@ -19,24 +20,27 @@ if (isset($_POST['submit1'])) {
     $nroComprobante = $_POST['nroComprobante'];
     $proveedor = $_POST['proveedor'];
     $rifProveedor = $_POST['rifProveedor'];
-    $direccionProveedor = $_POST['dirreccionProveedor'];
+    $direccionProveedor = $_POST['direccionProveedor'];
     $fEmision = $_POST['fEmision'];
     $fEntrega = $_POST['fEntrega'];
     $fFactura = $_POST['fFactura'];
     $nroControl = $_POST['nroControl'];
     $totalFacturado = $_POST['totalFacturado'];
     $baseImponible = $_POST['baseImponible'];
+    $impuestoIva = $_POST['impuestoIva'];
+    $ivaRetenido = $_POST['ivaRetenido'];
 
     // Prepara la consulta SQL para insertar los datos en la tabla
-    $sql = "INSERT INTO comprobante (nroComprobante, proveedor, rifProveedor, direccionProveedor, fEmision, fEntrega, fFactura, nroControl, totalFacturado, baseImponible)
-            VALUES ('$nroComprobante', '$proveedor', '$rifProveedor', '$direccionProveedor', '$fEmision', '$fEntrega', '$fFactura', '$nroControl', '$totalFacturado', '$baseImponible')";
+    $sql = "INSERT INTO comprobante (nroComprobante, proveedor, rifProveedor, direccionProveedor, fEmision, fEntrega, fFactura, nroControl, totalFacturado, baseImponible, impuestoIva, ivaRetenido)
+            VALUES ('$nroComprobante', '$proveedor', '$rifProveedor', '$direccionProveedor', '$fEmision', '$fEntrega', '$fFactura', '$nroControl', '$totalFacturado', '$baseImponible','$impuestoIva', '$ivaRetenido')";
 
+    $conn->query($sql); 
     // Ejecuta la consulta y verifica si fue exitosa
-    if ($conn->query($sql) === TRUE) {
-        echo "Registro exitoso";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    // if ($conn->query($sql) === TRUE) {
+    //     echo "Registro exitoso";
+    // } else {
+    //     echo "Error: " . $sql . "<br>" . $conn->error;
+    // }
 
     // Cierra la conexión
     $conn->close();

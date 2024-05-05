@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <script src="./Assets/scripts/jquery-2.2.4.min.js"></script>
+</head>
+
+<body>
+    <input type="button" value="Hola" onclick="saludar()">
+    <div id="mostrar_mensaje"></div>
+    <input type="button" value="recibir" onclick="pedirDatos()">
+    
+    
+    <h1>hola</h1>
+
+    <label class="switch">
+        <input type="checkbox" >
+        <span class="slider round"></span>
+      </label>
+    
+    
+    <!-- <input type="checkbox" class="switch"> -->
+    
+    
+    <script>
+        function pedirDatos() {
+            $.ajax({
+                url: "./json.php",
+                type: "GET",
+                success: function (data) {
+                    console.log(JSON.parse(data));
+                }
+            })     
+        }
+
+        function saludar() {
+            var parametros = {
+                nroComprobante: "112",
+                proveedor: "112",
+                rifProveedor: "112",
+                direccionProveedor: "112",
+                fEmision: "112",
+                fEntrega: "112",
+                fFactura: "112",
+                nroControl: "112",
+                totalFacturado: 112,
+                baseImponible: 112,
+                impuestoIva: 112,
+                ivaRetenido: 112
+            }
+
+            $.ajax({
+                data:parametros,
+                url:"./includes/guardar_comprobante.php",
+                type:"POST",
+                beforeSend: function () {
+                    $("#mostrar_mensaje").html("por enviar")
+                },
+                
+                success: function(mensaje){
+                    $("#mostrar_mensaje").html(mensaje)
+
+                }
+
+            })
+
+
+
+        }
+    </script>
+</body>
+
+</html>

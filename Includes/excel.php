@@ -36,6 +36,7 @@ $query = mysqli_query($conn, 'select * from pacientes'); // Get data from Databa
 ?>
 
 <?php
+/*
 include "bd.inc.php";
 
 if(isset($_GET['export'])){
@@ -73,5 +74,62 @@ if(isset($_GET['export'])){
         fclose($f);
     }
 }
+*/
+?>
 
+<?php  
+
+include "bd.inc.php";
+
+// Establecer la zona horaria a Venezuela
+date_default_timezone_set('America/Caracas');
+ 
+if(isset($_GET['export'])){
+    if($_GET['export'] == 'true'){
+        // Carpeta base donde se almacenarán los archivos CSV por mes
+        $baseFolder = "../respaldo/comprobante/";
+
+        // Obtener el año y mes actual
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+
+        // Carpeta para el mes actual
+        $folder = $baseFolder . $currentYear . '/' . $currentMonth . '/';
+
+        // Verificar si la carpeta para el mes actual existe, si no, crearla
+        if (!file_exists($folder)) {
+            mkdir($folder, 0777, true); // Cambia los permisos según sea necesario
+        }
+
+        // Nombre de archivo CSV con la fecha y hora actual para evitar sobrescritura
+        $filename = $folder . date('d-m-Y_H-i-s') . ".csv";
+
+        // Abrir un nuevo archivo CSV o agregar al archivo existente si ya existe
+        $f = fopen($filename, 'a');
+
+        // Si es un nuevo archivo, agregar encabezados de columna
+        if(filesize($filename) == 0) {
+            // Establecer delimitador y encabezados de columna
+            $delimiter = ";";
+            $fields = array('id', 'nroComprobante', 'Proveedor', 'rifProveedor', 'direccionProveedor', 'fEmision', 'fEntrega', 'fFactura', 'totalFacturado', 'baseImponible', 'fechaRegistro');
+            fputcsv($f, $fields, $delimiter);
+        }
+
+        // Obtener datos de la base de datos
+        $query = mysqli_query($conn, 'select * from comprobante');
+
+        // Escribir cada fila de datos al archivo CSV
+        while($row = $query->fetch_assoc()){
+            $lineData = array($row['id'], $row['nroComprobante'], $row['rifProveedor'], $row['direccionProveedor'], $row['fEmision'], $row['fEntrega'], $row['fFactura'], $row['totalFacturado'], $row['baseImponible'], $row['fechaRegistro']);
+            fputcsv($f, $lineData, $delimiter);
+        }
+
+        // Cerrar archivo
+        fclose($f);
+
+        // Redireccionar para descargar el archivo
+        header('Location: ' . $filename);
+        exit();
+    }
+}
 ?>
