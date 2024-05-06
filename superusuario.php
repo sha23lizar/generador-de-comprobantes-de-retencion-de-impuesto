@@ -296,18 +296,17 @@ if (isset($_SESSION['Super'])) {
                                         <table id="tabla" class="align-middle mb-0 table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">Nro</th>
-                                                    <th class="text-center">Proveedor</th>
-                                                    <th class="text-center">F.emision</th>
-                                                    <th class="text-center">F.entrega</th>
-                                                    <th class="text-center">F.factura</th>
-                                                    <th class="text-center">N.factura</th>
-                                                    <th class="text-center">N.Control</th>
-                                                    <th class="text-center">total facturado</th>
-                                                    <th class="text-center">base imponible</th>
+                                                    <th class="text-center">nroComprobante</th>
+                                                    <th class="text-center">proveedor</th>
+                                                    <th class="text-center">rifProveedor</th>
+                                                    <th class="text-center">direccionProveedor</th>
+                                                    <th class="text-center">fFactura</th>
+                                                    <th class="text-center">totalFacturado</th>
+                                                    <th class="text-center">baseImponible</th>
                                                     <th class="text-center">impuesto iva (16%)</th>
                                                     <th class="text-center">iva retenido (75%)</th>
-                                                    <th class="text-center">Acciones</th>
+                                                    <th class="text-center">Editar</th>
+                                                    <th class="text-center">Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <!-- <tbody>
@@ -576,7 +575,7 @@ if (isset($_SESSION['Super'])) {
                                     <label for="paciente">Nro de Comprobante</label>
 
                                     <!-- <input type="text" value="" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" onkeydown="javascript: return ((isNaN(event.target.value) && event.target.value.length < 14 && event.target.value > -1 ))" required> -->
-                                    <input type="text" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" pattern="[0-9]{14}" minlength="14" maxlength="14" required disabled>
+                                    <input type="text" class="form-control nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" pattern="[0-9]{14}" minlength="14" maxlength="14" required disabled>
 
                                     <div class="invalid-feedback">
                                         Debe colocar 14 numeros.
@@ -593,7 +592,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="estado">Proveedor</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="proveedor" name='proveedor' require aria-label="Text input with dropdown button" required>
+                                        <input type="text" class="form-control proveedor" name='proveedor' require aria-label="Text input with dropdown button" required>
 
                                         <!-- Boton para resetear proveedores -->
                                         <div class="input-group-append">
@@ -617,7 +616,7 @@ if (isset($_SESSION['Super'])) {
 
                                     </div>
 
-                                    <!-- <select id="proveedor" name="proveedor" class="form-control">
+                                    <!-- <selec proveedor" name="proveedor" class="form-control">
 
                                         <option value="Bolivar">Comercial Auioneit CA</option>
                                         <option value="Anzoategui">Refrescos Guatire</option>
@@ -642,7 +641,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">Rif Proveedor</label>
 
-                                    <input type="text" class="form-control" id="rifProveedor" name='rifProveedor' placeholder="ejemplo: j-298400870" required>
+                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' placeholder="ejemplo: j-298400870" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -663,7 +662,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">Direccion del Proveedor</label>
 
-                                    <input type="text" class="form-control" id="dirreccionProveedor" name='dirreccionProveedor' placeholder="ejemplo: Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
+                                    <input type="text" class="form-control dirreccionProveedor" name='dirreccionProveedor' placeholder="ejemplo: Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -680,7 +679,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">nro de control</label>
 
-                                    <input type="text" class="form-control" id="nroControl" name="nroControl" placeholder="ejemplo: Z1B8046526" required>
+                                    <input type="text" class="form-control nroControl" name="nroControl" placeholder="ejemplo: Z1B8046526" required>
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
                                     </div>
@@ -702,7 +701,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">F.factura</label>
 
-                                    <input type="date" class="form-control" min="1000-00-01" max="9999-12-30" id="fFactura" name="fFactura" placeholder="fFactura" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                                    <input type="date" class="form-control fFactura" min="1000-00-01" max="9999-12-30" name="fFactura" placeholder="fFactura" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -741,7 +740,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">F.Emision</label>
 
-                                    <input type="date" class="form-control" id="fEmision" name="fEmision" placeholder="fEmision" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                                    <input type="date" class="form-control fEmision" name="fEmision" placeholder="fEmision" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -758,7 +757,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">F.entrega</label>
 
-                                    <input type="date" class="form-control" id="fEntrega" name="fEntrega" placeholder="fEntrega" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                                    <input type="date" class="form-control fEntrega" name="fEntrega" placeholder="fEntrega" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -778,7 +777,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">total facturado</label>
 
-                                    <input type="number" class="total-facturado form-control" id="paciente" placeholder="1.0" step="0.01" min="0" name='totalFacturado' placeholder="total facturado" required>
+                                    <input type="number" class="total-facturado form-control" placeholder="1.0" step="0.01" min="0" name='totalFacturado' placeholder="total facturado" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -794,7 +793,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="patologia">base imponible</label>
 
-                                    <input type="number" class="base-imponible form-control" id="baseImponible" placeholder="1.0" step="0.01" min="0" name='baseImponible' placeholder="base imponible" required>
+                                    <input type="number" class="base-imponible form-control baseImponible" placeholder="1.0" step="0.01" min="0" name='baseImponible' placeholder="base imponible" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -810,7 +809,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">impuesto iva</label>
 
-                                    <input disabled type="number" class="impuesto-iva form-control" id="impuestoIva" name='impuestoIva' placeholder="impuesto iva" required>
+                                    <input disabled type="number" class="impuesto-iva form-control impuestoIva" name='impuestoIva' placeholder="impuesto iva" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -826,7 +825,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="">iva retenido</label>
 
-                                    <input disabled type="number" class="iva-retenido form-control" id="ivaRetenido" name='ivaRetenido' placeholder="iva retenido" required>
+                                    <input disabled type="number" class="iva-retenido form-control ivaRetenido" name='ivaRetenido' placeholder="iva retenido" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -857,14 +856,17 @@ if (isset($_SESSION['Super'])) {
 
         </div>
 
-        <!-- Editar Paciente -->
-
-        <div class="modal fade" id="editarpaciente" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <!-- Btn Editar -->
+        <a data-toggle="modal" style="display: none;" id="btnAddComprobante" href="#editarRegistro" class="btn-shadow btn btn-primary">
+            editar
+        </a>
+        <!-- Editar Comprobante -->
+        <div class="modal fade" id="editarRegistro" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLongTitle">Editar de Paciente</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Editar Comprobante</h5>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -872,22 +874,22 @@ if (isset($_SESSION['Super'])) {
 
                     </div>
 
-                    <form class="needs-validation" action="includes/mod.paciente.inc.php" method="post" novalidate>
+                    <form id="editar-comprobante" class="needs-validation" action="includes/guardar_comprobante.php" method="post" novalidate>
 
                         <div class="modal-body">
 
                             <div class="form-row">
 
+                                <!-- nro Comprobante -->
                                 <div class="col-md-4 mb-3">
 
-                                    <input type="hidden" name="idpEditar" id="idpEditar">
+                                    <label for="paciente">Nro de Comprobante</label>
 
-                                    <label for="pacienteEditar">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="pacienteEditar" name='pacienteEditar' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
+                                    <!-- <input type="text" value="" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" onkeydown="javascript: return ((isNaN(event.target.value) && event.target.value.length < 14 && event.target.value > -1 ))" required> -->
+                                    <input type="text" class="form-control nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" pattern="[0-9]{14}" minlength="14" maxlength="14" required disabled>
 
                                     <div class="invalid-feedback">
-                                        Debe rellenar este campo.
+                                        Debe colocar 14 numeros.
                                     </div>
 
                                     <div class="valid-feedback">
@@ -896,11 +898,61 @@ if (isset($_SESSION['Super'])) {
 
                                 </div>
 
+                                <!-- Proveedor -->
                                 <div class="col-md-4 mb-3">
 
-                                    <label for="cedulaEditar">Cedula</label>
+                                    <label for="estado">Proveedor</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control proveedor" name='proveedor' require aria-label="Text input with dropdown button" required>
 
-                                    <input type="text" class="form-control" id="cedulaEditar" name="cedulaEditar" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                                        <!-- Boton para resetear proveedores -->
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger rounded-right resetProveedor" type="button" style="display: none; z-index: 1000000">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- Boton para abrir toglee -->
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- content porveedores -->
+                                            <div class="dropdown-menu" style="max-height: 50vh; overflow-y: auto">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- <selec proveedor" name="proveedor" class="form-control">
+
+                                        <option value="Bolivar">Comercial Auioneit CA</option>
+                                        <option value="Anzoategui">Refrescos Guatire</option>
+                                        <option value="Merida">Helados cali CA</option>
+                                        <option value="Trujillo">Comercial watire center, C.A</option>
+
+                                    </select> -->
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Rif Proveedor -->
+                                <div class="col-md-4 mb-3">
+
+                                    <label for="">Rif Proveedor</label>
+
+                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' placeholder="ejemplo: j-298400870" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -911,11 +963,17 @@ if (isset($_SESSION['Super'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-2 mb-3">
 
-                                    <label for="edadEditar">Edad</label>
 
-                                    <input type="text" class="form-control" id="edadEditar" name="edadEditar" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                            </div>
+
+                            <div class="form-row">
+                                <!-- Direccion del Proveedor -->
+                                <div class="col-md-9 mb-3">
+
+                                    <label for="">Direccion del Proveedor</label>
+
+                                    <input type="text" class="form-control dirreccionProveedor" name='dirreccionProveedor' placeholder="ejemplo: Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -926,16 +984,91 @@ if (isset($_SESSION['Super'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-2 mb-3">
 
-                                    <label for="sexoEditar">Sexo</label>
+                                <!-- nro control -->
+                                <div class="col-md-3 mb-3">
 
-                                    <select id="sexoEditar" name="sexoEditar" class="form-control">
+                                    <label for="">nro de control</label>
 
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
+                                    <input type="text" class="form-control nroControl" name="nroControl" placeholder="ejemplo: Z1B8046526" required>
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
 
-                                    </select>
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-row">
+
+
+                                <!-- F.factura -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.factura</label>
+
+                                    <input type="date" class="form-control fFactura" min="1000-00-01" max="9999-12-30" name="fFactura" placeholder="fFactura" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Periodo Fiscal -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">Periodo Fiscal</label>
+
+                                    <div class="input-group">
+                                        <input type="text" aria-label="First name" class="form-control periodoFiscalAño" disabled>
+                                        <input type="text" aria-label="Last name" class="form-control periodoFiscalMes" disabled>
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- F.emision -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.Emision</label>
+
+                                    <input type="date" class="form-control fEmision" name="fEmision" placeholder="fEmision" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+                                <!-- F.entrega -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.entrega</label>
+
+                                    <input type="date" class="form-control fEntrega" name="fEntrega" placeholder="fEntrega" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -950,19 +1083,12 @@ if (isset($_SESSION['Super'])) {
                             </div>
 
                             <div class="form-row">
+                                <!-- total facturado -->
+                                <div class="col-md-3 mb-3">
 
-                                <div class="col-md-4 mb-3">
+                                    <label for="">total facturado</label>
 
-                                    <label for="estadoEditar">Estado</label>
-
-                                    <select id="estadoEditar" name="estadoEditar" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
+                                    <input type="number" class="total-facturado form-control" placeholder="1.0" step="0.01" min="0" name='totalFacturado' placeholder="total facturado" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -973,18 +1099,12 @@ if (isset($_SESSION['Super'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <!-- base imponible -->
+                                <div class="col-md-3 mb-3">
 
-                                    <label for="municipioEditar">Municipio</label>
+                                    <label for="patologia">base imponible</label>
 
-                                    <select id="municipioEditar" name="municipioEditar" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
+                                    <input type="number" class="base-imponible form-control baseImponible" placeholder="1.0" step="0.01" min="0" name='baseImponible' placeholder="base imponible" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -995,18 +1115,12 @@ if (isset($_SESSION['Super'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <!-- impuesto iva -->
+                                <div class="col-md-3 mb-3">
 
-                                    <label for="parroquiaEditar">Parroquia</label>
+                                    <label for="">impuesto iva</label>
 
-                                    <select id="parroquiaEditar" name="parroquiaEditar" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
+                                    <input disabled type="number" class="impuesto-iva form-control impuestoIva" name='impuestoIva' placeholder="impuesto iva" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -1017,23 +1131,12 @@ if (isset($_SESSION['Super'])) {
                                     </div>
 
                                 </div>
+                                <!-- iva retenido -->
+                                <div class="col-md-3 mb-3">
 
-                            </div>
+                                    <label for="">iva retenido</label>
 
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="patologiaEditar">Patologia</label>
-
-                                    <select id="patologiaEditar" name="patologiaEditar" class="form-control">
-
-                                        <option value="Gripe">Gripe</option>
-                                        <option value="Fiebre">Fiebre</option>
-                                        <option value="Tos">Tos</option>
-                                        <option value="Malestar">Malestar</option>
-
-                                    </select>
+                                    <input disabled type="number" class="iva-retenido form-control ivaRetenido" name='ivaRetenido' placeholder="iva retenido" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -1044,7 +1147,6 @@ if (isset($_SESSION['Super'])) {
                                     </div>
 
                                 </div>
-
                             </div>
 
                         </div>
@@ -1052,9 +1154,10 @@ if (isset($_SESSION['Super'])) {
                         <div class="modal-footer">
 
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
+                            <button type="submit" name="submit1" class="btn btn-primary">Editar</button>
 
                         </div>
+
 
                     </form>
 

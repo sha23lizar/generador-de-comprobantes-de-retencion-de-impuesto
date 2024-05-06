@@ -1,7 +1,11 @@
 <?php
+// Conectar a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "feb"; // Reemplaza con el nombre de tu base de datos
 
-include("conexion.php");
-
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar la conexión
 if ($conn->connect_error) {
@@ -9,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para seleccionar los datos de los usuarios
-$sql = "SELECT * FROM comprobante ORDER BY fechaRegistro DESC LIMIT 1";
+$sql = "SELECT * FROM comprobante WHERE id = '".$_POST["id"]."' LIMIT 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -27,7 +31,7 @@ if ($result->num_rows > 0) {
     // Devolver el JSON como respuesta
     echo $json_data;
 } else {
-    echo "No se encontraron comprobantes.";
+    echo "No se encontraron usuarios.";
 }
 
 // Cerrar la conexión

@@ -1,9 +1,14 @@
 
 export class FormularioComprobantes {
-    constructor(contentForm, servidor, datatable) {
+    constructor(contentForm, modo, datatable) {
+
+        this.modo = modo
+        this.idComprobante = null
+        this.datatable = datatable
         this.urls = {
             guardar: "./includes/guardar_comprobante.php",
-            buscarUltimo: "./includes/buscarUltimoComprobante.php"
+            buscarUltimo: "./includes/buscarUltimoComprobante.php",
+            editar: "./includes/editarComprobante.php"
         }
 
         this.contentForm = document.querySelector(contentForm)
@@ -12,21 +17,20 @@ export class FormularioComprobantes {
         this.buscarUltimoComprobante()
         this.ultimoNumeroComprobante = 0
 
-        this.servidor = servidor
         this.btnsTogles = document.querySelectorAll(`a[href='${contentForm}']`)
         this.btnClose = this.contentForm.querySelector("[data-dismiss]");
+0
 
-
-        this.inputNroComprobante = this.form.querySelector("#nroComprobante")
-        this.inputProveedor = this.form.querySelector("#proveedor")
-        this.inputRif = this.form.querySelector("#rifProveedor")
-        this.inputDireccion = this.form.querySelector("#dirreccionProveedor")
-        this.inputFFactura = this.form.querySelector("#fFactura")
+        this.inputNroComprobante = this.form.querySelector(".nroComprobante")
+        this.inputProveedor = this.form.querySelector(".proveedor")
+        this.inputRif = this.form.querySelector(".rifProveedor")
+        this.inputDireccion = this.form.querySelector(".dirreccionProveedor")
+        this.inputFFactura = this.form.querySelector(".fFactura")
         this.inputPFAño = this.form.querySelector(".periodoFiscalAño")
         this.inputPFMes = this.form.querySelector(".periodoFiscalMes")
-        this.inputFEmision = this.form.querySelector("#fEmision")
-        this.inputFEntrega = this.form.querySelector("#fEntrega")
-        this.inputNroControl = this.form.querySelector("#nroControl")
+        this.inputFEmision = this.form.querySelector(".fEmision")
+        this.inputFEntrega = this.form.querySelector(".fEntrega")
+        this.inputNroControl = this.form.querySelector(".nroControl")
         this.inputTotalFactura = this.form.querySelector(".total-facturado")
         this.inputBaseImponible = this.form.querySelector(".base-imponible")
         this.impuestoIva = this.form.querySelector(".impuesto-iva")
@@ -72,23 +76,31 @@ export class FormularioComprobantes {
 
 
         this.btnsTogles.forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                this.resetProveedor()
-                this.reset()
-                this.buscarUltimoComprobante()
-            })
+            if (this.modo == "nuevo") { 
+                btn.addEventListener("click", (e) => {
+                    this.resetProveedor()
+                    this.reset()
+                    this.buscarUltimoComprobante()
+                })
+            }
             // btn.click()
         })
 
         this.form.addEventListener('submit', (e) => {
             e.preventDefault()
             if (this.validacion()) {
-                this.closeModal()
-                let data = this.obtenerData()
-                // this.resetAll()
-                // this.servidor.post(data)
-                // datatable.add(data)
-                this.enviarComprobante()
+                if (this.modo == "nuevo") {
+                    this.closeModal()
+                    let data = this.obtenerData()
+                    // this.resetAll()
+                    // datatable.add(data)
+                    this.enviarComprobante(data)
+                } else if (this.modo == "registar" && this.idComprobante != null ) {
+                    this.closeModal()
+                    let data = this.obtenerData()
+                    data.id = this.idComprobante
+                    this.enviarComprobante(data)
+                }
 
             }
         })
@@ -107,7 +119,6 @@ export class FormularioComprobantes {
 
     // Agregar proveedores
     cargarProveedores(data) {
-        console.log(data)
         data.forEach(e => {
             // var option = `<a class="dropdown-item" data-rif="${e.rif}" data-razonsocial="${e.razonsocial}" data-direccion="${e.direccion}" href="#">${e.seudonimo}</a>`
             // this.form.querySelector(".dropdown-menu").innerHTML += option
@@ -123,8 +134,8 @@ export class FormularioComprobantes {
             // Agregar evento al click para insertar datos 
             option.addEventListener("click", (e) => {
                 this.inputProveedor.value = e.target.getAttribute("data-razonsocial");
-                this.inputRif.form.querySelector("#rifProveedor").value = e.target.getAttribute("data-rif");
-                this.inputDireccion.form.querySelector("#dirreccionProveedor").value = e.target.getAttribute("data-direccion");
+                this.inputRif.form.querySelector(".rifProveedor").value = e.target.getAttribute("data-rif");
+                this.inputDireccion.form.querySelector(".dirreccionProveedor").value = e.target.getAttribute("data-direccion");
 
                 this.inputProveedor.disabled = true
                 this.inputRif.disabled = true
@@ -191,8 +202,8 @@ export class FormularioComprobantes {
 
     resetProveedor() {
         this.inputProveedor.value = "";
-        this.inputRif.form.querySelector("#rifProveedor").value = "";
-        this.inputDireccion.form.querySelector("#dirreccionProveedor").value = "";
+        this.inputRif.form.querySelector(".rifProveedor").value = "";
+        this.inputDireccion.form.querySelector(".dirreccionProveedor").value = "";
 
         this.inputProveedor.disabled = false
         this.inputRif.disabled = false
@@ -218,20 +229,42 @@ export class FormularioComprobantes {
     closeModal() {
         this.btnClose.click()
     }
+    showModal() {
+        this.btnsTogles[0].click()
+    }
 
-    enviarComprobante() {
-        $.ajax({
-            data: this.obtenerData(),
-            url: this.urls.guardar,
-            type: "POST",
-            beforeSend: function () {
-                $("#mostrar_mensaje").html("por enviar")
-            },
-            success: function (mensaje) {
-                $("#mostrar_mensaje").html(mensaje)
-            }
-        })
-        this.reset();
+    enviarComprobante(data) {
+        if(this.modo == "nuevo"){
+            $.ajax({
+                data: data,
+                url: this.urls.guardar,
+                type: "POST",
+                beforeSend: () => {
+                    $("#mostrar_mensaje").html("por enviar")
+                },
+                success: (mensaje) => {
+                    $("#mostrar_mensaje").html(mensaje)
+                    this.datatable.reload()
+                }
+            })
+            this.reset();
+
+        } else if(this.modo == "registar"){
+            $.ajax({
+                data: data,
+                url: this.urls.editar,
+                type: "POST",
+                beforeSend: () => {
+                    $("#mostrar_mensaje").html("por enviar")
+                },
+                success: (mensaje) => {
+                    alert(mensaje)
+                    $("#mostrar_mensaje").html(mensaje)
+                    this.datatable.reload()
+                }
+            })
+            this.reset();
+        }
     }
 
     buscarUltimoComprobante() {
@@ -256,6 +289,28 @@ export class FormularioComprobantes {
                 this.setPeriodoFiscal()
             }
         })
+    }
+
+    editar(comprobante) {
+        this.idComprobante = comprobante.id
+
+        this.inputNroComprobante.value = comprobante.nroComprobante
+        this.inputNroControl.value = comprobante.nroControl
+        this.inputTotalFactura.value = comprobante.totalFacturado
+        this.inputBaseImponible.value = comprobante.baseImponible
+        this.ivaRetenido.value = comprobante.ivaRetenido
+        this.impuestoIva.value = comprobante.impuestoIva
+        this.inputFEmision.value = comprobante.fEmision
+        this.inputFEntrega.value = comprobante.fEntrega
+        this.inputFFactura.value = comprobante.fFactura
+        this.inputProveedor.value = comprobante.proveedor
+        this.inputRif.value = comprobante.rifProveedor
+        this.inputDireccion.value = comprobante.direccionProveedor
+        this.inputFEmision.disabled = false
+        this.inputFEntrega.disabled = false
+        this.inputFFactura.disabled = false
+        this.setPeriodoFiscal()
+        this.showModal()
     }
 
 }
