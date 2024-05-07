@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-05-2024 a las 05:36:27
+-- Tiempo de generación: 07-05-2024 a las 07:33:05
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -257,12 +257,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idu`, `cedula`, `contra`, `pregunta`, `respuesta`, `rol`, `usuario`, `foto`) VALUES
-(1, '26883154', '123456', 'Nombre de mi Mascota', 'Coffee', 1, 'SuperUsuario', '766bb9841a799a75fc0813417aeb2812.png'),
-(2, '11171674', '6473', 'Mi color favorito', 'Verde', 2, 'Administrador', ''),
-(3, '25932740', '123456', 'Hotel?', 'Trivago', 3, 'Asistente', ''),
-(9, '30768517', '123456', 'apellido', 'lizardi', 2, 'Shalom', 'user-default.jpg'),
-(10, '30768518', '123456', 'apellido', 'lizardi', 2, '26883154', 'user-default.jpg'),
-(11, '11748730', '123456', 'apellido', 'lizardi', 3, 'niya', 'user-default.jpg');
+(17, '30768517', '123456', 'apellido', 'lizardi', 1, 'Shalom Lizardi', 'user-default.jpg'),
+(14, '10571450', '123456', 'Apellido', 'lizardi', 2, 'nosmel', 'user-default.jpg'),
+(16, '11748730', '1231234', 'apellido', '123123', 3, 'niya', 'user-default.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -370,7 +367,7 @@ ALTER TABLE `respaldos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
