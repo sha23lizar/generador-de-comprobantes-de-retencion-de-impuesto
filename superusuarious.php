@@ -41,8 +41,8 @@ if (isset($_SESSION['Super'])) {
 
         <script>
             $(document).on("click", ".btn-editar-usuario", function() {
-                var idu = $(this).data('id');
-                $("#idu").val(idu);
+                // var idu = $(this).data('id');
+                // $("#idu").val(idu);
             });
         </script>
 
@@ -319,7 +319,7 @@ if (isset($_SESSION['Super'])) {
                                                         <td class="text-center">
                                                             <div class="row">
 
-                                                                <a href="" class="btn btn-primary col-sm-4 btn-editar-usuario" data-toggle="modal" data-target="#ModUs"><i class="pe-7s-note"></i></a>
+                                                                <a href="#" id="<?php echo $idu; ?>" class="btn btn-primary col-sm-4 btn-editar-usuario"> <i class="pe-7s-note"></i></a>
 
                                                                 <form class="col-sm" action="includes/eli.usuario.inc.php" method="post">
                                                                     <input type="hidden" name="idu" value="<?php echo $idu; ?>">
@@ -421,7 +421,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="cedula">Cedula</label>
 
-                                    <input type="text" id="cedula" name="cedula" class="form-control" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="<?php echo $mostrar['cedula']; ?>" maxlength="8" required>
+                                    <input type="text" name="cedula" class="form-control" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="<?php echo $mostrar['cedula']; ?>" maxlength="8" required>
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
                                     </div>
@@ -434,7 +434,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="contra">Contraseña</label>
 
-                                    <input type="password" id="contra" name="contra" class="form-control" placeholder="Contraseña" value="<?php echo $mostrar['contra']; ?>" required>
+                                    <input type="text" name="contra" class="form-control" placeholder="Contraseña" value="<?php echo $mostrar['contra']; ?>" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -504,7 +504,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="usuario">Nombre y Apellido</label>
 
-                                    <input type="text" class="form-control" id="usuario" name='usuario' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
+                                    <input type="text" class="form-control" name='usuario' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -539,7 +539,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="contra">Contraseña</label>
 
-                                    <input type="password" id="contra" name="contra" class="form-control" placeholder="Contraseña" required>
+                                    <input type="text" id="contra" name="contra" class="form-control" placeholder="Contraseña" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -629,7 +629,10 @@ if (isset($_SESSION['Super'])) {
         <!-- Button trigger modal -->
 
 
-        <!-- Modal -->
+        <a data-toggle="modal" style="display: none;" id="btnOpenModalEdit" href="#ModUs" class="btn-shadow btn btn-primary">
+            editar
+        </a>
+        <!-- Modal Editar -->
 
         <div class="modal fade" id="ModUs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -640,44 +643,47 @@ if (isset($_SESSION['Super'])) {
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form action="" method="POST">
+                    <form action="includes/editar_user.php" method="post">
+                        <div class="modal-body">
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="user">Usuario</label>
-                                <input id="user" type="text" placeholder="usuario" class="form-control" name="nom_agg" value="<?= $user ?>">
+                                <input type="text" placeholder="usuario" class="form-control editar usuario" name="usuario">
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="cedula">Cedula</label>
-                                <input id="cedula" type="text" placeholder="cedula" class="form-control" name="ape_agg" value="<?= $cedula ?>">
+                                <input type="text" placeholder="cedula" class="form-control editar cedula" name="cedula">
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="contra">Contraseña</label>
-                                <input id="contra" type="text" placeholder="contraseña" class="form-control" name="con_agg" value="<?= $contraseña ?>">
+                                <input type="text" placeholder="contraseña" class="form-control editar contra" name="contra">
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="pregunta">Pregunta de seguridad</label>
-                                <input id="pregunta" type="text" placeholder="pregunta de seguridad" class="form-control" name="pre_agg" value="<?= $pregunta ?>">
+                                <input type="text" placeholder="pregunta de seguridad" class="form-control editar pregunta" name="pregunta">
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="respuesta">respuesta de seguridad</label>
-                                <input id="respuesta" type="text" placeholder="respuesta de seguridad" class="form-control" name="use_agg" value="<?= $respuesta ?>">
+                                <input type="text" placeholder="respuesta de seguridad" class="form-control editar respuesta" name="respuesta">
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="rol">Nivel de Usuario</label>
-                                <select id="rol" name="rol" class="form-control" value="<?php echo $mostrar['rol']; ?>" value="<?= $rol ?>">
+                                <select name="rol" class="form-control editar rol">
 
                                     <option value="1">Superusuario</option>
                                     <option value="2">Administrador</option>
                                     <option value="3">Asistente</option>
 
                                 </select>
+                                <input type="hidden" name="idu" class="editar idu">
+
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" name="submit1" class="btn btn-primary">Editar</button>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -685,24 +691,24 @@ if (isset($_SESSION['Super'])) {
         <script>
             // #tablausuarios
             $(document).ready(function() {
-                
+
                 var dataTable = $("#tablausuarios").DataTable({
 
                     columnDefs: [{
-                        responsivePriority: 5,
-                        targets: 0
-                    },
-                    {
-                        responsivePriority: 4,
-                        targets: 5
-                    },
-                    {
-                        responsivePriority: 4,
-                        targets: 6
-                    }
-                ],
+                            responsivePriority: 5,
+                            targets: 0
+                        },
+                        {
+                            responsivePriority: 4,
+                            targets: 5
+                        },
+                        {
+                            responsivePriority: 4,
+                            targets: 6
+                        }
+                    ],
 
-                responsive: true,
+                    responsive: true,
 
                     "language": {
                         "decimal": "",
@@ -723,9 +729,45 @@ if (isset($_SESSION['Super'])) {
                             "next": "Siguiente",
                             "previous": "Anterior"
                         }
-
                     }
                 });
+                // btn-editar-usuario
+
+                var idModalProveedor = "#modalProveedor";
+                var idForm = "#form-proveedor";
+
+                // Funcionalidad editar
+                $(document).on("click", ".btn-editar-usuario", function(e) {
+                    var idu = e.target.id;
+                    if (!idu) {
+                        alert("No se encontro el ID");
+                        return
+                    }
+                    $.ajax({
+                        url: "./includes/obtener_usuario.php",
+                        method: "POST",
+                        data: {
+                            idu: idu
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            let dataUser = data[0];
+                            document.querySelector(".editar.cedula").value = dataUser.cedula
+                            document.querySelector(".editar.contra").value = dataUser.contra
+                            document.querySelector(".editar.pregunta").value = dataUser.pregunta
+                            document.querySelector(".editar.respuesta").value = dataUser.respuesta
+                            document.querySelector(".editar.rol").value = dataUser.rol; // Asegúrate de que el ID se esté envian 
+                            document.querySelector(".editar.usuario").value = dataUser.usuario
+                            document.querySelector(".editar.idu").value = dataUser.idu
+                            document.querySelector("#btnOpenModalEdit").click();
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            alert("error: " + textStatus + " " + errorThrown);
+                        }
+                    })
+                })
+
+
             });
         </script>
 
