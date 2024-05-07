@@ -20,6 +20,8 @@ if (isset($_SESSION['Super'])) {
         <meta name="msapplication-tap-highlight" content="no">
 
         <link href="./css/main.css" rel="stylesheet">
+        <link href="./css/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
         <link href="./css/datatables.min.css" rel="stylesheet">
 
 
@@ -34,8 +36,13 @@ if (isset($_SESSION['Super'])) {
         <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/fotopreview.js"></script> -->
 
         <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
-        <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
+        <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.bootstrap4.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="./assets/scripts/responsive.bootstrap4.js"></script>
+
         <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
         <script type="module" src="./assets/scripts/pagina-principal.js"></script>
 
@@ -250,7 +257,7 @@ if (isset($_SESSION['Super'])) {
                         </div>
                         <h2>Comprobantes</h2>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="max-width: 99%;">
                                 <div class="main-card mb-3 card">
                                     <div class="card-header py-3 d-sm-flex align-item-center justify-content-between">
                                         <div class="py-3 align-item-center justify-content-between">
@@ -293,18 +300,23 @@ if (isset($_SESSION['Super'])) {
                                     ?>
 
                                     <div class="table-responsive p-2">
-                                        <table id="tabla" class="align-middle mb-0 table table-striped table-bordered table-hover">
+                                        <table id="tabla" class="table table-striped table-bordered nowrap" style="width:100%">
+                                        <!-- <table id="tabla" class="table table-striped align-middle mb-0 " style="width: 200px;"> -->
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">nroComprobante</th>
+                                                    <th class="text-center">PeriodoFiscal</th>
                                                     <th class="text-center">proveedor</th>
                                                     <th class="text-center">rifProveedor</th>
                                                     <th class="text-center">direccionProveedor</th>
                                                     <th class="text-center">fFactura</th>
+                                                    <th class="text-center">fEmision</th>
+                                                    <th class="text-center">fEntrega</th>
                                                     <th class="text-center">totalFacturado</th>
                                                     <th class="text-center">baseImponible</th>
                                                     <th class="text-center">impuesto iva (16%)</th>
                                                     <th class="text-center">iva retenido (75%)</th>
+                                                    <th class="text-center">PDF</th>
                                                     <th class="text-center">Editar</th>
                                                     <th class="text-center">Eliminar</th>
                                                 </tr>
@@ -658,7 +670,7 @@ if (isset($_SESSION['Super'])) {
 
                             <div class="form-row">
                                 <!-- Direccion del Proveedor -->
-                                <div class="col-md-9 mb-3">
+                                <div class="col-md-6 mb-3">
 
                                     <label for="">Direccion del Proveedor</label>
 
@@ -675,6 +687,21 @@ if (isset($_SESSION['Super'])) {
                                 </div>
 
                                 <!-- nro control -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">nro de Factura</label>
+
+                                    <input type="text" class="form-control nroFactura" placeholder="ejemplo: 00004567" name="nroFactura" required>
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
                                 <div class="col-md-3 mb-3">
 
                                     <label for="">nro de control</label>
@@ -969,7 +996,7 @@ if (isset($_SESSION['Super'])) {
 
                             <div class="form-row">
                                 <!-- Direccion del Proveedor -->
-                                <div class="col-md-9 mb-3">
+                                <div class="col-md-6 mb-3">
 
                                     <label for="">Direccion del Proveedor</label>
 
@@ -986,6 +1013,21 @@ if (isset($_SESSION['Super'])) {
                                 </div>
 
                                 <!-- nro control -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">nro de Factura</label>
+
+                                    <input type="text" class="form-control nroFactura" placeholder="ejemplo: 00004567" name="nroFactura" required>
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
                                 <div class="col-md-3 mb-3">
 
                                     <label for="">nro de control</label>

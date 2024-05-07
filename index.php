@@ -22,9 +22,7 @@ if (isset($_SESSION['Super'])) {
     window.location.href = "login.php";
   </script> <?php exit();
           }
-
-
-            ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +30,8 @@ if (isset($_SESSION['Super'])) {
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>FEB</title>
-  <link rel="shortcut icon" href="../src/img/funesboLOGO.PNG">
+  <title>Unidad Educativa "Colegio Sion"</title>
+  <link rel="shortcut icon" href="./Assets/Images/Logo.jpg">
 
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -44,8 +42,12 @@ if (isset($_SESSION['Super'])) {
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">        
+  
+  <!-- Archivos CSS -->
+  <link rel="stylesheet" href="./css/style-index.css">
   <link href="css/aos/aos.css" rel="stylesheet">
   <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -53,16 +55,9 @@ if (isset($_SESSION['Super'])) {
   <link href="css/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="css/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
+  <!-- Archivo Main CSS -->
   <link href="css/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: BizLand
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -71,10 +66,7 @@ if (isset($_SESSION['Super'])) {
   <section id="topbar" class="d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="social-links d-none d-md-flex align-items-center">
-        <a href="https://twitter.com/FundEsperan" class="twitter"><i class="bi bi-twitter"></i></a>
-        <!--    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> -->
-        <a href="https://www.instagram.com/fundacionesperanza_bolivar/" class="instagram"><i class="bi bi-instagram"></i></a>
-        <!--    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a> -->
+        <a href="https://www.facebook.com/colegiosion1" class="facebook"><i class="bi bi-facebook"></i> Siguenos en Facebook</a>
       </div>
     </div>
   </section>
@@ -82,10 +74,10 @@ if (isset($_SESSION['Super'])) {
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
+      <img src="./Assets/Images/Logo.jpg" class="img-fluid" width="50" height="50" alt="">
+      <h1 class="logo" style="font-size: 20px"><a href="index.html">Unidad Educativa "Colegio Sion"</a></h1>
 
-      <h1 class="logo"><a href="index.html">FEB<span></a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
+<a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -99,130 +91,168 @@ if (isset($_SESSION['Super'])) {
       </nav><!-- .navbar -->
 
     </div>
-  </header><!-- End Header -->
+  </header><!-- Final del Header-->
 
-  <!-- ======= Hero Section ======= -->
+  <!-- ======= Seccion del logo ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
       <div class="d-flex align-items-center">
-      <h1>Bienvenido a la <span>Fundacion Esperanza Bolivar</span></h1>
-      <img src="./assets/images/funesboLOGOt.png" class="img-fluid" width="450" height="450" alt="">
+      <h1>Bienvenido a <span class="strong-text-title">Unidad Educativa "Colegio Sion"</span></h1>
+      <img src="./Assets/Images/Logo.jpg" class="img-fluid" width="250" height="250" alt="">
       </div>
     </div>
-  </section><!-- End Hero -->
+  </section><!-- Final de la eccion del logo -->
 
   <main id="main">
 
-    <!-- ======= About Section ======= -->
+    <!-- ======= Seccion - Sobre nosotros ======= -->
     <section id="about" class="about section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Reseña Historica</h2>
           <h3>Reseña <span>Historica</span></h3>
-          <!-- <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p> -->
         </div>
 
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-            <img src="./assets/images/PFE.jpg" class="img-fluid" alt="">
+          <div class="row">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+              <div class="card">
+              <img src="./assets/images/Sion.jpg" class="img-fluid" style="width: 1000px; height: 275px; border-radius: 10px;">
+              </div>
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+              <h3>Unidad Educativa Sión</h3>
+              <p class="fst-italic">
+              Se origina de la preocupación del Reverendo Everilde Castillo, Pastor Evangélico acerca de la ausencia de valores cristianos sólidos en los niños y niñas; ya que muchos al llegara adultos se encuentran involucrados en situaciones peligrosas tales como deshonestidad, alcoholismo, drogadicción,prostitución, hechicerías, idolatria, debido a que Dios prohíbe tales cosas y otras más en su palabra, surge la inquietud de brindarles a los niños y adolescentes las herramientas que Dios ha dejado para formar hombres y mujeres temerosos de El, responsables con su familia ante la sociedad y la patria.
+              </p>
+            </div>
+            
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <h3>La Posada Fundación Esperanza Bolívar</h3>
-            <p class="fst-italic">
-              Fue fundada el 3 de octubre del 2017 bajo orden del exgobernador Francisco Rangel Gómez, basado en el acta constituya del ministerio del poder popular para la salud, apoyado con el decreto 3769 publicado el 22 de diciembre del 2012.
-              La Fundación tiene por objeto atender de modo integral los planes tendientes al desarrollo de las actividades dirigidas a la protección, alojamiento y atención de personas en estado de vulnerabilidad, sin ningún tipo de distinción, persiguiendo como finalidad el bien común e interés público y de esta manera contribuir a minimizar el riesgo social.
-            </p>
-          </div>
-        </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section><!-- Fin de seccion - Sobre nosotros -->
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <!-- ======= Seccion - Servicios ======= -->
+    <section id="services" class="services" style="background-image: url(./assets/images/background-index.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
       <div class="container" data-aos="fade-up">
         <div class="section-title">
           <h2>Mision y Vision</h2>
           <h3>Nuestra <span>Mision</span></h3>
-          <p>Brindar atención a la población general en situación de vulnerabilidad, resaltando el compromiso humanitario, con el fin de lograr y alcanzar la tranquilidad y el bienestar del colectivo con mayor riesgo social.</p>
+          <p class="glass-effect" style="border-radius: 10px; padding: 5px">La misión es predicar el Evangelio de Jesucristo en la medida que se enseña secularmente, ya que como dice la escritura <a style="font-style: italic;">"Porque ¿que aprovechará el hombre si ganara todo el mundo, y perdiere su alma?"<a>, Marcos 8:36.</p>
         </div>
         <div class="section-title">
           <h3>Nuestra <span>Vision</span></h3>
-          <p>Ser modelo de referencia a nivel nación al con el alto perfil humanista, para el desarrollo de planes y actividades que contribuyan con la protección, alimentación y resguardo de niños, niñas, adolescentes y adultos.</p>
+          <p class="glass-effect" style="border-radius: 10px; padding: 5px">La vision que origina la fundación del Colegio esta basada en la necesidad que tiene el ser humano de llenar vacios en su alma, curar y sanar heridas que le ocacionaron dolor y muchas veces impiden el desarrollo, el crecimiento emocional y espiritual que las personas deben lograr.</p>
         </div>
       </div>
-    </section><!-- End Services Section -->
+    </section><!-- Fin de seccion - Servicios -->
+    
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <!-- Seccion - Actividades escolares (Carrusel)  -->
+    <section id="about" class="about section-bg">
+    <div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./assets/images/Sion1.jpg" class="d-block w-60" style="width: 1000px; height: 500px; border-radius: 10px; margin: 0 auto">
+      <div class="carousel-caption d-none d-md-block">
+        </div>
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/Sion2.jpg" class="d-block w-60" style="width: 1000px; height: 500px; border-radius: 10px; margin: 0 auto">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/Sion3.jpg" class="d-block w-60" style="width: 1000px; height: 500px; border-radius: 10px; margin: 0 auto">
+      <div class="carousel-caption d-none d-md-block">
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span style="font-size: 30px; color: #106eea" class="bi bi-caret-left-fill" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span style="font-size: 30px; color: #106eea" class="bi bi-caret-right-fill" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</div>
+    </section><!-- Final de seccion - Actividades escolares (Carrusel) -->
+
+    <!-- ======= Seccion - Contactos ======= -->
+    <section id="contact" class="contact" style="background-image: url(./assets/images/background-index.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Contactanos</h2>
           <h3><span>Contactanos</span></h3>
         </div>
-
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-6">
-            <div class="info-box mb-4">
-              <i class="bx bx-map"></i>
+            <div style="border:1px solid #ffffff2e; border-radius: 10px;" class="glass-effect info-box mb-4">
+              <a class="bi bi-geo-alt"></a>
               <h3>Direccion</h3>
-              <p>4FMC+8H8, Cdad. Bolívar 8001, Bolívar</p>
+              <p>3FV6+RHV, Cdad. Bolívar 8001, Bolívar</p>
             </div>
           </div>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-6 ">
-          <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-63.5303521!3d8.133334!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8dce87e78f3f127b%3A0x357c356b6b932222!2sFundaci%C3%B3n+Esperanza+Bolivar!5e0!3m2!1ses!2s!4v1625231912447!5m2!1ses!2s" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+          <div class="col-lg-6">
+            <div>
+              <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d493.75823447834097!2d-63.53864920121428!3d8.094764916993393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8dce87cc2e183e57%3A0x3a3a2da1384468a1!2sIglesia%20Sion!5e0!3m2!1ses!2sve!4v1712792156700!5m2!1ses!2sve" frameborder="0" style="border:0; width: 100%; height: 384px; border-radius: 10px;" allowfullscreen></iframe>
+            </div>
           </div>
 
            <div class="col-lg-6">
-            <form action="includes/contactanos.php" method="post" role="form" class="php-email-form">
+            <form action="includes/contactanos.php" method="post" role="form" class="glass-effect php-email-form" style="border-radius: 10px;">
               <div class="row">
                 <div class="col form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nombre y Apellido" required>
+                  <input style="border-radius: 5px" type="text" name="name" class="form-control" id="name" placeholder="Nombre y Apellido" required>
                 </div>
                 <div class="col form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" required>
+                  <input style="border-radius: 5px" type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" required>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
+                <input style="border-radius: 5px" type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
+                <textarea style="border-radius: 5px" class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Cargando</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Su mensaje ha sido enviado, Muchas Gracias!</div>
               </div>
-              <div class="text-center"><button type="submit">Enviar mensaje</button></div>
+              <div class="text-center"><button class="bi bi-chat-left-text-fill shadow" type="submit"> Enviar mensaje</button></div>
             </form>
           </div>
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
+    </section><!-- ======= Final de seccion - Contactos ======= -->
 
-  </main><!-- End #main -->
+  </main><!-- Fin de #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container py-4">
-      <div class="copyright">
-        &copy; Copyright <strong><span>FEB</span></strong>. Todos los derechos reservados.
+      <div class="copyright" style="text-align: center">
+        &copy; Copyright <strong><span>Unidad Educativa "Colegio Sion"</span></strong>. Todos los derechos reservados.
       </div>
-  </footer><!-- End Footer -->
+  </footer><!-- Final de Footer -->
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
+  <!-- Archivos JS -->
   <script src="css/purecounter/purecounter_vanilla.js"></script>
   <script src="css/aos/aos.js"></script>
   <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -231,7 +261,7 @@ if (isset($_SESSION['Super'])) {
   <script src="css/swiper/swiper-bundle.min.js"></script>
   <script src="css/waypoints/noframework.waypoints.js"></script>
 
-  <!-- Template Main JS File -->
+  <!-- Archivo Main JS -->
   <script src="css/js/main.js"></script>
 
 </body>

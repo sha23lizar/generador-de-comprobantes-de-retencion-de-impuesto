@@ -1,18 +1,14 @@
+:root {
+    --clr-1: #376BCA;
+    --clr-2: #3E8AD3;
+    --clr-3: #46AADD;
+    --clr-4: #4DC9E6;
+    --clr-5: #282CB7;
+}  
+
 body {
-
-    /*    margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: .88rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    text-align: left;
-    background-color: #fff;*/
-
     margin: 0;
     padding: 0;
-    /* background: url(../img/wallpaper.jpg) no-repeat center top; */
-    background-size: cover;
     font-family: sans-serif;
     height: 100vh;
 }
@@ -20,7 +16,8 @@ body {
 .login-box {
     width: 420px;
     height: 520px;
-    background: #fff;
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
     color: #000;
     top: 50%;
@@ -34,7 +31,6 @@ body {
 .login-box .avatar {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
     position: absolute;
     top: 20px;
     left: 150px;
@@ -55,8 +51,8 @@ body {
 }
 
 .login-box input {
-    width: 100%;
-    margin-bottom: 20px;
+        width: 100%;
+        margin-bottom: 20px;
 }
 
 .login-box input[type="text"],
@@ -96,3 +92,12 @@ body {
 .login-box a:hover {
     color: #000;
 }
+
+.strong-text-login{
+    background: linear-gradient(var(--clr-2) 60.00%, var(--clr-1)); 
+    background-clip: border-box; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    background-clip: text;
+}
+

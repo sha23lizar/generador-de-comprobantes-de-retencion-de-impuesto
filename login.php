@@ -33,23 +33,31 @@ if (isset($_SESSION['Super'])) {
 
 <head>
     <meta charset="utf-8">
-    <title>login</title>
-    <link rel="shortcut icon" href="../src/img/funesboLOGO.PNG">
+    <title>Inicio de sesión</title>
+    <link rel="stylesheet" href="./css/style-index.css">
+    <link href="css/aos/aos.css" rel="stylesheet">
+    <link href="css/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./Assets/Images/Logo.png">
     <link rel="stylesheet" href="./css/master.css">
     <link href="./css/main.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
+    
     <!-- Se declaran archivos, scripts y css -->
-
-    <script src="./assets/scripts/sweetalert2.min.js"></script>
 </head>
 
 <!-- aqui es donde está lo que se ve en pantalla -->
 
-<body>
-    <div class="login-box border border-dark shadow">
-        <img src="../src/img/funesboLOGO.PNG" class="avatar shadow border border-dark" alt="Avatar Image" style="display:none">
-        <div class="h1 text-center">
-            <strong>Colegio SION</strong>
+<body style="background-image: url(./assets/images/background-index.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
+
+
+<div class="login-box">
+
+<div class="login-box border border-dark shadow">
+    <a href="index.php">
+    <img src="./Assets/Images/Logo.png" class="avatar" alt="Avatar Image">
+    </a>
+        <div class="h2 text-center">
+            <strong class="strong-text-login">COLEGIO SION</strong>
         </div>
 
         <form action="includes/loginadm.php" method="post">
@@ -58,7 +66,6 @@ if (isset($_SESSION['Super'])) {
 
             <label for="username">Cedula</label>
             <input type="text" placeholder="Introduzca su cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" name="idu" required />
-
             <!-- PASSWORD INPUT -->
 
             <label for="password">Contraseña</label>
@@ -71,8 +78,10 @@ if (isset($_SESSION['Super'])) {
             <a href="#modalregistro" data-toggle="modal">No tiene usuario? Registrese!</a>
 
         </form>
-    </div>
-
+                    <a href="index.php">Volver al inicio</a>
+        </div>
+        </div>
+            
     <script type="text/javascript" charset="utf8" src="../src/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
     <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
@@ -111,14 +120,24 @@ if (isset($_SESSION['Super'])) {
     <?php
     }
     ?>
-    <!-- Esto es PHP para saber que sesion es la que se va a iniciar -->
+
+  <!-- Archivos JS -->
+  <script src="css/js/main.js"></script>
+  <script src="css/purecounter/purecounter_vanilla.js"></script>
+  <script src="css/aos/aos.js"></script>
+  <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="css/glightbox/js/glightbox.min.js"></script>
+  <script src="css/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="css/swiper/swiper-bundle.min.js"></script>
+  <script src="css/waypoints/noframework.waypoints.js"></script>
 
 </body>
+
 <!-- hasta aqui es donde está lo que se ve en pantalla -->
 
+<!-- Esto es PHP para saber que sesion es la que se va a iniciar -->
 
 <!-- Modal recuperacion -->
-
 <div class="modal fade" id="modalrecuperacion" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -167,11 +186,12 @@ if (isset($_SESSION['Super'])) {
             <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
 
         </div>
+        
     </div>
+ 
 </div>
-
+ 
 <!-- Modal registro -->
-
 <div class="modal fade" id="modalregistro" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -303,13 +323,15 @@ if (isset($_SESSION['Super'])) {
 
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" name="submit1" class="btn btn-primary">Registrar</button>
-
+                    
                 </div>
 
             </form>
 
             <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
+            
         </div>
+        
     </div>
 
 </div>

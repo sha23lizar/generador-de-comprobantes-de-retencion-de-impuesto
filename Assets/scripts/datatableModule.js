@@ -6,6 +6,13 @@ export class DataTableModule {
                 url: "./includes/obtener_comprobantesJSON.php",
                 type: "POST"
             },
+            columnDefs: [
+                {responsivePriority: 5, targets: 0},
+                {responsivePriority: 5, targets: 12},
+                {responsivePriority: 5, targets: 13},
+                {responsivePriority: 5, targets: 14}
+            ],
+            responsive: true,
 
             "language": {
                 "decimal": "",

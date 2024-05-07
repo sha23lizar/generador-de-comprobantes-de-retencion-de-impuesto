@@ -19,20 +19,13 @@ if (isset($_SESSION['Super'])) {
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
         <link href="./css/main.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../src/DataTables/datatables.min.css">
         <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
 
         <script src="./assets/scripts/sweetalert2.min.js"></script>
 
-        <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/fotopreview.js"></script>
 
-        <!-- jquery.dataTables.min.js first, then dataTables.bootstrap4.min.js, then datatablecaller.js -->
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
 
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/datatablecallertabla.js"></script>
         <script>
             $(document).on("click", ".btn-editar-usuario", function() {
                 var idu = $(this).data('id');
@@ -87,7 +80,7 @@ if (isset($_SESSION['Super'])) {
 
                                             <?php
                                             $idu = $_SESSION['idu'];
-                                            require 'includes/bd.inc.php';
+                                            
                                             $sql = "SELECT * from usuarios where idu='$idu'";
                                             $result = mysqli_query($conn, $sql);
                                             while ($mostrar = mysqli_fetch_array($result)) {
@@ -108,7 +101,7 @@ if (isset($_SESSION['Super'])) {
 
                                                 <?php
                                                 $idu = $_SESSION['idu'];
-                                                require 'includes/bd.inc.php';
+                                                
                                                 $sql = "SELECT * from usuarios where idu='$idu'";
                                                 $result = mysqli_query($conn, $sql);
                                                 while ($mostrar = mysqli_fetch_array($result)) {
@@ -274,7 +267,7 @@ if (isset($_SESSION['Super'])) {
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                require 'includes/bd.inc.php';
+                                                
                                                 $sql = "SELECT * from usuarios";
                                                 $result = mysqli_query($conn, $sql);
                                                 while ($mostrar = mysqli_fetch_array($result)) {
@@ -290,6 +283,12 @@ if (isset($_SESSION['Super'])) {
                                                             <?php
                                                             $status = $mostrar['rol'];
                                                             $idu = $mostrar['idu'];
+                                                            $user = $mostrar['usuario'];
+                                                            $cedula = $mostrar['cedula'];
+                                                            $contraseña = $mostrar['contra'];
+                                                            $pregunta = $mostrar['pregunta'];
+                                                            $respuesta = $mostrar['respuesta'];
+                                                            $rol = $mostrar['rol'];
 
                                                             if ($status == '1') {
 
@@ -304,12 +303,14 @@ if (isset($_SESSION['Super'])) {
                                                         </td>
                                                         <td class="text-center">
                                                             <div class="row">
+                                                                
+                                                                <a href="" class="btn btn-primary col-sm-4 btn-editar-usuario" data-toggle="modal" data-target="#ModUs"><i class="pe-7s-note"></i></a>
 
-                                                                <button class="btn btn-primary col-sm-4 btn-editar-usuario" data-target="#modaleditarusuario" data-toggle="modal" data-placement="left" data-id="<?php echo $mostrar['idu']; ?>" title="Modificar Usuario"><i class="pe-7s-note"></i></button>
+                                                                
 
                                                                 <form class="col-sm" action="includes/eli.usuario.inc.php" method="post">
-                                                                    <input type="hidden" name="idu" value="<?php echo $mostrar['idu']; ?>">
-                                                                    <button class="btn btn-danger" type="submit" name="eliminar" data-toggle="tooltip" data-placement="left" title="Eliminar Solicitud" onclick="return confirm('¿Esta seguro que quiere Eliminar el usuario?');"><i class="pe-7s-trash"></i>
+                                                                    <input type="hidden" name="idu" value="<?php echo $idu; ?>">
+                                                                    <button class="btn btn-danger" type="submit" name="eliminar" data-toggle="tooltip" data-placement="left" title="Eliminar" onclick="return confirm('¿Esta seguro que quiere Eliminar el usuario?');"><i class="pe-7s-trash"></i>
                                                                     </button>
                                                                 </form>
                                                             </div>
@@ -380,7 +381,7 @@ if (isset($_SESSION['Super'])) {
 
                                     $idu = $_SESSION['idu'];
 
-                                    include 'includes/bd.inc.php';
+                                    
 
                                     $sql = "SELECT * FROM usuarios WHERE idu='$idu'";
                                     $result = mysqli_query($conn, $sql);
@@ -436,7 +437,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <?php
                                     $idu = $_SESSION['idu'];
-                                    require 'includes/bd.inc.php';
+                                    
                                     $sql = "SELECT * from usuarios where idu='$idu'";
                                     $result = mysqli_query($conn, $sql);
                                     while ($mostrar = mysqli_fetch_array($result)) {
@@ -611,12 +612,69 @@ if (isset($_SESSION['Super'])) {
 
         <!-- Modal Editar Usuario -->
 
-        <div class="modal fade" id="modaleditarusuario" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <!-- Button trigger modal -->
+        
+
+        <!-- Modal -->
+
+        <div class="modal fade" id="ModUs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modificar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+             <form action="" method="POST">
+                        <div class="fl-flex-label mb-3 px-2 col-12">
+                            <label for="user">Usuario</label>
+                            <input id="user" type="text" placeholder="usuario" class="form-control" name="nom_agg" value="<?=$user?>">
+                        </div>
+                        <div class="fl-flex-label mb-3 px-2 col-12">
+                            <label for="cedula">Cedula</label>
+                            <input id="cedula" type="text" placeholder="cedula" class="form-control" name="ape_agg" value="<?=$cedula?>"> 
+                        </div>
+                        <div class="fl-flex-label mb-3 px-2 col-12">
+                            <label for="contra">Contraseña</label>
+                            <input id="contra" type="text" placeholder="contraseña" class="form-control" name="con_agg" value="<?=$contraseña?>">
+                        </div>
+                        <div class="fl-flex-label mb-3 px-2 col-12">
+                            <label for="pregunta">Pregunta de seguridad</label>
+                            <input id="pregunta" type="text" placeholder="pregunta de seguridad" class="form-control" name="pre_agg" value="<?=$pregunta?>">
+                        </div>
+                        <div class="fl-flex-label mb-3 px-2 col-12">
+                            <label for="respuesta">respuesta de seguridad</label>
+                            <input id="respuesta" type="text" placeholder="respuesta de seguridad" class="form-control" name="use_agg" value="<?=$respuesta?>">
+                        </div>
+                        <div class="fl-flex-label mb-3 px-2 col-12">
+                            <label for="rol">Nivel de Usuario</label>  
+                            <select id="rol" name="rol" class="form-control" value="<?php echo $mostrar['rol']; ?>" value="<?=$rol?>">
+
+                                <option value="1">Superusuario</option>
+                                <option value="2">Administrador</option>
+                                <option value="3">Asistente</option>
+
+                            </select>                        
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+                </div>
+            </div>
+        </div> 
+        
+
+        <!-- <div class="modal fade" id="modaleditarusuario" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLongTitle">Registro de Usuario</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modificacion de Usuario</h5>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -630,23 +688,7 @@ if (isset($_SESSION['Super'])) {
 
                             <div class="form-row">
 
-                                <div class="col-md-8 mb-3">
-
-                                    <input type="text" name="idu" id="idu" value="">
-
-                                    <label for="usuario">Nombre y Apellido</label>
-
-                                    <input type="text" id="usuario" name='usuario' class="form-control" placeholder="Usuario" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" value="<?php echo $mostrar['usuario']; ?>" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
+                                
 
                                 <div class="col-md-4 mb-3">
 
@@ -754,7 +796,7 @@ if (isset($_SESSION['Super'])) {
                 </div>
             </div>
 
-        </div>
+        </div> -->
 
     <?php
 } else {
@@ -766,7 +808,6 @@ if (isset($_SESSION['Super'])) {
                 }
                     ?>
 
-    <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaleditusuario.js"></script>
     </body>
 
     </html>

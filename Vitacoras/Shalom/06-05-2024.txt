@@ -1,0 +1,20 @@
+agregar campo de nro Factura
+includes:
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\Includes\editarComprobante.php
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\Includes\guardar_comprobante.php
+JS:
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\Assets\scripts\formulario-comprobantes.js
+E:\generador-de-comprobante-de-retencion-de-impuesto-master\Assets\scripts\pagina-principal.js
+PHP:
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\superusuarioha.php
+
+Mejorar Panel de Proveedores
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\superusuarioha.php
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\CRUD-con-PHP-PDO-Ajax-Datatable-main\obtener_registro.php
+
+Tablas Responsive:
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\Assets\scripts\datatableModule.js
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\superusuario.php(especificamente coloque)
+<div class="col-md-12" style="max-width: 99%;"> linea 260 para tabla responsive
+
+terminar pdf

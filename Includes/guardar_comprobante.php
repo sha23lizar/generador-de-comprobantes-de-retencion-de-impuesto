@@ -29,10 +29,11 @@ if (true) {
     $baseImponible = $_POST['baseImponible'];
     $impuestoIva = $_POST['impuestoIva'];
     $ivaRetenido = $_POST['ivaRetenido'];
+    $nroFactura = $_POST['nroFactura'];
 
     // Prepara la consulta SQL para insertar los datos en la tabla
-    $sql = "INSERT INTO comprobante (nroComprobante, proveedor, rifProveedor, direccionProveedor, fEmision, fEntrega, fFactura, nroControl, totalFacturado, baseImponible, impuestoIva, ivaRetenido)
-            VALUES ('$nroComprobante', '$proveedor', '$rifProveedor', '$direccionProveedor', '$fEmision', '$fEntrega', '$fFactura', '$nroControl', '$totalFacturado', '$baseImponible','$impuestoIva', '$ivaRetenido')";
+    $sql = "INSERT INTO comprobante (nroComprobante, proveedor, rifProveedor, direccionProveedor, fEmision, fEntrega, fFactura, nroControl, totalFacturado, baseImponible, impuestoIva, ivaRetenido, nroFactura)
+            VALUES ('$nroComprobante', '$proveedor', '$rifProveedor', '$direccionProveedor', '$fEmision', '$fEntrega', '$fFactura', '$nroControl', '$totalFacturado', '$baseImponible','$impuestoIva', '$ivaRetenido', '$nroFactura')";
 
     $conn->query($sql); 
     // Ejecuta la consulta y verifica si fue exitosa

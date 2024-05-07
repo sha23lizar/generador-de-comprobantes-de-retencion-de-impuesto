@@ -30,6 +30,7 @@ export class FormularioComprobantes {
         this.inputPFMes = this.form.querySelector(".periodoFiscalMes")
         this.inputFEmision = this.form.querySelector(".fEmision")
         this.inputFEntrega = this.form.querySelector(".fEntrega")
+        this.inputNroFactura = this.form.querySelector(".nroFactura")
         this.inputNroControl = this.form.querySelector(".nroControl")
         this.inputTotalFactura = this.form.querySelector(".total-facturado")
         this.inputBaseImponible = this.form.querySelector(".base-imponible")
@@ -161,6 +162,7 @@ export class FormularioComprobantes {
         data.fEntrega = this.inputFEntrega.value
         data.fFactura = this.inputFFactura.value
         data.nroControl = this.inputNroControl.value
+        data.nroFactura = this.inputNroFactura.value
         data.totalFacturado = this.inputTotalFactura.value
         data.baseImponible = this.inputBaseImponible.value
         data.impuestoIva = this.impuestoIva.value
@@ -183,7 +185,6 @@ export class FormularioComprobantes {
         let nroComprobante = this.inputNroComprobante.value
         this.inputNroComprobante.value = `${this.inputPFAño.value}${this.inputPFMes.value}${nroComprobante.substring(6, 14)}`
 
-        console.log(`${this.inputPFAño.value}${this.inputPFMes.value}${nroComprobante}`)
     }
 
     validacion() {
@@ -258,7 +259,6 @@ export class FormularioComprobantes {
                     $("#mostrar_mensaje").html("por enviar")
                 },
                 success: (mensaje) => {
-                    alert(mensaje)
                     $("#mostrar_mensaje").html(mensaje)
                     this.datatable.reload()
                 }
@@ -296,6 +296,7 @@ export class FormularioComprobantes {
 
         this.inputNroComprobante.value = comprobante.nroComprobante
         this.inputNroControl.value = comprobante.nroControl
+        this.inputNroFactura.value = comprobante.nroFactura
         this.inputTotalFactura.value = comprobante.totalFacturado
         this.inputBaseImponible.value = comprobante.baseImponible
         this.ivaRetenido.value = comprobante.ivaRetenido

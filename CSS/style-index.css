@@ -1,0 +1,65 @@
+:root {
+  --clr-1: #376BCA;
+  --clr-2: #3E8AD3;
+  --clr-3: #46AADD;
+  --clr-4: #4DC9E6;
+  --clr-5: #282CB7;
+}
+
+.card {
+  background: var(--clr-1);
+  border-radius: 1px;
+  position: relative;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -0.3rem;
+  z-index: -1;
+  background: conic-gradient(
+    var(--clr-3),
+    var(--clr-4),
+    var(--clr-5),
+    var(--clr-4),
+    var(--clr-3)
+  );
+  border-radius: 10px;
+}
+
+.card::after {
+  animation: glow 20s linear infinite;
+}
+ 
+@keyframes glow {
+  0%{
+    filter: blur(0.2rem);
+  }
+  25%{
+    filter: blur(0.3rem);
+  }
+  50%{
+    filter: blur(1.5rem);
+  }
+  65%{
+    filter: blur(0.3rem);
+  }
+  100%{
+    filter: blur(0.2rem);
+  }
+}
+
+.strong-text-title{
+  background: linear-gradient(var(--clr-2) 60.00%, var(--clr-1)); 
+  background-clip: border-box; 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  background-clip: text;
+}
+
+.glass-effect{
+  background: rgba(255,255,255,.1); 
+  backdrop-filter: blur(10px);
+  border:1px solid #ffffff2e;
+}

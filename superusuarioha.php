@@ -20,10 +20,59 @@ if (isset($_SESSION['Super'])) {
         <link rel="stylesheet" type="text/css" href="../src/DataTables/datatables.min.css">
         <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
 
+
+        <link href="./cRUD-con-PHP-PDO-Ajax-Datatable-main/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/bootstrap/icon/font/bootstrap-icons.min.css" />
+        <link rel="stylesheet" href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/DataTables/datatables.css" />
+        <link rel="stylesheet" href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/css/styles.css" />
+
         <script src="./assets/scripts/sweetalert2.min.js"></script>
 
         <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/fotopreview.js"></script>
     </head>
+    <style>
+        .botones {
+            display: flex;
+            width: 100%;
+            padding: auto;
+            margin: auto;
+            justify-content: space-between;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        #buttom {
+            width: auto !important;
+            font-size: 12px !important;
+            border: transparent !important;
+            margin-top: -3em;
+        }
+
+        th {
+            color: #495057 !important;
+        }
+
+        hr {
+            margin: auto;
+            padding: auto;
+        }
+
+        .btn-xs {
+            justify-content: center;
+            width: auto;
+            display: flex;
+            margin: auto;
+        }
+
+        .fondo {
+            width: 98%;
+        }
+
+        .modal-dialog {
+            margin-top: 5em;
+            z-index: 9999;
+        }
+    </style>
 
     <body>
         <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -124,6 +173,7 @@ if (isset($_SESSION['Super'])) {
                 </div>
             </div>
 
+
             <div class="app-main">
                 <div class="app-sidebar sidebar-shadow bg-dark sidebar-text-light">
                     <div class="app-header__logo">
@@ -156,6 +206,8 @@ if (isset($_SESSION['Super'])) {
                             </button>
                         </span>
                     </div>
+
+
                     <div class="scrollbar-sidebar">
                         <div class="app-sidebar__inner">
                             <ul class="vertical-nav-menu">
@@ -203,7 +255,7 @@ if (isset($_SESSION['Super'])) {
                         <div class="app-page-title">
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
-                                    
+
                                     <div class="ml-2">
 
                                         <?php
@@ -231,13 +283,15 @@ if (isset($_SESSION['Super'])) {
                                 </div>
                             </div>
                         </div>
-                        <h2>Proveedores</h2>
+                        <h2>Comprobantes</h2>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-header py-3 d-sm-flex align-item-center justify-content-between">
+
+                            <div class="container fondo">
+                                <div class="row">
+                                    <div class="botones offset-10">
+
                                         <div class="py-3 align-item-center justify-content-between">
-                                            <a data-toggle="modal" id="btnAddComprobante" href="#nuevoregistro" class="btn-shadow btn btn-primary">
+                                            <a data-toggle="modal" id="buttom" href="#modalProveedor" class="btn-shadow btn btn-primary">
                                                 <i class="pe-7s-plus"></i>
                                                 Nuevo Comprobante
                                             </a>
@@ -245,802 +299,383 @@ if (isset($_SESSION['Super'])) {
                                         Listado
                                         <div class="py-3 align-item-center justify-content-between">
                                             <!-- <a href="pdf.php" class="btn-shadow btn btn-danger">
-                                                <i class="fa fa-file-pdf"></i>
-                                                Generar PDF
-                                            </a> -->
-                                            <a href="includes/excela.php?export=true" class="btn-shadow btn btn-success">
+       <i class="fa fa-file-pdf"></i>
+        Generar PDF
+    </a> -->
+                                            <a href="includes/excela.php?export=true" id="buttom" class="btn-shadow btn btn-success">
                                                 <i class="fa fa-file-excel"></i>
                                                 Generar EXCEL
                                             </a>
                                         </div>
+
                                     </div>
-                                    <?php
-                                    if (empty($_GET['alert'])) {
-                                        echo "";
-                                    } elseif ($_GET['alert'] == 'login=success') {
-                                        echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>¡Muy bien!</strong> Los datos han sido almacenados<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                    } elseif ($_GET['alert'] == 2) {
-                                        echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>¡Muy bien!</strong> Los datos se han modificado<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                    } elseif ($_GET['alert'] == 3) {
-                                        echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>Completado!</strong> Se eliminaron los datos<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
+                                </div>
+                                <hr>
+                                <div class="table-responsive">
+                                    <table id="datos-proveedor" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Seudonimo</th>
+                                                <th>Razon social</th>
+                                                <th>Rif</th>
+                                                <th>Direccion</th>
+                                                <th>editar</th>
+                                                <th>borrar</th>
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="app-wrapper-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <!-- JQuery (Tiene que estar antes que datatables por que esta la necesita) -->
+                <script src="./CRUD-con-PHP-PDO-Ajax-Datatable-main/js/jquery-3.7.1.min.js"></script>
+                <!-- datatables -->
+                <script src="./CRUD-con-PHP-PDO-Ajax-Datatable-main/DataTables/datatables.js"></script>
+                <!-- Bootstrap JS -->
+                <script src="./CRUD-con-PHP-PDO-Ajax-Datatable-main/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                <!-- <script src="./CRUD-con-PHP-PDO-Ajax-Datatable-main/almacenacientoJSON.js"></script> -->
+
+                <!-- Script -->
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        var dataTable = $("#datos-proveedor").DataTable({
+                            "processing": true,
+                            "serverSide": true,
+                            "order": [],
+                            "ajax": {
+                                url: "./CRUD-con-PHP-PDO-Ajax-Datatable-main/obtener_registros.php",
+                                type: "POST"
+                            },
+                            "columnsDefs": [{
+                                "targets": [0, 3, 4],
+                                "orderable": false,
+                            }, ],
+                            "language": {
+                                "decimal": "",
+                                "emptyTable": "No hay datos disponibles en la tabla",
+                                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                                "infoPostFix": "",
+                                "thousands": ",",
+                                "lengthMenu": "Mostrar _MENU_ Entradas",
+                                "loadingRecords": "Cargando...",
+                                "processing": "Procesando...",
+                                "search": "Buscar:",
+                                "zeroRecords": "Sin resultados encontrados",
+                                "paginate": {
+                                    "first": "Primero",
+                                    "last": "Ultimo",
+                                    "next": "Siguiente",
+                                    "previous": "Anterior"
+                                }
+
+                            }
+                        });
+
+
+                        /*
+                        $(document).on("submit", "#form-empresa", function(e) {
+                          e.preventDefault();
+                          var Rif = $("#Rif").val();
+                          var Razonsocial = $("#Razonsocial").val();
+                          var Direccion = $("#Direccion").val();
+                          var Seudonimo = $("#Seudonimo").val();
+                          var extencion = $("#image-empresa").val().split('.').pop().toLowerCase();
+                          if (extencion != "") {
+                            if ($.inArray(extencion, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                              alert('El archivo seleccionado no es una imagen');
+                              $("#image-empresa").val("");
+                              return false;
+                            }
+                            if (Rif != '' && Razonsocial != '' && Direccion != '' && Seudonimo != '') {
+                              $.ajax({
+                                url: "crear.php",
+                                method: "POST",
+                                data: new FormData(this),
+                                contentType: false,
+                                processData: false,
+                                success: function(data) {
+                                  alert(data);
+                                  $("#form-empresa")[0].reset();
+                                  $("#modalEmpresa").modal('hide');
+                                  dataTable.ajax.reload();
+                                }
+                              });
+                            } else {
+                              alert('Todos los campos son requeridos');
+                            }
+                          }
+                        })
+                        */
+
+                        var idModalProveedor = "#modalProveedor";
+                        var idForm = "#form-proveedor";
+                        $(document).on("submit", idForm, function(e) {
+                            e.preventDefault();
+                            var nombreProveedor = $("#nombreProveedor").val();
+                            var rifProveedor = $("#rifProveedor").val();
+                            var direccionProveedor = $("#direccionProveedor").val();
+                            var seudonimo = $("#seudonimo").val();
+
+                            if (nombreProveedor != '' && rifProveedor != '' && direccionProveedor != '' && seudonimo != '') {
+                                $.ajax({
+                                    url: "./CRUD-con-PHP-PDO-Ajax-Datatable-main/crear.php",
+                                    method: "POST",
+                                    data: {
+                                        nombreProveedor: nombreProveedor,
+                                        rifProveedor: rifProveedor,
+                                        direccionProveedor: direccionProveedor,
+                                        seudonimo: seudonimo,
+                                        operacion: $("#operacion").val(),
+                                        id_proveedor: $("#id_proveedor").val()
+                                    },
+                                    success: function(data) {
+                                        alert(data);
+                                        $("#form-proveedor")[0].reset();
+                                        $(idModalProveedor).modal('hide');
+                                        dataTable.ajax.reload();
                                     }
-                                    ?>
+                                });
+                            } else {
+                                alert('Todos los campos son requeridos');
+                            }
+                        });
 
-                                    <div class="table-responsive p-2">
-                                        <table id="tabla" class="align-middle mb-0 table table-striped table-bordered table-hover">
-                                            <thead id="datos-proveedor">
-                                                <tr>
-                                                <th class="text-center">id</th>
-                                                <th class="text-center">Rif</th>
-                                                <th class="text-center">Razon social</th>
-                                                <th class="text-center">Direccion</th>
-                                                <th class="text-center">Seudonimo</th>
-                                                <th class="text-center">editar</th>
-                                                <th class="text-center">borrar</th>
-                                                </tr>
-                                            </thead>
-                                            
-                                                <?php
-                                                require 'includes/bd.inc.php';
-                                                $sql = "SELECT * from proveedor";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($mostrar = mysqli_fetch_array($result)) {
-                                                ?>
-                                                    <tr>
-                                                        
-                                                        <td class="text-center"><?php echo $mostrar['id']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['nombreProveedor']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['rifProveedor']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['direccionProveedor']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['seudonimo']; ?></td>
-                                                        <td class="text-center">
-                                                            <div>
-                                                            <form action="./Includes/guardar_provedores.php" method="post">
-                                                                <a href="#mostrar" class="btn btn-primary">Editar</a>
-                                                            </form>
-                                                            
-
-                                                            </div>
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <div>
-                                                                <form action="includes/guardar_provedores.php" method="post">
-                                                                    <input type="hidden" name="id" value="<?php echo $mostrar['id']; ?>">
-                                                                    <button class="btn btn-danger" type="submit" name="eliminar" data-toggle="tooltip" data-placement="left" title="Eliminar proveedor" onclick="return confirm('¿Esta seguro que quiere Eliminar al Proveedor?');"><i class="pe-7s-trash"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody> 
-                                            <!-- <tbody>
-                                                <tr>
-                                                    <th class="text-center">20240100000846</th>
-                                                    <th class="text-center">Comercial unique center, C.A</th>
-                                                    <th class="text-center">11-01-2024</th>
-                                                    <th class="text-center">15-01-2024</th>
-                                                    <th class="text-center">16-01-2024</th>
-                                                    <th class="text-center">00006790</th>
-                                                    <th class="text-center">Z1B8046526</th>
-                                                    <th class="text-center">359.69</th>
-                                                    <th class="text-center">310.08</th>
-                                                    <th class="text-center">49.61</th>
-                                                    <th class="text-center">37.21</th>
-                                                    <td class="text-center">
-                                                        <div>
-                                                            <button class="btn btn-warning" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                Editar
-                                                            </button>
-                                                            <button class="btn btn-danger" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                PDF
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                            </tbody> -->
-                                        </table>
-                                    </div>
-                                    <div class="d-block text-center card-footer">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="app-wrapper-footer">
-                        <div class="app-footer">
-                            <div class="app-footer__inner bg-dark sidebar-text-light">
-                                <div class="container text-center text-white">
-                                    <small>Todos los derechos reservados &copy;</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Nuevo Paciente -->
-
-        <div class="modal fade" id="nuevoregistro" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Proveedor</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" id="form-proveedor" action="includes/guardar_provedores.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-                                <!-- Rif Proveedor -->
-                                <div class="col-md-12 mb-3">
-
-                                    <label for="paciente">Rif Proveedor</label>
-
-                                    <!-- <input type="text" class="form-control" id="rifProveedor" name='rifProveedor' placeholder="ejemplo j-298400870" <?php echo $mostrar['rifProveedor']; ?> required> -->
-                                    <input type="text" class="form-control" id="rifProveedor" name='rifProveedor' placeholder="ejemplo j-298400870" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-
-                                <!-- Nombre del Proveedor -->
-                                <div class="col-md-12 mb-3">
-
-                                    <label for="estado">Nombre o razon social</label>
-
-                                    <input type="text" class="form-control" id="nombreProveedor" name='nombreProveedor' placeholder="nombre del proveedor" required>
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-                                <!-- Direccion del Proveedor -->
-                                <div class="col-md-12 mb-3">
-
-                                    <label for="paciente">Direccion del Proveedor</label>
-
-                                    <input type="text" class="form-control" id="dirreccionProveedor" name='dirreccionProveedor' placeholder="Ejemplo Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                        // Funcionalidad nuevo
+                        $(document).on("click", `a[href="${idModalProveedor}"]`, function(e) {
+                            $(idForm)[0].reset();
+                            $("#action").val("crear");
+                            $("#operacion").val("crear");
+                            console.log($(idModalProveedor + "> h5"));
+                            document.querySelector(idModalProveedor + " h5").innerText = "Nuevo proveedor";
                             
-                            <div class="form-row">
+                        })
 
-                                <!-- Nombre del Proveedor -->
-                                <div class="col-md-12 mb-3">
+                        // Funcionalidad editar
+                        $(document).on("click", ".editar", function(e) {
+                            var id_proveedor = e.target.id;
+                            $.ajax({
+                                url: "./CRUD-con-PHP-PDO-Ajax-Datatable-main/obtener_registro.php",
+                                method: "POST",
+                                data: {
+                                    id_proveedor: id_proveedor
+                                },
+                                dataType: "json",
+                                success: function(data) {
+                                    $(idModalProveedor).modal("show");
+                                    $("#nombreProveedor").val(data.nombreProveedor);
+                                    $("#rifProveedor").val(data.rifProveedor);
+                                    $("#direccionProveedor").val(data.direccionProveedor);
+                                    $("#seudonimo").val(data.seudonimo);
+                                    $("#id_proveedor").val(id_proveedor); // Asegúrate de que el ID se esté enviando
+                                    $("#action").val("editar");
+                                    $("#operacion").val("editar");
+                                    document.querySelector(idModalProveedor + " h5").innerText = "Editar proveedor";
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    console.log(textStatus, errorThrown);
+                                }
+                            })
+                        })
 
-                                    <label for="estado">Seudonimo</label>
 
-                                    <input type="text" class="form-control" id="seudonimo" name='seudonimo' placeholder="seudonimo">
-                                    <div class="invalid-feedback" required>
-                                        Debe llenar este campo.
-                                    </div>
+                        // Funcionalidad Borrar
+                        $(document).on("click", ".borrar", function(e) {
+                            var id_proveedor = e.target.id;
+                            if (confirm("¿Desea borrar el registro nro: " + id_proveedor + "?")) {
+                                $.ajax({
+                                    url: "./CRUD-con-PHP-PDO-Ajax-Datatable-main/borrar.php",
+                                    method: "POST",
+                                    data: {
+                                        id_proveedor: id_proveedor
+                                    },
+                                    success: function(data) {
+                                        alert(data);
+                                        dataTable.ajax.reload();
+                                    }
+                                })
+                            }
+                        })
 
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
 
-                                </div>
+                        // Final scritp
+                    })
+                </script>
 
-                            </div>
-
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="submit1" class="btn btn-primary">Registrar</button>
-
-                            
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
             </div>
 
-        </div>
 
 
-        <div class="modal fade" id="mostrar" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
+            <!-- Nuevo Paciente -->
 
-                        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Proveedor</h5>
+            <div class="modal fade" id="modalProveedor" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            <h5 class="modal-title tituloFormProveedor" id="exampleModalLongTitle">Nuevo Proveedor</h5>
 
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+
+                        <form class="needs-validation" id="form-proveedor" action="CRUD-con-PHP-PDO-Ajax-Datatable-main/codigodeconexion.php" method="post" novalidate>
+
+                            <div class="modal-body">
+
+
+                                <div class="form-row">
+                                    <!-- Nombre del Proveedor -->
+                                    <div class="col-md-12 mb-3">
+
+                                        <label for="estado">Seudonimo</label>
+
+                                        <input type="text" class="form-control" id="seudonimo" name='seudonimo' placeholder="seudonimo" required>
+                                        <div class="invalid-feedback">
+                                            Debe llenar este campo.
+                                        </div>
+
+                                        <div class="valid-feedback">
+                                            Listo.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+
+                                    <!-- Nombre del Proveedor -->
+                                    <div class="col-md-12 mb-3">
+
+                                        <label for="estado">Nombre o razon social</label>
+
+                                        <input type="text" class="form-control" id="nombreProveedor" name='nombreProveedor' placeholder="nombre del proveedor" required>
+                                        <div class="invalid-feedback">
+                                            Debe llenar este campo.
+                                        </div>
+
+                                        <div class="valid-feedback">
+                                            Listo.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <!-- Rif Proveedor -->
+                                    <div class="col-md-12 mb-3">
+
+                                        <label for="paciente">Rif Proveedor</label>
+
+                                        <input type="text" class="form-control" id="rifProveedor" name='rifProveedor' placeholder="ejemplo j-298400870" required>
+
+                                        <div class="invalid-feedback">
+                                            Debe rellenar este campo.
+                                        </div>
+
+                                        <div class="valid-feedback">
+                                            Listo.
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <!-- Direccion del Proveedor -->
+                                    <div class="col-md-12 mb-3">
+
+                                        <label for="paciente">Direccion del Proveedor</label>
+
+                                        <input type="text" class="form-control" id="direccionProveedor" name='direccionProveedor' placeholder="Ejemplo Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
+
+                                        <div class="invalid-feedback">
+                                            Debe rellenar este campo.
+                                        </div>
+
+                                        <div class="valid-feedback">
+                                            Listo.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <input type="hidden" name="id_proveedor" id="id_proveedor">
+                                <input type="hidden" name="operacion" id="operacion" value="crear">
+                                <input type="submit" name="action" id="action" class="btn btn-success" value="crear">
+                            </div>
+
+
+                        </form>
+
+                        <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
                     </div>
-
-                    <form class="needs-validation" id="form-proveedor" action="includes/guardar_provedores.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-                                <!-- Rif Proveedor -->
-                                <div class="col-md-12 mb-3">
-
-                                    <label for="paciente">Rif Proveedor</label>
-
-                                    <input type="text" class="form-control" id="rifProveedor" name='rifProveedor' placeholder="ejemplo j-298400870" value="<?php echo $proveedor['rifProveedor']; ?>" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-
-                                <!-- Nombre del Proveedor -->
-                                <div class="col-md-12 mb-3">
-
-                                    <label for="estado">Nombre o razon social</label>
-
-                                    <input type="text" class="form-control" id="nombreProveedor" name='nombreProveedor' placeholder="nombre del proveedor" value="<?php echo $proveedor['direccionProveedor']; ?>" required>
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-                                <!-- Direccion del Proveedor -->
-                                <div class="col-md-12 mb-3">
-
-                                    <label for="paciente">Direccion del Proveedor</label>
-
-                                    <input type="text" class="form-control" id="dirreccionProveedor" name='dirreccionProveedor' placeholder="Ejemplo Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" value="<?php echo $proveedor['nombreProveedor']; ?>" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            
-                            <div class="form-row">
-
-                                <!-- Nombre del Proveedor -->
-                                <div class="col-md-12 mb-3">
-
-                                    <label for="estado">Seudonimo</label>
-
-                                    <input type="text" class="form-control" id="seudonimo" name='seudonimo' placeholder="seudonimo">
-                                    <div class="invalid-feedback" required>
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="submit1" class="btn btn-primary">editar</button>
-
-                            
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
                 </div>
+
             </div>
 
-        </div>
+
+
 
 
         <?php
-// Verifica si se ha proporcionado un ID de proveedor en la URL
-if(isset($_GET['id'])) {
-    // Conecta con la base de datos y realiza la consulta para obtener los datos del proveedor con el ID proporcionado
-    // Supongamos que ya tienes una conexión establecida con la base de datos
-
-    $idProveedor = $_GET['id'];
-
-    // Realiza una consulta para obtener los datos del proveedor con el ID proporcionado
-    $sql = "SELECT * FROM proveedor WHERE id = $idProveedor";
-    $result = mysqli_query($conexion, $sql);
-
-    // Verifica si se encontró un proveedor con el ID proporcionado
-    if(mysqli_num_rows($result) > 0) {
-        // Obtiene los datos del proveedor
-        $proveedor = mysqli_fetch_assoc($result);
     } else {
-        // Si no se encontró ningún proveedor con el ID proporcionado, muestra un mensaje de error
-        echo "Proveedor no encontrado";
-    }
-} else {
-    // Si no se proporcionó ningún ID de proveedor en la URL, muestra un mensaje de error
-    echo "ID de proveedor no proporcionado";
-}
-?>
+        ?> <script>
+                alert("Debe Iniciar Sesion.");
+                window.location.href = "login.php";
+            </script> <?php
 
+                    }
+                        ?>
 
-<script>
-    $(document).ready(function() {
-      var dataTable = $("#datos-proveedor").DataTable({
-        "processing": true,
-        "serverSide": true,
-        "order": [],
-        "ajax": {
-          url: "./includes/obtener_proveedor.php",
-          type: "POST"
-        },
-        "columnsDefs": [{
-          "targets": [0, 3, 4],
-          "orderable": false,
-        }, ],
-        "language": {
-          "decimal": "",
-          "emptyTable": "No hay datos disponibles en la tabla",
-          "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-          "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Entradas",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-          
+        <?php
+        if (isset($_GET['success']) && $_GET['success'] == 1) {
+        ?>
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Credenciales correctos.',
+                    text: 'Sesion iniciada',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            </script>
+        <?php
         }
-      });
-
-
-      /*
-      $(document).on("submit", "#form-empresa", function(e) {
-        e.preventDefault();
-        var Rif = $("#Rif").val();
-        var Razonsocial = $("#Razonsocial").val();
-        var Direccion = $("#Direccion").val();
-        var Seudonimo = $("#Seudonimo").val();
-        var extencion = $("#image-empresa").val().split('.').pop().toLowerCase();
-        if (extencion != "") {
-          if ($.inArray(extencion, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-            alert('El archivo seleccionado no es una imagen');
-            $("#image-empresa").val("");
-            return false;
-          }
-          if (Rif != '' && Razonsocial != '' && Direccion != '' && Seudonimo != '') {
-            $.ajax({
-              url: "crear.php",
-              method: "POST",
-              data: new FormData(this),
-              contentType: false,
-              processData: false,
-              success: function(data) {
-                alert(data);
-                $("#form-empresa")[0].reset();
-                $("#modalEmpresa").modal('hide');
-                dataTable.ajax.reload();
-              }
-            });
-          } else {
-            alert('Todos los campos son requeridos');
-          }
-        }
-      })
-      */
-
-    $(document).on("submit", "#form-proveedor", function(e) {
-    e.preventDefault();
-    var rifProveedor = $("#rifProveedor").val();
-    var nombreProveedor = $("#nombreProveedor").val();
-    var direccionProveedor = $("#direccionProveedor").val();
-    var seudonimo = $("#seudonimo").val();
-    
-    if (rifProveedor != '' && nombreProveedor != '' && direccionProveedor != '' && Seudonimo != '') {
-        $.ajax({
-            url: "./includes/crear_proveedor.php",
-            method: "POST",
-            data: {
-                rifProveedor: rifProveedor,
-                nombreProveedor: nombreProveedor,
-                Direccion: Direccion,
-                direccionProveedor: direccionProveedor,
-                seudonimo: seudonimo,
-                operacion: $("#operacion").val(),
-                id_proveedor: $("#id_proveedor").val()
-            },
-            success: function(data) {
-                alert(data);
-                $("#form-proveedor")[0].reset();
-                $("#nuevoregistro").modal('hide');
-                dataTable.ajax.reload();
-            }
-        });
-    } else {
-        alert('Todos los campos son requeridos');
-       }
-    });
-
-    
-      /* Funcionalidad editar
-      $(document).on("click", ".editar", function(e) {
-        var id_empresa = e.target.id;
-        $.ajax({
-          url: "obtener_registro.php",
-          method: "POST",
-          data: {
-            id_empresa: id_empresa
-          },
-          dataType: "json",
-          success: function(data) {
-            $("#modalEmpresa").modal("show");
-            $("#Rif").val(data.Rif);
-            $("#Razonsocial").val(data.Razonsocial);
-            $("#Direccion").val(data.Direccion);
-            $("#Seudonimo").val(data.Seudonimo);
-            
-            $("#imagen_subida").html(data.imagen_empresa);
-            
-            $("#id_empresa").val(id_empresa);
-            $("#action").val("editar");
-            $("#operacion").val("editar");
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-          }
-        })
-      })
-      */
-
-      // Funcionalidad editar
-$(document).on("click", ".editar", function(e) {
-    var id_empresa = e.target.id;
-    $.ajax({
-        url: "./includes/obtener_proveedor.php",
-        method: "POST",
-        data: {
-            id_proveedor: id_proveedor
-        },
-        dataType: "json",
-        success: function(data) {
-            $("#nuevoregistro").modal("show");
-            $("#rifProveedor").val(data.rifProveedor);
-            $("#nombreProveedor").val(data.nombreProveedor);
-            $("#direccionProveedor").val(data.direccionProveedor);
-            $("#seudonimo").val(data.seudonimo);
-            $("#id_proveedor").val(id_proveedor); // Asegúrate de que el ID se esté enviando
-            $("#action").val("editar");
-            $("#operacion").val("editar");
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
-        }
-    })
-})
-})
-</script>
-
-        <div class="modal fade" id="editarpaciente" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Editar de Paciente</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" action="includes/mod.paciente.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <input type="hidden" name="idpEditar" id="idpEditar">
-
-                                    <label for="pacienteEditar">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="pacienteEditar" name='pacienteEditar' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedulaEditar">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedulaEditar" name="cedulaEditar" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="edadEditar">Edad</label>
-
-                                    <input type="text" class="form-control" id="edadEditar" name="edadEditar" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="sexoEditar">Sexo</label>
-
-                                    <select id="sexoEditar" name="sexoEditar" class="form-control">
-
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="estadoEditar">Estado</label>
-
-                                    <select id="estadoEditar" name="estadoEditar" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="municipioEditar">Municipio</label>
-
-                                    <select id="municipioEditar" name="municipioEditar" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="parroquiaEditar">Parroquia</label>
-
-                                    <select id="parroquiaEditar" name="parroquiaEditar" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="patologiaEditar">Patologia</label>
-
-                                    <select id="patologiaEditar" name="patologiaEditar" class="form-control">
-
-                                        <option value="Gripe">Gripe</option>
-                                        <option value="Fiebre">Fiebre</option>
-                                        <option value="Tos">Tos</option>
-                                        <option value="Malestar">Malestar</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
-
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
-            </div>
-
-        </div>
-
-
-
-
-
-
-    <?php
-} else {
-    ?> <script>
-            alert("Debe Iniciar Sesion.");
-            window.location.href = "login.php";
-        </script> <?php
-
-                }
-                    ?>
-
-    <?php
-    if (isset($_GET['success']) && $_GET['success'] == 1) {
-    ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Credenciales correctos.',
-                text: 'Sesion iniciada',
-                timer: 2000,
-                showConfirmButton: false
-            });
-        </script>
-    <?php
-    }
-    ?>
-    <!-- jquery.dataTables.min.js first, then dataTables.bootstrap4.min.js, then datatablecaller.js -->
-    <script type="text/javascript" charset="utf8" src="../src/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="./assets/scripts/main.js"></script>
-
-    <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/datatablecallertabla.js"></script>
-    <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaledit.js"></script>
+        ?>
+        <!-- jquery.dataTables.min.js first, then dataTables.bootstrap4.min.js, then datatablecaller.js -->
+        <script type="text/javascript" charset="utf8" src="../src/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="./assets/scripts/main.js"></script>
+
+        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/datatablecallertabla.js"></script>
+        <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaledit.js"></script>
 
 
     </body>
@@ -1215,7 +850,7 @@ $(document).on("click", ".editar", function(e) {
 
                                 <label for="cedula">Cedula</label>
 
-                                <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                                <input type="text" class="form-control" name="cedula" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
 
                                 <div class="invalid-feedback">
                                     Debe rellenar este campo.
