@@ -13,27 +13,25 @@ if (isset($_SESSION['Admin'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Language" content="en">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>FUNESBO</title>
+        <title>Colegio Sion</title>
         <link rel="shortcut icon" href="../src/img/funesboLOGOt.PNG">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
+
         <link href="./css/main.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../src/DataTables/datatables.min.css">
-        <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
+        <link href="./css/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
+        <link href="./css/datatables.min.css" rel="stylesheet">
 
-        <script src="./assets/scripts/sweetalert2.min.js"></script>
-
-        <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/fotopreview.js"></script>
-
-        <!-- jquery.dataTables.min.js first, then dataTables.bootstrap4.min.js, then datatablecaller.js -->
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
-
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/datatablecallertabla.js"></script>
-
+        <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.bootstrap4.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="./assets/scripts/responsive.bootstrap4.js"></script>
+        <script type="module" src="./assets/scripts/pagina-principal.js"></script>
     </head>
 
     <body>
@@ -181,7 +179,7 @@ if (isset($_SESSION['Admin'])) {
                                 <li>
                                     <a href="administradorha.php">
                                         <i class="metismenu-icon pe-7s-door-lock"></i>
-                                        Habitaciones
+                                        Proveedores
                                     </a>
                                 </li>
                                 <li class="app-sidebar__heading">Ayuda</li>
@@ -195,13 +193,13 @@ if (isset($_SESSION['Admin'])) {
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="app-main__outer">
                     <div class="app-main__inner">
                         <div class="app-page-title">
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
-                                    <img class="img-thumbnail" src="../src/img/funesboLOGOt.PNG" width="70" height="60" alt="logo">
+
                                     <div class="ml-2">
 
                                         <?php
@@ -229,97 +227,23 @@ if (isset($_SESSION['Admin'])) {
                                 </div>
                             </div>
                         </div>
+                        <h2>Comprobantes</h2>
                         <div class="row">
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-warning">
-                                    <div class="widget-content-wrapper text-black">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading text-black">Habitaciones Ocupadas</div>
-                                        </div>
-                                        <div class="widget-content-right">
-
-                                            <?php
-                                            require 'includes/bd.inc.php';
-                                            $statush = '1';
-                                            $sql = "SELECT count(*) AS total FROM pacientes where statush='$statush'";
-                                            $result = mysqli_query($conn, $sql);
-                                            while ($mostrar = mysqli_fetch_array($result)) {
-                                            ?>
-                                                <div class="widget-numbers text-black">
-                                                    <span><?php echo $mostrar['total']; ?>
-                                                    </span>
-                                                </div>
-                                            <?php } ?>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-grow-early">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Habitaciones Disponibles</div>
-                                        </div>
-                                        <div class="widget-content-right">
-
-                                            <?php
-                                            require 'includes/bd.inc.php';
-                                            $max_count = 12; // valor máximo a mostrar por defecto
-                                            $statush = '1'; // valor a buscar en la tabla
-                                            $sql = "SELECT COUNT(*) AS total FROM pacientes WHERE statush='$statush'";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($result && mysqli_num_rows($result) > 0) {
-                                                $mostrar = mysqli_fetch_assoc($result);
-                                                $count = $max_count - $mostrar['total']; // calcular el valor a mostrar
-                                                if ($count < 0) {
-                                                    $count = 0; // asegurarse de que el valor no sea negativo
-                                                }
-                                            } else {
-                                                $count = $max_count; // en caso de error, mostrar valor máximo
-                                            }
-                                            ?>
-                                            <div class="widget-numbers text-white">
-                                                <span><?php echo $count; ?></span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-asteroid header-text-light">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Total de Habitaciones</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white">
-                                                <span>12
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="max-width: 99%;">
                                 <div class="main-card mb-3 card">
                                     <div class="card-header py-3 d-sm-flex align-item-center justify-content-between">
                                         <div class="py-3 align-item-center justify-content-between">
-                                            <a data-toggle="modal" href="#nuevoregistro" class="btn-shadow btn btn-primary">
+                                            <a data-toggle="modal" id="btnAddComprobante" href="#nuevoregistro" class="btn-shadow btn btn-primary">
                                                 <i class="pe-7s-plus"></i>
-                                                Nuevo Paciente
+                                                Nuevo Comprobante
                                             </a>
                                         </div>
                                         Listado
                                         <div class="py-3 align-item-center justify-content-between">
-                                            <a href="pdf.php" class="btn-shadow btn btn-danger">
+                                            <!-- <a href="pdf.php" class="btn-shadow btn btn-danger">
                                                 <i class="fa fa-file-pdf"></i>
                                                 Generar PDF
-                                            </a>
+                                            </a> -->
                                             <a href="includes/excel.php?export=true" class="btn-shadow btn btn-success">
                                                 <i class="fa fa-file-excel"></i>
                                                 Generar EXCEL
@@ -348,25 +272,28 @@ if (isset($_SESSION['Admin'])) {
                                     ?>
 
                                     <div class="table-responsive p-2">
-                                        <table id="tabla" class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <table id="tabla" class="table table-striped table-bordered nowrap" style="width:100%">
+                                            <!-- <table id="tabla" class="table table-striped align-middle mb-0 " style="width: 200px;"> -->
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">Habitacion</th>
-                                                    <th class="text-center">Paciente</th>
-                                                    <th class="text-center">Cedula</th>
-                                                    <th class="text-center">Edad</th>
-                                                    <th class="text-center">Sexo</th>
-                                                    <th class="text-center">Estado</th>
-                                                    <th class="text-center">Municipio</th>
-                                                    <th class="text-center">Parroquia</th>
-                                                    <th class="text-center">Patologia</th>
-                                                    <th class="text-center">Fecha ingreso</th>
-                                                    <th class="text-center">Fecha egreso</th>
-                                                    <th class="text-center">Estatus</th>
-                                                    <th class="text-center">Acciones</th>
+                                                    <th class="text-center">nro Comprobante</th>
+                                                    <th class="text-center">Periodo Fiscal</th>
+                                                    <th class="text-center">proveedor</th>
+                                                    <th class="text-center">rif Proveedor</th>
+                                                    <th class="text-center">direccion Proveedor</th>
+                                                    <th class="text-center">f.Factura</th>
+                                                    <th class="text-center">f.Emision</th>
+                                                    <th class="text-center">f.Entrega</th>
+                                                    <th class="text-center">total Facturado</th>
+                                                    <th class="text-center">base Imponible</th>
+                                                    <th class="text-center">impuesto iva (16%)</th>
+                                                    <th class="text-center">iva retenido (75%)</th>
+                                                    <th class="text-center">PDF</th>
+                                                    <th class="text-center">Editar</th>
+                                                    <th class="text-center">Eliminar</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <!-- <tbody>
                                                 <?php
                                                 require 'includes/bd.inc.php';
                                                 $sql = "SELECT * from pacientes";
@@ -421,11 +348,41 @@ if (isset($_SESSION['Admin'])) {
 
                                                                 <button class="btn btn-primary" data-target="#editarpaciente" data-toggle="modal" data-placement="left" data-idpeditar="<?php echo $mostrar['idp']; ?>" title="Modificar Solicitud"><i class="pe-7s-note"></i></button>
 
+                                                                <form action="includes/eli.paciente.inc.php" method="post">
+                                                                    <input type="hidden" name="idp" value="<?php echo $mostrar['idp']; ?>">
+                                                                    <input type="hidden" name="idh" value="<?php echo $mostrar['idh']; ?>">
+                                                                    <button class="btn btn-danger" type="submit" name="eliminar" data-toggle="tooltip" data-placement="left" title="Eliminar Paciente" onclick="return confirm('¿Esta seguro que quiere Eliminar al Paciente?');"><i class="pe-7s-trash"></i>
+                                                                    </button>
+                                                                </form>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
-                                            </tbody>
+                                            </tbody> -->
+                                            <!-- <tbody>
+                                                <tr>
+                                                    <th class="text-center">20240100000846</th>
+                                                    <th class="text-center">Comercial unique center, C.A</th>
+                                                    <th class="text-center">11-01-2024</th>
+                                                    <th class="text-center">15-01-2024</th>
+                                                    <th class="text-center">16-01-2024</th>
+                                                    <th class="text-center">00006790</th>
+                                                    <th class="text-center">Z1B8046526</th>
+                                                    <th class="text-center">359.69</th>
+                                                    <th class="text-center">310.08</th>
+                                                    <th class="text-center">49.61</th>
+                                                    <th class="text-center">37.21</th>
+                                                    <td class="text-center">
+                                                        <div>
+                                                            <button class="btn btn-warning" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
+                                                                Editar
+                                                            </button>
+                                                            <button class="btn btn-danger" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
+                                                                PDF
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                            </tbody> -->
                                         </table>
                                     </div>
                                     <div class="d-block text-center card-footer">
@@ -446,7 +403,6 @@ if (isset($_SESSION['Admin'])) {
                 </div>
             </div>
         </div>
-
 
         <!-- Modales -->
 
@@ -552,11 +508,12 @@ if (isset($_SESSION['Admin'])) {
                                     while ($mostrar = mysqli_fetch_array($result)) {
                                     ?>
 
-                                        <img id="uploadPreview1" class="card border" width="150" height="150" src="../architectui-html-free/assets/images/avatars/<?php echo $mostrar['foto'];
-                                                                                                                                                                } ?>" />
+                                        <img id="uploadPreview1" class="card border" style="display: none;" src="../assets/images/avatars/<?php echo $mostrar['foto'];
+                                                                                                                                        } ?>" />
 
                                         <div class="card-body">
                                             <input id="uploadImage1" type="file" name="images1" onchange="previewImage(1);" />
+                                            <p>Ingrese un formato de imagen PNG O JPG</p>
                                         </div>
 
                                 </div>
@@ -570,19 +527,18 @@ if (isset($_SESSION['Admin'])) {
                     </form>
 
                     <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                    <script type="text/javascript" src="../src/bootstrap4/js/passwordhidder.js"></script>
                 </div>
             </div>
         </div>
 
-        <!-- Nuevo Paciente -->
+        <!-- Nuevo Comprobante -->
 
         <div class="modal fade" id="nuevoregistro" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLongTitle">Registro de Usuario</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Comprobante</h5>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -590,20 +546,22 @@ if (isset($_SESSION['Admin'])) {
 
                     </div>
 
-                    <form class="needs-validation" action="includes/registropaciente.inc.php" method="post" novalidate>
+                    <form id="agregar-comprobante" class="needs-validation" action="includes/guardar_comprobante.php" method="post" novalidate>
 
                         <div class="modal-body">
 
                             <div class="form-row">
 
+                                <!-- nro Comprobante -->
                                 <div class="col-md-4 mb-3">
 
-                                    <label for="paciente">Nombre y Apellido</label>
+                                    <label for="paciente">Nro de Comprobante</label>
 
-                                    <input type="text" class="form-control" id="paciente" name='paciente' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
+                                    <!-- <input type="text" value="" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" onkeydown="javascript: return ((isNaN(event.target.value) && event.target.value.length < 14 && event.target.value > -1 ))" required> -->
+                                    <input type="text" class="form-control nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" pattern="[0-9]{14}" minlength="14" maxlength="14" required disabled>
 
                                     <div class="invalid-feedback">
-                                        Debe rellenar este campo.
+                                        Debe colocar 14 numeros.
                                     </div>
 
                                     <div class="valid-feedback">
@@ -612,11 +570,61 @@ if (isset($_SESSION['Admin'])) {
 
                                 </div>
 
+                                <!-- Proveedor -->
                                 <div class="col-md-4 mb-3">
 
-                                    <label for="cedula">Cedula</label>
+                                    <label for="estado">Proveedor</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control proveedor" name='proveedor' require aria-label="Text input with dropdown button" required>
 
-                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                                        <!-- Boton para resetear proveedores -->
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger rounded-right resetProveedor" type="button" style="display: none; z-index: 1000000">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- Boton para abrir toglee -->
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- content porveedores -->
+                                            <div class="dropdown-menu" style="max-height: 50vh; overflow-y: auto">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- <selec proveedor" name="proveedor" class="form-control">
+
+                                        <option value="Bolivar">Comercial Auioneit CA</option>
+                                        <option value="Anzoategui">Refrescos Guatire</option>
+                                        <option value="Merida">Helados cali CA</option>
+                                        <option value="Trujillo">Comercial watire center, C.A</option>
+
+                                    </select> -->
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Rif Proveedor -->
+                                <div class="col-md-4 mb-3">
+
+                                    <label for="">Rif Proveedor</label>
+
+                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' placeholder="ejemplo: j-298400870" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -627,11 +635,17 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-2 mb-3">
 
-                                    <label for="edad">Edad</label>
 
-                                    <input type="text" class="form-control" id="edad" name="edad" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                            </div>
+
+                            <div class="form-row">
+                                <!-- Direccion del Proveedor -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label for="">Direccion del Proveedor</label>
+
+                                    <input type="text" class="form-control dirreccionProveedor" name='dirreccionProveedor' placeholder="ejemplo: Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -642,16 +656,106 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-2 mb-3">
 
-                                    <label for="sexo">Sexo</label>
+                                <!-- nro control -->
+                                <div class="col-md-3 mb-3">
 
-                                    <select id="sexo" name="sexo" class="form-control">
+                                    <label for="">nro de Factura</label>
 
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
+                                    <input type="text" class="form-control nroFactura" placeholder="ejemplo: 00004567" name="nroFactura" required>
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
 
-                                    </select>
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">nro de control</label>
+
+                                    <input type="text" class="form-control nroControl" name="nroControl" placeholder="ejemplo: Z1B8046526" required>
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-row">
+
+
+                                <!-- F.factura -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.factura</label>
+
+                                    <input type="date" class="form-control fFactura" min="1000-00-01" max="9999-12-30" name="fFactura" placeholder="fFactura" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Periodo Fiscal -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">Periodo Fiscal</label>
+
+                                    <div class="input-group">
+                                        <input type="text" aria-label="First name" class="form-control periodoFiscalAño" disabled>
+                                        <input type="text" aria-label="Last name" class="form-control periodoFiscalMes" disabled>
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- F.emision -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.Emision</label>
+
+                                    <input type="date" class="form-control fEmision" name="fEmision" placeholder="fEmision" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+                                <!-- F.entrega -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.entrega</label>
+
+                                    <input type="date" class="form-control fEntrega" name="fEntrega" placeholder="fEntrega" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -666,19 +770,12 @@ if (isset($_SESSION['Admin'])) {
                             </div>
 
                             <div class="form-row">
+                                <!-- total facturado -->
+                                <div class="col-md-3 mb-3">
 
-                                <div class="col-md-4 mb-3">
+                                    <label for="">total facturado</label>
 
-                                    <label for="estado">Estado</label>
-
-                                    <select id="estado" name="estado" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
+                                    <input type="number" class="total-facturado form-control" placeholder="1.0" step="0.01" min="0" name='totalFacturado' placeholder="total facturado" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -689,18 +786,12 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <!-- base imponible -->
+                                <div class="col-md-3 mb-3">
 
-                                    <label for="municipio">Municipio</label>
+                                    <label for="patologia">base imponible</label>
 
-                                    <select id="municipio" name="municipio" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
+                                    <input type="number" class="base-imponible form-control baseImponible" placeholder="1.0" step="0.01" min="0" name='baseImponible' placeholder="base imponible" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -711,18 +802,12 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <!-- impuesto iva -->
+                                <div class="col-md-3 mb-3">
 
-                                    <label for="parroquia">Parroquia</label>
+                                    <label for="">impuesto iva</label>
 
-                                    <select id="parroquia" name="parroquia" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
+                                    <input disabled type="number" class="impuesto-iva form-control impuestoIva" name='impuestoIva' placeholder="impuesto iva" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -733,23 +818,12 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
+                                <!-- iva retenido -->
+                                <div class="col-md-3 mb-3">
 
-                            </div>
+                                    <label for="">iva retenido</label>
 
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="patologia">Patologia</label>
-
-                                    <select id="patologia" name="patologia" class="form-control">
-
-                                        <option value="Gripe">Gripe</option>
-                                        <option value="Fiebre">Fiebre</option>
-                                        <option value="Tos">Tos</option>
-                                        <option value="Malestar">Malestar</option>
-
-                                    </select>
+                                    <input disabled type="number" class="iva-retenido form-control ivaRetenido" name='ivaRetenido' placeholder="iva retenido" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -760,33 +834,6 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-
-                                <div class="col-md-4 mb-3">
-                                    <label for="idh">Habitacion</label>
-
-                                    <select id="idh" name="idh" class="form-control">
-                                        <?php
-                                        require 'includes/bd.inc.php';
-                                        $idp = $_POST['idp'];
-                                        $sql = "SELECT * from habitaciones WHERE estatus = 0";
-                                        $result = mysqli_query($conn, $sql);
-                                        while ($mostrar = mysqli_fetch_array($result)) {
-                                        ?>
-
-                                            <option value="<?php echo $mostrar['idh']; ?>"><?php echo $mostrar['idh']; ?></option>
-
-                                        <?php } ?>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
                             </div>
 
                         </div>
@@ -798,212 +845,6 @@ if (isset($_SESSION['Admin'])) {
 
                         </div>
 
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Editar Paciente -->
-
-        <div class="modal fade" id="editarpaciente" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Editar de Paciente</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" action="includes/mod.paciente.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <input type="hidden" name="idpEditar" id="idpEditar">
-
-                                    <label for="pacienteEditar">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="pacienteEditar" name='pacienteEditar' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedulaEditar">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedulaEditar" name="cedulaEditar" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="edadEditar">Edad</label>
-
-                                    <input type="text" class="form-control" id="edadEditar" name="edadEditar" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="sexoEditar">Sexo</label>
-
-                                    <select id="sexoEditar" name="sexoEditar" class="form-control">
-
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="estadoEditar">Estado</label>
-
-                                    <select id="estadoEditar" name="estadoEditar" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="municipioEditar">Municipio</label>
-
-                                    <select id="municipioEditar" name="municipioEditar" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="parroquiaEditar">Parroquia</label>
-
-                                    <select id="parroquiaEditar" name="parroquiaEditar" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="patologiaEditar">Patologia</label>
-
-                                    <select id="patologiaEditar" name="patologiaEditar" class="form-control">
-
-                                        <option value="Gripe">Gripe</option>
-                                        <option value="Fiebre">Fiebre</option>
-                                        <option value="Tos">Tos</option>
-                                        <option value="Malestar">Malestar</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
-
-                        </div>
 
                     </form>
 
@@ -1013,160 +854,17 @@ if (isset($_SESSION['Admin'])) {
 
         </div>
 
-        <!-- Modal Acompañante -->
-
-        <div class="modal fade" id="modalacompañantes" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <!-- Btn Editar -->
+        <a data-toggle="modal" style="display: none;" id="btnAddComprobante" href="#editarRegistro" class="btn-shadow btn btn-primary">
+            editar
+        </a>
+        <!-- Editar Comprobante -->
+        <div class="modal fade" id="editarRegistro" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLongTitle">Lista de Acompañantes</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="main-card mb-3 card">
-                                <div class="card-header py-3 d-sm-flex align-item-center justify-content-between">
-                                    <div class="py-3 align-item-center justify-content-between">
-                                        <a data-toggle="modal" href="#nuevoregistroacompanante" class="btn-shadow btn btn-primary">
-                                            <i class="pe-7s-plus"></i>
-                                            Nuevo Acompañante
-                                        </a>
-                                    </div>
-                                    <div class="py-3 align-item-center justify-content-between">
-                                        <a href="pdfa.php" class="btn-shadow btn btn-danger">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Generar PDF
-                                        </a>
-                                        <a href="includes/excela.php?export=true" class="btn-shadow btn btn-success">
-                                            <i class="fa fa-file-excel"></i>
-                                            Generar EXCEL
-                                        </a>
-                                    </div>
-                                </div>
-                                <?php
-                                if (empty($_GET['alert'])) {
-                                    echo "";
-                                } elseif ($_GET['alert'] == 'login=success') {
-                                    echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>¡Muy bien!</strong> Los datos han sido almacenados<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                } elseif ($_GET['alert'] == 2) {
-                                    echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>¡Muy bien!</strong> Los datos se han modificado<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                } elseif ($_GET['alert'] == 3) {
-                                    echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>Completado!</strong> Se eliminaron los datos<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                }
-                                ?>
-
-                                <div id="contenido-modal" class="table-responsive p-2">
-                                    <table id="tabla-acompanantes-body" class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Acompañante</th>
-                                                <th class="text-center">Cedula</th>
-                                                <th class="text-center">Edad</th>
-                                                <th class="text-center">Sexo</th>
-                                                <th class="text-center">Estado</th>
-                                                <th class="text-center">Municipio</th>
-                                                <th class="text-center">Parroquia</th>
-                                                <th class="text-center">Fecha ingreso</th>
-                                                <th class="text-center">Fecha egreso</th>
-                                                <th class="text-center">Estatus</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            require 'includes/bd.inc.php';
-                                            $idp = $_POST['idp'];
-                                            $sql = "SELECT * from acompanantes WHERE idp = $idp";
-                                            $result = mysqli_query($conn, $sql);
-                                            while ($mostrar = mysqli_fetch_array($result)) {
-                                            ?>
-                                                <tr>
-                                                    <td class="text-center"><?php echo $mostrar['acompanante']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['cedula']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['edad']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['sexo']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['estado']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['municipio']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['parroquia']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['fechai']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['fechae']; ?></td>
-                                                    <td class="text-center">
-                                                        <?php
-                                                        $statusa = $mostrar['statusa'];
-                                                        $ida = $mostrar['ida'];
-
-                                                        if ($statusa == '1') {
-                                                            echo '<div>
-                                                            
-                                                            <form action="includes/cambiarestadoacompanante.inc.php" method="post">
-                                                            
-                                                                <input type="hidden" name="ida" value="' . $ida;
-
-                                                            echo '">
-                                                                
-                                                                <button class="btn btn-warning" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                Hospedado
-                                                                </button>
-                                                                
-                                                            </form>
-                                                            </div>';
-                                                        } else {
-                                                            echo '<div class="btn btn-success">Retirado</div>';
-                                                        } ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <div class="row">
-
-                                                            <button class="btn btn-primary" data-target="#editaracompanante" data-toggle="modal" data-placement="left" data-idaeditar="<?php echo $mostrar['ida']; ?>" title="Modificar Solicitud"><i class="pe-7s-note"></i></button>
-
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="d-block text-center card-footer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
-
-                    </div>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Nuevo Acompañante-->
-
-        <div class="modal fade" id="nuevoregistroacompanante" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Registro de Acompañante</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Editar Comprobante</h5>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -1174,34 +872,85 @@ if (isset($_SESSION['Admin'])) {
 
                     </div>
 
-                    <form class="needs-validation" action="includes/registroacompanante.inc.php" method="post" novalidate>
+                    <form id="editar-comprobante" class="needs-validation" action="includes/guardar_comprobante.php" method="post" novalidate>
 
                         <div class="modal-body">
 
                             <div class="form-row">
 
-                                <div class="col-md-4 mb-3">
-                                    <input type="hidden" id="idp" name="idp" value="" required>
-
-                                    <label for="acompanante">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="acompanante" name='acompanante' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
+                                <!-- nro Comprobante -->
                                 <div class="col-md-4 mb-3">
 
-                                    <label for="cedula">Cedula</label>
+                                    <label for="paciente">Nro de Comprobante</label>
 
-                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                                    <!-- <input type="text" value="" class="form-control" id="nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" onkeydown="javascript: return ((isNaN(event.target.value) && event.target.value.length < 14 && event.target.value > -1 ))" required> -->
+                                    <input type="text" class="form-control nroComprobante" name='nroComprobante' placeholder="Ejemplo 20240100000846" pattern="[0-9]{14}" minlength="14" maxlength="14" required disabled>
+
+                                    <div class="invalid-feedback">
+                                        Debe colocar 14 numeros.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+                                <!-- Proveedor -->
+                                <div class="col-md-4 mb-3">
+
+                                    <label for="estado">Proveedor</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control proveedor" name='proveedor' require aria-label="Text input with dropdown button" required>
+
+                                        <!-- Boton para resetear proveedores -->
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger rounded-right resetProveedor" type="button" style="display: none; z-index: 1000000">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="white" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- Boton para abrir toglee -->
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- content porveedores -->
+                                            <div class="dropdown-menu" style="max-height: 50vh; overflow-y: auto">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- <selec proveedor" name="proveedor" class="form-control">
+
+                                        <option value="Bolivar">Comercial Auioneit CA</option>
+                                        <option value="Anzoategui">Refrescos Guatire</option>
+                                        <option value="Merida">Helados cali CA</option>
+                                        <option value="Trujillo">Comercial watire center, C.A</option>
+
+                                    </select> -->
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Rif Proveedor -->
+                                <div class="col-md-4 mb-3">
+
+                                    <label for="">Rif Proveedor</label>
+
+                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' placeholder="ejemplo: j-298400870" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -1212,11 +961,17 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-2 mb-3">
 
-                                    <label for="edad">Edad</label>
 
-                                    <input type="text" class="form-control" id="edad" name="edad" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+                            </div>
+
+                            <div class="form-row">
+                                <!-- Direccion del Proveedor -->
+                                <div class="col-md-6 mb-3">
+
+                                    <label for="">Direccion del Proveedor</label>
+
+                                    <input type="text" class="form-control dirreccionProveedor" name='dirreccionProveedor' placeholder="ejemplo: Andres Eloy Blanco, Calle el Palmar, Ciudad Bolívar, Venezuela" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -1227,16 +982,106 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-2 mb-3">
 
-                                    <label for="sexo">Sexo</label>
+                                <!-- nro control -->
+                                <div class="col-md-3 mb-3">
 
-                                    <select id="sexo" name="sexo" class="form-control">
+                                    <label for="">nro de Factura</label>
 
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
+                                    <input type="text" class="form-control nroFactura" placeholder="ejemplo: 00004567" name="nroFactura" required>
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
 
-                                    </select>
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">nro de control</label>
+
+                                    <input type="text" class="form-control nroControl" name="nroControl" placeholder="ejemplo: Z1B8046526" required>
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-row">
+
+
+                                <!-- F.factura -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.factura</label>
+
+                                    <input type="date" class="form-control fFactura" min="1000-00-01" max="9999-12-30" name="fFactura" placeholder="fFactura" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Periodo Fiscal -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">Periodo Fiscal</label>
+
+                                    <div class="input-group">
+                                        <input type="text" aria-label="First name" class="form-control periodoFiscalAño" disabled>
+                                        <input type="text" aria-label="Last name" class="form-control periodoFiscalMes" disabled>
+                                    </div>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+
+                                <!-- F.emision -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.Emision</label>
+
+                                    <input type="date" class="form-control fEmision" name="fEmision" placeholder="fEmision" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
+
+                                    <div class="invalid-feedback">
+                                        Debe llenar este campo.
+                                    </div>
+
+                                    <div class="valid-feedback">
+                                        Listo.
+                                    </div>
+
+                                </div>
+
+                                <!-- F.entrega -->
+                                <div class="col-md-3 mb-3">
+
+                                    <label for="">F.entrega</label>
+
+                                    <input type="date" class="form-control fEntrega" name="fEntrega" placeholder="fEntrega" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -1251,19 +1096,12 @@ if (isset($_SESSION['Admin'])) {
                             </div>
 
                             <div class="form-row">
+                                <!-- total facturado -->
+                                <div class="col-md-3 mb-3">
 
-                                <div class="col-md-4 mb-3">
+                                    <label for="">total facturado</label>
 
-                                    <label for="estado">Estado</label>
-
-                                    <select id="estado" name="estado" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
+                                    <input type="number" class="total-facturado form-control" placeholder="1.0" step="0.01" min="0" name='totalFacturado' placeholder="total facturado" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -1274,18 +1112,12 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <!-- base imponible -->
+                                <div class="col-md-3 mb-3">
 
-                                    <label for="municipio">Municipio</label>
+                                    <label for="patologia">base imponible</label>
 
-                                    <select id="municipio" name="municipio" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
+                                    <input type="number" class="base-imponible form-control baseImponible" placeholder="1.0" step="0.01" min="0" name='baseImponible' placeholder="base imponible" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -1296,18 +1128,12 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <!-- impuesto iva -->
+                                <div class="col-md-3 mb-3">
 
-                                    <label for="parroquia">Parroquia</label>
+                                    <label for="">impuesto iva</label>
 
-                                    <select id="parroquia" name="parroquia" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
+                                    <input disabled type="number" class="impuesto-iva form-control impuestoIva" name='impuestoIva' placeholder="impuesto iva" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -1318,104 +1144,12 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
+                                <!-- iva retenido -->
+                                <div class="col-md-3 mb-3">
 
-                            </div>
-                        </div>
+                                    <label for="">iva retenido</label>
 
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="submit1" class="btn btn-primary">Registrar</button>
-
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Editar Acompañante -->
-
-        <div class="modal fade" id="editaracompanante" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Editar de Acompañante</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" action="includes/mod.acompanante.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <input type="hidden" name="idaEditarA" id="idaEditarA">
-
-                                    <label for="acompananteEditarA">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="acompananteEditarA" name='acompananteEditarA' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedulaEditarA">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedulaEditarA" name="cedulaEditarA" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="edadEditarA">Edad</label>
-
-                                    <input type="text" class="form-control" id="edadEditarA" name="edadEditarA" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="sexoEditarA">Sexo</label>
-
-                                    <select id="sexoEditarA" name="sexoEditarA" class="form-control">
-
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-
-                                    </select>
+                                    <input disabled type="number" class="iva-retenido form-control ivaRetenido" name='ivaRetenido' placeholder="iva retenido" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -1426,78 +1160,6 @@ if (isset($_SESSION['Admin'])) {
                                     </div>
 
                                 </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="estadoEditarA">Estado</label>
-
-                                    <select id="estadoEditarA" name="estadoEditarA" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="municipioEditarA">Municipio</label>
-
-                                    <select id="municipioEditarA" name="municipioEditarA" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="parroquiaEditarA">Parroquia</label>
-
-                                    <select id="parroquiaEditarA" name="parroquiaEditarA" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
                             </div>
 
                         </div>
@@ -1505,9 +1167,10 @@ if (isset($_SESSION['Admin'])) {
                         <div class="modal-footer">
 
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
+                            <button type="submit" name="submit1" class="btn btn-primary">Editar</button>
 
                         </div>
+
 
                     </form>
 

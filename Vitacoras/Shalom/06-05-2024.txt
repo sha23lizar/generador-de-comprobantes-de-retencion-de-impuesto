@@ -17,4 +17,23 @@ C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-mast
 C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\superusuario.php(especificamente coloque)
 <div class="col-md-12" style="max-width: 99%;"> linea 260 para tabla responsive
 
+Mejorar modulo proveedores
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\superusuarioha.php
+
+y terminar modulo administrador y asistente
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\administradorha.php
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\administrador.php
+C:\xampp\htdocs\workspace\generador-de-comprobante-de-retencion-de-impuesto-master\asistente.php
+
+
+
+
+Editar modulo usuarios
+agregar header
+a lo ultimo agreguer el javascrip
+elimine datos en hiddenn
+agregue el nivel de usuario superUsuario
+
+
+
 terminar pdf

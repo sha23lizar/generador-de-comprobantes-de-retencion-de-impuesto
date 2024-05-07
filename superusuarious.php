@@ -13,18 +13,31 @@ if (isset($_SESSION['Super'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Language" content="en">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>FUNESBO</title>
+        <title>Colegio Sion</title>
         <link rel="shortcut icon" href="../src/img/funesboLOGOt.PNG">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
+
+
         <link href="./css/main.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
+        <link href="./css/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
+        <link href="./css/datatables.min.css" rel="stylesheet">
 
-        <script src="./assets/scripts/sweetalert2.min.js"></script>
 
 
+        <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
+        <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.bootstrap4.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="./assets/scripts/responsive.bootstrap4.js"></script>
+
+
+
+
 
         <script>
             $(document).on("click", ".btn-editar-usuario", function() {
@@ -80,7 +93,7 @@ if (isset($_SESSION['Super'])) {
 
                                             <?php
                                             $idu = $_SESSION['idu'];
-                                            
+
                                             $sql = "SELECT * from usuarios where idu='$idu'";
                                             $result = mysqli_query($conn, $sql);
                                             while ($mostrar = mysqli_fetch_array($result)) {
@@ -101,7 +114,7 @@ if (isset($_SESSION['Super'])) {
 
                                                 <?php
                                                 $idu = $_SESSION['idu'];
-                                                
+
                                                 $sql = "SELECT * from usuarios where idu='$idu'";
                                                 $result = mysqli_query($conn, $sql);
                                                 while ($mostrar = mysqli_fetch_array($result)) {
@@ -256,18 +269,21 @@ if (isset($_SESSION['Super'])) {
                                     ?>
 
                                     <div class="table-responsive p-2">
-                                        <table id="tablausuarios" class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <table id="tablausuarios" class="table table-striped table-bordered nowrap" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">Usuario</th>
                                                     <th class="text-center">Cedula</th>
-                                                    <th class="text-center">Estado</th>
+                                                    <th class="text-center">contraseña'</th>
+                                                    <th class="text-center">pregunta'</th>
+                                                    <th class="text-center">respuesta'</th>
+                                                    <th class="text-center">Rol</th>
                                                     <th class="text-center">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                
+
                                                 $sql = "SELECT * from usuarios";
                                                 $result = mysqli_query($conn, $sql);
                                                 while ($mostrar = mysqli_fetch_array($result)) {
@@ -275,10 +291,9 @@ if (isset($_SESSION['Super'])) {
                                                     <tr>
                                                         <td class="text-center"><?php echo $mostrar['usuario']; ?></td>
                                                         <td class="text-center"><?php echo $mostrar['cedula']; ?></td>
-                                                        <td class="text-center" hidden><?php echo $mostrar['contra']; ?></td>
-                                                        <td class="text-center" hidden><?php echo $mostrar['pregunta']; ?></td>
-                                                        <td class="text-center" hidden><?php echo $mostrar['respuesta']; ?></td>
-                                                        <td class="text-center" hidden><?php echo $mostrar['rol']; ?></td>
+                                                        <td class="text-center"><?php echo $mostrar['contra']; ?></td>
+                                                        <td class="text-center"><?php echo $mostrar['pregunta']; ?></td>
+                                                        <td class="text-center"><?php echo $mostrar['respuesta']; ?></td>
                                                         <td class="text-center">
                                                             <?php
                                                             $status = $mostrar['rol'];
@@ -303,10 +318,8 @@ if (isset($_SESSION['Super'])) {
                                                         </td>
                                                         <td class="text-center">
                                                             <div class="row">
-                                                                
-                                                                <a href="" class="btn btn-primary col-sm-4 btn-editar-usuario" data-toggle="modal" data-target="#ModUs"><i class="pe-7s-note"></i></a>
 
-                                                                
+                                                                <a href="" class="btn btn-primary col-sm-4 btn-editar-usuario" data-toggle="modal" data-target="#ModUs"><i class="pe-7s-note"></i></a>
 
                                                                 <form class="col-sm" action="includes/eli.usuario.inc.php" method="post">
                                                                     <input type="hidden" name="idu" value="<?php echo $idu; ?>">
@@ -381,7 +394,7 @@ if (isset($_SESSION['Super'])) {
 
                                     $idu = $_SESSION['idu'];
 
-                                    
+
 
                                     $sql = "SELECT * FROM usuarios WHERE idu='$idu'";
                                     $result = mysqli_query($conn, $sql);
@@ -437,7 +450,7 @@ if (isset($_SESSION['Super'])) {
 
                                     <?php
                                     $idu = $_SESSION['idu'];
-                                    
+
                                     $sql = "SELECT * from usuarios where idu='$idu'";
                                     $result = mysqli_query($conn, $sql);
                                     while ($mostrar = mysqli_fetch_array($result)) {
@@ -578,8 +591,9 @@ if (isset($_SESSION['Super'])) {
 
                                 <select id="rol" name="rol" class="form-control">
 
-                                    <option value="2">Administrador</option>
                                     <option value="3">Asistente</option>
+                                    <option value="2">Administrador</option>
+                                    <option value="1">Superusuario</option>
 
                                 </select>
 
@@ -613,190 +627,107 @@ if (isset($_SESSION['Super'])) {
         <!-- Modal Editar Usuario -->
 
         <!-- Button trigger modal -->
-        
+
 
         <!-- Modal -->
 
         <div class="modal fade" id="ModUs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modificar Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-             <form action="" method="POST">
-                        <div class="fl-flex-label mb-3 px-2 col-12">
-                            <label for="user">Usuario</label>
-                            <input id="user" type="text" placeholder="usuario" class="form-control" name="nom_agg" value="<?=$user?>">
-                        </div>
-                        <div class="fl-flex-label mb-3 px-2 col-12">
-                            <label for="cedula">Cedula</label>
-                            <input id="cedula" type="text" placeholder="cedula" class="form-control" name="ape_agg" value="<?=$cedula?>"> 
-                        </div>
-                        <div class="fl-flex-label mb-3 px-2 col-12">
-                            <label for="contra">Contraseña</label>
-                            <input id="contra" type="text" placeholder="contraseña" class="form-control" name="con_agg" value="<?=$contraseña?>">
-                        </div>
-                        <div class="fl-flex-label mb-3 px-2 col-12">
-                            <label for="pregunta">Pregunta de seguridad</label>
-                            <input id="pregunta" type="text" placeholder="pregunta de seguridad" class="form-control" name="pre_agg" value="<?=$pregunta?>">
-                        </div>
-                        <div class="fl-flex-label mb-3 px-2 col-12">
-                            <label for="respuesta">respuesta de seguridad</label>
-                            <input id="respuesta" type="text" placeholder="respuesta de seguridad" class="form-control" name="use_agg" value="<?=$respuesta?>">
-                        </div>
-                        <div class="fl-flex-label mb-3 px-2 col-12">
-                            <label for="rol">Nivel de Usuario</label>  
-                            <select id="rol" name="rol" class="form-control" value="<?php echo $mostrar['rol']; ?>" value="<?=$rol?>">
-
-                                <option value="1">Superusuario</option>
-                                <option value="2">Administrador</option>
-                                <option value="3">Asistente</option>
-
-                            </select>                        
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-                </div>
-            </div>
-        </div> 
-        
-
-        <!-- <div class="modal fade" id="modaleditarusuario" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
                     <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modificacion de Usuario</h5>
-
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar Usuario</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-
                     </div>
-
-                    <form id="formulario-editar-usuario" class="needs-validation" action="includes/registro.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedula">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" value="<?php echo $mostrar['cedula']; ?>" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
+                    <div class="modal-body">
+                        <form action="" method="POST">
+                            <div class="fl-flex-label mb-3 px-2 col-12">
+                                <label for="user">Usuario</label>
+                                <input id="user" type="text" placeholder="usuario" class="form-control" name="nom_agg" value="<?= $user ?>">
                             </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="contra">Contraseña</label>
-
-                                    <input type="password" id="contra" name="contra" class="form-control" placeholder="Contraseña" value="<?php echo $mostrar['contra']; ?>" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="pregunta">Pregunta de Seguridad</label>
-
-                                    <input type="text" class="form-control" id="pregunta" name="pregunta" placeholder="Pregunta" value="<?php echo $mostrar['pregunta']; ?>" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="respuesta">Respuesta</label>
-
-                                    <input type="text" class="form-control" id="respuesta" name="respuesta" placeholder="Respuesta" value="<?php echo $mostrar['respuesta']; ?>" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
+                            <div class="fl-flex-label mb-3 px-2 col-12">
+                                <label for="cedula">Cedula</label>
+                                <input id="cedula" type="text" placeholder="cedula" class="form-control" name="ape_agg" value="<?= $cedula ?>">
                             </div>
-
-                            <div class="col-md-4 mb-3">
-
+                            <div class="fl-flex-label mb-3 px-2 col-12">
+                                <label for="contra">Contraseña</label>
+                                <input id="contra" type="text" placeholder="contraseña" class="form-control" name="con_agg" value="<?= $contraseña ?>">
+                            </div>
+                            <div class="fl-flex-label mb-3 px-2 col-12">
+                                <label for="pregunta">Pregunta de seguridad</label>
+                                <input id="pregunta" type="text" placeholder="pregunta de seguridad" class="form-control" name="pre_agg" value="<?= $pregunta ?>">
+                            </div>
+                            <div class="fl-flex-label mb-3 px-2 col-12">
+                                <label for="respuesta">respuesta de seguridad</label>
+                                <input id="respuesta" type="text" placeholder="respuesta de seguridad" class="form-control" name="use_agg" value="<?= $respuesta ?>">
+                            </div>
+                            <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="rol">Nivel de Usuario</label>
-
-                                <select id="rol" name="rol" class="form-control" value="<?php echo $mostrar['rol']; ?>">
+                                <select id="rol" name="rol" class="form-control" value="<?php echo $mostrar['rol']; ?>" value="<?= $rol ?>">
 
                                     <option value="1">Superusuario</option>
                                     <option value="2">Administrador</option>
                                     <option value="3">Asistente</option>
 
                                 </select>
-
-                                <div class="invalid-feedback">
-                                    Debe llenar este campo.
-                                </div>
-
-                                <div class="valid-feedback">
-                                    Listo.
-                                </div>
-
                             </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="submit1" class="btn btn-primary">Registrar</button>
-
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
             </div>
+        </div>
 
-        </div> -->
+        <script>
+            // #tablausuarios
+            $(document).ready(function() {
+                
+                var dataTable = $("#tablausuarios").DataTable({
+
+                    columnDefs: [{
+                        responsivePriority: 5,
+                        targets: 0
+                    },
+                    {
+                        responsivePriority: 4,
+                        targets: 5
+                    },
+                    {
+                        responsivePriority: 4,
+                        targets: 6
+                    }
+                ],
+
+                responsive: true,
+
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+
+                    }
+                });
+            });
+        </script>
 
     <?php
 } else {

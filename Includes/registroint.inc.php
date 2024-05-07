@@ -40,7 +40,6 @@ if (isset($_POST['submit1'])) {
                  <script>
                      alert("Registro realizado con exito.");
                      window.location.href = "../superusuarious.php";
-         
                  </script> <?php exit();
              }
             

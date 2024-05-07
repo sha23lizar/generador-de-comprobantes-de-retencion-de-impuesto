@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2024 a las 03:56:56
+-- Tiempo de generación: 07-05-2024 a las 05:36:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -120,23 +120,13 @@ CREATE TABLE `comprobante` (
   `fEntrega` varchar(20) NOT NULL,
   `fFactura` varchar(20) NOT NULL,
   `nroControl` varchar(20) NOT NULL,
-  `totalFacturado` decimal(10,2) NOT NULL,
-  `baseImponible` decimal(10,2) NOT NULL,
+  `totalFacturado` decimal(50,2) NOT NULL,
+  `baseImponible` decimal(50,2) NOT NULL,
   `fechaRegistro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `impuestoIva` int(11) DEFAULT NULL,
-  `ivaRetenido` int(11) DEFAULT NULL
+  `impuestoIva` decimal(50,2) DEFAULT NULL,
+  `ivaRetenido` decimal(50,2) DEFAULT NULL,
+  `nroFactura` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `comprobante`
---
-
-INSERT INTO `comprobante` (`id`, `nroComprobante`, `proveedor`, `rifProveedor`, `direccionProveedor`, `fEmision`, `fEntrega`, `fFactura`, `nroControl`, `totalFacturado`, `baseImponible`, `fechaRegistro`, `impuestoIva`, `ivaRetenido`) VALUES
-(24, '20240500000002', 'Empresa XYZ', 'R987654321', 'Avenida Secundaria 456', '2024-05-25', '2024-05-22', '2024-05-26', 'ghfhfhfghfghfghfgh', 23423.00, 23423.00, '2024-05-05 20:38:31', 3748, 2811),
-(25, '20240500000003', 'Empresa GHI', 'R135792468', 'Calle Comercial 123', '2024-05-16', '2024-05-16', '2024-05-12', 'ewrwerwer', 99999999.99, 345345.00, '2024-05-05 20:53:11', 55255, 41441),
-(28, '20240500000006', 'ALVARO', 'j-1111111', 'calle PAEZ', '0234-04-23', '0234-04-23', '2024-05-11', '34234', 234.00, 234.00, '2024-05-05 22:09:16', 37, 28),
-(29, '2340400000007', '234', '234', '234', '2000-02-07', '2000-02-07', '2000-02-07', '234234', 234234.11, 234.00, '2024-05-05 22:10:17', 37, 28),
-(34, '2024050000008', 'ALVARO', 'j-1111111', 'calle PAEZ', '2024-05-09', '2024-05-14', '2024-05-03', 'asdsdasdasdasd', 123123.00, 123123.00, '2024-05-06 01:53:17', 19700, 14775);
 
 -- --------------------------------------------------------
 
@@ -218,10 +208,10 @@ CREATE TABLE `proveedor` (
 
 INSERT INTO `proveedor` (`id`, `nombreProveedor`, `rifProveedor`, `direccionProveedor`, `seudonimo`) VALUES
 (5, 'fernando', 'j-22222222', 'calle bolivar abasto nro 23', 'Luis'),
-(6, 'ALVARO', 'j-1111111', 'calle PAEZ', 'calle PAEZ'),
-(7, 'raul.ca', '4535646576575', '', 'juan'),
+(7, 'raul.ca', '4535646576575', 'sadasdsad', 'juan'),
 (17, 'ALVARO', 'j-1111111', 'calle PAEZ', 'alvaro'),
-(19, '123123', 'sadsd123123', '123123', '1231213');
+(21, 'no', 'rif', 'dir', 'seudonimo'),
+(22, 'shalom liza', '30768517', '2213123123123123', 'Shalom');
 
 -- --------------------------------------------------------
 
@@ -269,7 +259,10 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`idu`, `cedula`, `contra`, `pregunta`, `respuesta`, `rol`, `usuario`, `foto`) VALUES
 (1, '26883154', '123456', 'Nombre de mi Mascota', 'Coffee', 1, 'SuperUsuario', '766bb9841a799a75fc0813417aeb2812.png'),
 (2, '11171674', '6473', 'Mi color favorito', 'Verde', 2, 'Administrador', ''),
-(3, '25932740', '123456', 'Hotel?', 'Trivago', 3, 'Asistente', '');
+(3, '25932740', '123456', 'Hotel?', 'Trivago', 3, 'Asistente', ''),
+(9, '30768517', '123456', 'apellido', 'lizardi', 2, 'Shalom', 'user-default.jpg'),
+(10, '30768518', '123456', 'apellido', 'lizardi', 2, '26883154', 'user-default.jpg'),
+(11, '11748730', '123456', 'apellido', 'lizardi', 3, 'niya', 'user-default.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -347,7 +340,7 @@ ALTER TABLE `camas`
 -- AUTO_INCREMENT de la tabla `comprobante`
 --
 ALTER TABLE `comprobante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`
@@ -365,7 +358,7 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `respaldos`
@@ -377,7 +370,7 @@ ALTER TABLE `respaldos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas

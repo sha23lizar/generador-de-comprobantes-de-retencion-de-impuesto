@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
     // Devolver el JSON como respuesta
     echo $json_data;
 } else {
-    echo "No se encontraron comprobantes.";
+    echo json_encode("no hay comprobantes");
 }
 
 // Cerrar la conexión

@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   $(document).on("click", ".borrar", function (e) {
     var id_personal = e.target.id;
     if (confirm("¿Desea borrar el registro nro: " + id_personal + "?")) {
-      $.ajax({
-        url: "./includes/eliminarComprobante.php",
-        method: "POST",
-        data: {
-          id_personal: id_personal
-        },
-        success: (data) => {
+    $.ajax({
+      url: "./includes/eliminarComprobante.php",
+      method: "POST",
+      data: {
+        id_personal: id_personal
+      },
+      success: (data) => {
           alert(data);
           dataTable.reload();
         }

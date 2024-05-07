@@ -272,8 +272,8 @@ export class FormularioComprobantes {
             url: this.urls.buscarUltimo,
             type: "GET",
             success: (data) => {
-                if (data == "No se encontraron comprobantes.") {
-                    console.log(data)
+                
+                if (JSON.parse(data) == "no hay comprobantes") {
                     this.ultimoNumeroComprobante = "00000000000001"
                     this.inputNroComprobante.value = this.ultimoNumeroComprobante
                     this.setPeriodoFiscal()

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 26-06-2023 a las 14:14:42
--- Versión del servidor: 5.7.36
--- Versión de PHP: 7.4.26
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 06-05-2024 a las 03:56:56
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,9 +27,8 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `acompanantes`
 --
 
-DROP TABLE IF EXISTS `acompanantes`;
-CREATE TABLE IF NOT EXISTS `acompanantes` (
-  `ida` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `acompanantes` (
+  `ida` int(11) NOT NULL,
   `acompanante` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `cedula` int(11) NOT NULL,
   `edad` varchar(25) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
@@ -39,11 +38,9 @@ CREATE TABLE IF NOT EXISTS `acompanantes` (
   `parroquia` varchar(60) NOT NULL,
   `habitacion` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `idp` int(11) NOT NULL,
-  `fechai` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fechae` datetime NOT NULL,
-  PRIMARY KEY (`ida`),
-  KEY `idp` (`idp`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `fechai` datetime NOT NULL DEFAULT current_timestamp(),
+  `fechae` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `acompanantes`
@@ -58,15 +55,12 @@ INSERT INTO `acompanantes` (`ida`, `acompanante`, `cedula`, `edad`, `sexo`, `est
 -- Estructura de tabla para la tabla `camas`
 --
 
-DROP TABLE IF EXISTS `camas`;
-CREATE TABLE IF NOT EXISTS `camas` (
-  `idc` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `camas` (
+  `idc` int(11) NOT NULL,
   `nrocama` varchar(4) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `idh` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idc`),
-  KEY `idh` (`idh`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `camas`
@@ -113,16 +107,48 @@ INSERT INTO `camas` (`idc`, `nrocama`, `idh`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comprobante`
+--
+
+CREATE TABLE `comprobante` (
+  `id` int(11) NOT NULL,
+  `nroComprobante` varchar(50) NOT NULL,
+  `proveedor` varchar(250) NOT NULL,
+  `rifProveedor` varchar(250) NOT NULL,
+  `direccionProveedor` varchar(255) NOT NULL,
+  `fEmision` varchar(20) NOT NULL,
+  `fEntrega` varchar(20) NOT NULL,
+  `fFactura` varchar(20) NOT NULL,
+  `nroControl` varchar(20) NOT NULL,
+  `totalFacturado` decimal(10,2) NOT NULL,
+  `baseImponible` decimal(10,2) NOT NULL,
+  `fechaRegistro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `impuestoIva` int(11) DEFAULT NULL,
+  `ivaRetenido` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `comprobante`
+--
+
+INSERT INTO `comprobante` (`id`, `nroComprobante`, `proveedor`, `rifProveedor`, `direccionProveedor`, `fEmision`, `fEntrega`, `fFactura`, `nroControl`, `totalFacturado`, `baseImponible`, `fechaRegistro`, `impuestoIva`, `ivaRetenido`) VALUES
+(24, '20240500000002', 'Empresa XYZ', 'R987654321', 'Avenida Secundaria 456', '2024-05-25', '2024-05-22', '2024-05-26', 'ghfhfhfghfghfghfgh', 23423.00, 23423.00, '2024-05-05 20:38:31', 3748, 2811),
+(25, '20240500000003', 'Empresa GHI', 'R135792468', 'Calle Comercial 123', '2024-05-16', '2024-05-16', '2024-05-12', 'ewrwerwer', 99999999.99, 345345.00, '2024-05-05 20:53:11', 55255, 41441),
+(28, '20240500000006', 'ALVARO', 'j-1111111', 'calle PAEZ', '0234-04-23', '0234-04-23', '2024-05-11', '34234', 234.00, 234.00, '2024-05-05 22:09:16', 37, 28),
+(29, '2340400000007', '234', '234', '234', '2000-02-07', '2000-02-07', '2000-02-07', '234234', 234234.11, 234.00, '2024-05-05 22:10:17', 37, 28),
+(34, '2024050000008', 'ALVARO', 'j-1111111', 'calle PAEZ', '2024-05-09', '2024-05-14', '2024-05-03', 'asdsdasdasdasd', 123123.00, 123123.00, '2024-05-06 01:53:17', 19700, 14775);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `habitaciones`
 --
 
-DROP TABLE IF EXISTS `habitaciones`;
-CREATE TABLE IF NOT EXISTS `habitaciones` (
-  `idh` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `habitaciones` (
+  `idh` int(11) NOT NULL,
   `nrohabitacion` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `estatus` tinyint(1) NOT NULL,
-  PRIMARY KEY (`idh`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `estatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `habitaciones`
@@ -148,9 +174,8 @@ INSERT INTO `habitaciones` (`idh`, `nrohabitacion`, `estatus`) VALUES
 -- Estructura de tabla para la tabla `pacientes`
 --
 
-DROP TABLE IF EXISTS `pacientes`;
-CREATE TABLE IF NOT EXISTS `pacientes` (
-  `idp` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pacientes` (
+  `idp` int(11) NOT NULL,
   `paciente` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `cedula` int(11) NOT NULL,
   `edad` int(11) NOT NULL,
@@ -160,13 +185,10 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `parroquia` varchar(255) NOT NULL,
   `patologia` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `idh` int(11) NOT NULL,
-  `fechai` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fechai` datetime NOT NULL DEFAULT current_timestamp(),
   `fechae` datetime DEFAULT NULL,
-  `statush` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`idp`),
-  KEY `id_habitacion` (`idh`),
-  KEY `idh` (`idh`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `statush` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -179,24 +201,49 @@ INSERT INTO `pacientes` (`idp`, `paciente`, `cedula`, `edad`, `sexo`, `estado`, 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `proveedor`
+--
+
+CREATE TABLE `proveedor` (
+  `id` int(11) NOT NULL,
+  `nombreProveedor` varchar(50) NOT NULL,
+  `rifProveedor` varchar(100) NOT NULL,
+  `direccionProveedor` varchar(255) DEFAULT NULL,
+  `seudonimo` varchar(55) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id`, `nombreProveedor`, `rifProveedor`, `direccionProveedor`, `seudonimo`) VALUES
+(5, 'fernando', 'j-22222222', 'calle bolivar abasto nro 23', 'Luis'),
+(6, 'ALVARO', 'j-1111111', 'calle PAEZ', 'calle PAEZ'),
+(7, 'raul.ca', '4535646576575', '', 'juan'),
+(17, 'ALVARO', 'j-1111111', 'calle PAEZ', 'alvaro'),
+(19, '123123', 'sadsd123123', '123123', '1231213');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `respaldos`
 --
 
-DROP TABLE IF EXISTS `respaldos`;
-CREATE TABLE IF NOT EXISTS `respaldos` (
-  `idr` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `respaldos` (
+  `idr` int(11) NOT NULL,
   `nombre` varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idr`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+  `fecha` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `respaldos`
 --
 
 INSERT INTO `respaldos` (`idr`, `nombre`, `fecha`) VALUES
-(60, 'respaldo26062023-140335.sql', '2023-06-26 10:03:35'),
-(61, 'respaldo26062023-140400.sql', '2023-06-26 10:04:00');
+(61, 'respaldo26062023-140400.sql', '2023-06-26 10:04:00'),
+(62, 'respaldo11042024-151605.sql', '2024-04-11 09:16:05'),
+(63, 'respaldo05052024-230059.sql', '2024-05-05 17:00:59'),
+(64, 'respaldo05052024-230104.sql', '2024-05-05 17:01:04');
 
 -- --------------------------------------------------------
 
@@ -204,27 +251,133 @@ INSERT INTO `respaldos` (`idr`, `nombre`, `fecha`) VALUES
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `idu` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuarios` (
+  `idu` int(11) NOT NULL,
   `cedula` varchar(8) DEFAULT NULL,
   `contra` varchar(20) DEFAULT NULL,
   `pregunta` varchar(50) DEFAULT NULL,
   `respuesta` varchar(50) DEFAULT NULL,
   `rol` int(11) NOT NULL,
   `usuario` varchar(20) NOT NULL,
-  `foto` varchar(40) NOT NULL,
-  PRIMARY KEY (`idu`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `foto` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`idu`, `cedula`, `contra`, `pregunta`, `respuesta`, `rol`, `usuario`, `foto`) VALUES
-(1, '26883154', '123456', 'Nombre de mi Mascota', 'Coffee', 1, 'SuperUsuario', ''),
+(1, '26883154', '123456', 'Nombre de mi Mascota', 'Coffee', 1, 'SuperUsuario', '766bb9841a799a75fc0813417aeb2812.png'),
 (2, '11171674', '6473', 'Mi color favorito', 'Verde', 2, 'Administrador', ''),
 (3, '25932740', '123456', 'Hotel?', 'Trivago', 3, 'Asistente', '');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `acompanantes`
+--
+ALTER TABLE `acompanantes`
+  ADD PRIMARY KEY (`ida`),
+  ADD KEY `idp` (`idp`);
+
+--
+-- Indices de la tabla `camas`
+--
+ALTER TABLE `camas`
+  ADD PRIMARY KEY (`idc`),
+  ADD KEY `idh` (`idh`) USING BTREE;
+
+--
+-- Indices de la tabla `comprobante`
+--
+ALTER TABLE `comprobante`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `habitaciones`
+--
+ALTER TABLE `habitaciones`
+  ADD PRIMARY KEY (`idh`);
+
+--
+-- Indices de la tabla `pacientes`
+--
+ALTER TABLE `pacientes`
+  ADD PRIMARY KEY (`idp`),
+  ADD KEY `id_habitacion` (`idh`),
+  ADD KEY `idh` (`idh`);
+
+--
+-- Indices de la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `respaldos`
+--
+ALTER TABLE `respaldos`
+  ADD PRIMARY KEY (`idr`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`idu`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `acompanantes`
+--
+ALTER TABLE `acompanantes`
+  MODIFY `ida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `camas`
+--
+ALTER TABLE `camas`
+  MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT de la tabla `comprobante`
+--
+ALTER TABLE `comprobante`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT de la tabla `habitaciones`
+--
+ALTER TABLE `habitaciones`
+  MODIFY `idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `pacientes`
+--
+ALTER TABLE `pacientes`
+  MODIFY `idp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedor`
+--
+ALTER TABLE `proveedor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `respaldos`
+--
+ALTER TABLE `respaldos`
+  MODIFY `idr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `idu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

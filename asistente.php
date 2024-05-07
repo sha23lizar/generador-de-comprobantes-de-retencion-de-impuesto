@@ -13,26 +13,29 @@ if (isset($_SESSION['Asis'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Language" content="en">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>FUNESBO</title>
+        <title>Colegio Sion</title>
         <link rel="shortcut icon" href="../src/img/funesboLOGOt.PNG">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
+
         <link href="./css/main.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../src/DataTables/datatables.min.css">
-        <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
+        <link href="./css/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
+        <link href="./css/datatables.min.css" rel="stylesheet">
 
-        <script src="./assets/scripts/sweetalert2.min.js"></script>
 
-        <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/fotopreview.js"></script>
 
-        <!-- jquery.dataTables.min.js first, then dataTables.bootstrap4.min.js, then datatablecaller.js -->
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
+        <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.bootstrap4.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="./assets/scripts/responsive.bootstrap4.js"></script>
 
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/datatablecallertabla.js"></script>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+        <!-- <script type="module" src="./assets/scripts/pagina-principal.js"></script> -->
 
     </head>
 
@@ -178,12 +181,6 @@ if (isset($_SESSION['Asis'])) {
                                         Inicio
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="asistenteha.php">
-                                        <i class="metismenu-icon pe-7s-door-lock"></i>
-                                        Habitaciones
-                                    </a>
-                                </li>
                                 <li class="app-sidebar__heading">Ayuda</li>
                                 <li>
                                     <a href="./Manual%20Tecnico%20FUNESBO.pdf">
@@ -229,96 +226,12 @@ if (isset($_SESSION['Asis'])) {
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-warning">
-                                    <div class="widget-content-wrapper text-black">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading text-black">Habitaciones Ocupadas</div>
-                                        </div>
-                                        <div class="widget-content-right">
-
-                                            <?php
-                                            require 'includes/bd.inc.php';
-                                            $statush = '1';
-                                            $sql = "SELECT count(*) AS total FROM pacientes where statush='$statush'";
-                                            $result = mysqli_query($conn, $sql);
-                                            while ($mostrar = mysqli_fetch_array($result)) {
-                                            ?>
-                                                <div class="widget-numbers text-black">
-                                                    <span><?php echo $mostrar['total']; ?>
-                                                    </span>
-                                                </div>
-                                            <?php } ?>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-grow-early">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Habitaciones Disponibles</div>
-                                        </div>
-                                        <div class="widget-content-right">
-
-                                            <?php
-                                            require 'includes/bd.inc.php';
-                                            $max_count = 12; // valor máximo a mostrar por defecto
-                                            $statush = '1'; // valor a buscar en la tabla
-                                            $sql = "SELECT COUNT(*) AS total FROM pacientes WHERE statush='$statush'";
-                                            $result = mysqli_query($conn, $sql);
-                                            if ($result && mysqli_num_rows($result) > 0) {
-                                                $mostrar = mysqli_fetch_assoc($result);
-                                                $count = $max_count - $mostrar['total']; // calcular el valor a mostrar
-                                                if ($count < 0) {
-                                                    $count = 0; // asegurarse de que el valor no sea negativo
-                                                }
-                                            } else {
-                                                $count = $max_count; // en caso de error, mostrar valor máximo
-                                            }
-                                            ?>
-                                            <div class="widget-numbers text-white">
-                                                <span><?php echo $count; ?></span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-asteroid header-text-light">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Total de Habitaciones</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-white">
-                                                <span>12
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" style="max-width:99%">
                                 <div class="main-card mb-3 card">
                                     <div class="card-header py-3 d-sm-flex align-item-center justify-content-between">
-                                        Listado
-                                        <div class="py-3 align-item-center justify-content-between">
-                                            <a href="pdf.php" class="btn-shadow btn btn-danger">
-                                                <i class="fa fa-file-pdf"></i>
-                                                Generar PDF
-                                            </a>
-                                            <a href="includes/excel.php?export=true" class="btn-shadow btn btn-success">
-                                                <i class="fa fa-file-excel"></i>
-                                                Generar EXCEL
-                                            </a>
-                                        </div>
+                                        Comprobantes
                                     </div>
                                     <?php
                                     if (empty($_GET['alert'])) {
@@ -341,74 +254,48 @@ if (isset($_SESSION['Asis'])) {
                                     }
                                     ?>
 
+                                    <!-- <div class="table-responsive p-2"> -->
                                     <div class="table-responsive p-2">
-                                        <table id="tabla" class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <table id="tabla" class="table table-striped table-bordered nowrap" style="width:100%">
+                                            <!-- <table id="tabla" class="table table-striped align-middle mb-0 " style="width: 200px;"> -->
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">Habitacion</th>
-                                                    <th class="text-center">Paciente</th>
-                                                    <th class="text-center">Cedula</th>
-                                                    <th class="text-center">Edad</th>
-                                                    <th class="text-center">Sexo</th>
-                                                    <th class="text-center">Estado</th>
-                                                    <th class="text-center">Municipio</th>
-                                                    <th class="text-center">Parroquia</th>
-                                                    <th class="text-center">Patologia</th>
-                                                    <th class="text-center">Fecha ingreso</th>
-                                                    <th class="text-center">Fecha egreso</th>
-                                                    <th class="text-center">Estatus</th>
+                                                    <th class="text-center">nro Comprobante</th>
+                                                    <th class="text-center">Periodo Fiscal</th>
+                                                    <th class="text-center">proveedor</th>
+                                                    <th class="text-center">rif Proveedor</th>
+                                                    <th class="text-center">direccion Proveedor</th>
+                                                    <th class="text-center">f.Factura</th>
+                                                    <th class="text-center">f.Emision</th>
+                                                    <th class="text-center">f.Entrega</th>
+                                                    <th class="text-center">total Facturado</th>
+                                                    <th class="text-center">base Imponible</th>
+                                                    <th class="text-center">impuesto iva (16%)</th>
+                                                    <th class="text-center">iva retenido (75%)</th>
+                                                    <th class="text-center">PDF</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                require 'includes/bd.inc.php';
-                                                $sql = "SELECT * from pacientes";
+                                                require 'includes/conexion.php';
+                                                $sql = "SELECT * from comprobante";
                                                 $result = mysqli_query($conn, $sql);
                                                 while ($mostrar = mysqli_fetch_array($result)) {
                                                 ?>
                                                     <tr>
-                                                        <td class="text-center">
-                                                            <div>
-                                                                <button class="btn btn-primary btn-habitacion" data-target="#modalacompañantes" data-toggle="modal" data-placement="left" data-idp="<?php echo $mostrar['idp']; ?>" title="Ver Acompañantes">
-                                                                    <?php echo $mostrar['idh']; ?>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-center"><?php echo $mostrar['paciente']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['cedula']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['edad']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['sexo']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['estado']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['municipio']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['parroquia']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['patologia']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['fechai']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['fechae']; ?></td>
-                                                        <td class="text-center">
-                                                            <?php
-                                                            $statush = $mostrar['statush'];
-                                                            $idp = $mostrar['idp'];
-                                                            $idh = $mostrar['idh'];
-
-                                                            if ($statush == '1') {
-                                                            ?>
-                                                                <div>
-                                                                    <form action="includes/cambiarestado.inc.php" method="post">
-                                                                        <input type="hidden" name="idp" value="<?php echo $idp; ?>">
-                                                                        <input type="hidden" name="idh" value="<?php echo $idh; ?>">
-                                                                        <button class="btn btn-warning" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                            Ocupada
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
-                                                            <?php
-                                                            } else {
-                                                            ?>
-                                                                <div class="btn btn-success">Disponible</div>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </td>
+                                                        <td><?php echo substr($mostrar["nroComprobante"], 6, 12); ?></td>
+                                                        <td><?php echo substr($mostrar["nroComprobante"], 0, 4); ?></td>
+                                                        <td><?php echo $mostrar['proveedor']; ?></td>
+                                                        <td><?php echo $mostrar['rifProveedor']; ?></td>
+                                                        <td><?php echo $mostrar['direccionProveedor']; ?></td>
+                                                        <td><?php echo $mostrar['fFactura']; ?></td>
+                                                        <td><?php echo $mostrar['fEmision']; ?></td>
+                                                        <td><?php echo $mostrar['fEntrega']; ?></td>
+                                                        <td><?php echo $mostrar['totalFacturado']; ?></td>
+                                                        <td><?php echo $mostrar['baseImponible']; ?></td>
+                                                        <td><?php echo $mostrar['impuestoIva']; ?></td>
+                                                        <td><?php echo $mostrar['ivaRetenido']; ?></td>
+                                                        <td><?php echo '<button type="button" name="Generar PDF" id="' . $mostrar["id"] . '" class="btn btn-danger btn-xs generadorPDF">PDF</button>' ?></td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -561,948 +448,6 @@ if (isset($_SESSION['Asis'])) {
             </div>
         </div>
 
-        <!-- Nuevo Paciente -->
-
-        <div class="modal fade" id="nuevoregistro" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Registro de Usuario</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" action="includes/registropaciente.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="paciente">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="paciente" name='paciente' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedula">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="edad">Edad</label>
-
-                                    <input type="text" class="form-control" id="edad" name="edad" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="sexo">Sexo</label>
-
-                                    <select id="sexo" name="sexo" class="form-control">
-
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="estado">Estado</label>
-
-                                    <select id="estado" name="estado" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="municipio">Municipio</label>
-
-                                    <select id="municipio" name="municipio" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="parroquia">Parroquia</label>
-
-                                    <select id="parroquia" name="parroquia" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="patologia">Patologia</label>
-
-                                    <select id="patologia" name="patologia" class="form-control">
-
-                                        <option value="Gripe">Gripe</option>
-                                        <option value="Fiebre">Fiebre</option>
-                                        <option value="Tos">Tos</option>
-                                        <option value="Malestar">Malestar</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-                                    <label for="idh">Habitacion</label>
-
-                                    <select id="idh" name="idh" class="form-control">
-                                        <?php
-                                        require 'includes/bd.inc.php';
-                                        $idp = $_POST['idp'];
-                                        $sql = "SELECT * from habitaciones WHERE estatus = 0";
-                                        $result = mysqli_query($conn, $sql);
-                                        while ($mostrar = mysqli_fetch_array($result)) {
-                                        ?>
-
-                                            <option value="<?php echo $mostrar['idh']; ?>"><?php echo $mostrar['idh']; ?></option>
-
-                                        <?php } ?>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="submit1" class="btn btn-primary">Registrar</button>
-
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Editar Paciente -->
-
-        <div class="modal fade" id="editarpaciente" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Editar de Paciente</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" action="includes/mod.paciente.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <input type="hidden" name="idpEditar" id="idpEditar">
-
-                                    <label for="pacienteEditar">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="pacienteEditar" name='pacienteEditar' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedulaEditar">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedulaEditar" name="cedulaEditar" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="edadEditar">Edad</label>
-
-                                    <input type="text" class="form-control" id="edadEditar" name="edadEditar" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="sexoEditar">Sexo</label>
-
-                                    <select id="sexoEditar" name="sexoEditar" class="form-control">
-
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="estadoEditar">Estado</label>
-
-                                    <select id="estadoEditar" name="estadoEditar" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="municipioEditar">Municipio</label>
-
-                                    <select id="municipioEditar" name="municipioEditar" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="parroquiaEditar">Parroquia</label>
-
-                                    <select id="parroquiaEditar" name="parroquiaEditar" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="patologiaEditar">Patologia</label>
-
-                                    <select id="patologiaEditar" name="patologiaEditar" class="form-control">
-
-                                        <option value="Gripe">Gripe</option>
-                                        <option value="Fiebre">Fiebre</option>
-                                        <option value="Tos">Tos</option>
-                                        <option value="Malestar">Malestar</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
-
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Modal Acompañante -->
-
-        <div class="modal fade" id="modalacompañantes" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Lista de Acompañantes</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="main-card mb-3 card">
-                                <div class="card-header py-3 d-sm-flex align-item-center justify-content-between">
-                                    <div class="py-3 align-item-center justify-content-between">
-                                        <a data-toggle="modal" href="#nuevoregistroacompanante" class="btn-shadow btn btn-primary">
-                                            <i class="pe-7s-plus"></i>
-                                            Nuevo Acompañante
-                                        </a>
-                                    </div>
-                                    <div class="py-3 align-item-center justify-content-between">
-                                        <a href="pdfa.php" class="btn-shadow btn btn-danger">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Generar PDF
-                                        </a>
-                                        <a href="includes/excela.php?export=true" class="btn-shadow btn btn-success">
-                                            <i class="fa fa-file-excel"></i>
-                                            Generar EXCEL
-                                        </a>
-                                    </div>
-                                </div>
-                                <?php
-                                if (empty($_GET['alert'])) {
-                                    echo "";
-                                } elseif ($_GET['alert'] == 'login=success') {
-                                    echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>¡Muy bien!</strong> Los datos han sido almacenados<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                } elseif ($_GET['alert'] == 2) {
-                                    echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>¡Muy bien!</strong> Los datos se han modificado<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                } elseif ($_GET['alert'] == 3) {
-                                    echo "<div class='alert alert-dismissible alert-success'>
-                                        <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                        <strong>Completado!</strong> Se eliminaron los datos<a href='#' class='alert-link'> correctamente</a>.
-                                        </div>";
-                                }
-                                ?>
-
-                                <div id="contenido-modal" class="table-responsive p-2">
-                                    <table id="tabla-acompanantes-body" class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Acompañante</th>
-                                                <th class="text-center">Cedula</th>
-                                                <th class="text-center">Edad</th>
-                                                <th class="text-center">Sexo</th>
-                                                <th class="text-center">Estado</th>
-                                                <th class="text-center">Municipio</th>
-                                                <th class="text-center">Parroquia</th>
-                                                <th class="text-center">Fecha ingreso</th>
-                                                <th class="text-center">Fecha egreso</th>
-                                                <th class="text-center">Estatus</th>
-                                                <th class="text-center">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            require 'includes/bd.inc.php';
-                                            $idp = $_POST['idp'];
-                                            $sql = "SELECT * from acompanantes WHERE idp = $idp";
-                                            $result = mysqli_query($conn, $sql);
-                                            while ($mostrar = mysqli_fetch_array($result)) {
-                                            ?>
-                                                <tr>
-                                                    <td class="text-center"><?php echo $mostrar['acompanante']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['cedula']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['edad']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['sexo']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['estado']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['municipio']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['parroquia']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['fechai']; ?></td>
-                                                    <td class="text-center"><?php echo $mostrar['fechae']; ?></td>
-                                                    <td class="text-center">
-                                                        <?php
-                                                        $statusa = $mostrar['statusa'];
-                                                        $ida = $mostrar['ida'];
-
-                                                        if ($statusa == '1') {
-                                                            echo '<div>
-                                                            
-                                                            <form action="includes/cambiarestadoacompanante.inc.php" method="post">
-                                                            
-                                                                <input type="hidden" name="ida" value="' . $ida;
-
-                                                            echo '">
-                                                                
-                                                                <button class="btn btn-warning" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                Hospedado
-                                                                </button>
-                                                                
-                                                            </form>
-                                                            </div>';
-                                                        } else {
-                                                            echo '<div class="btn btn-success">Retirado</div>';
-                                                        } ?>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <div class="row">
-
-                                                            <button class="btn btn-primary" data-target="#editaracompanante" data-toggle="modal" data-placement="left" data-idaeditar="<?php echo $mostrar['ida']; ?>" title="Modificar Solicitud"><i class="pe-7s-note"></i></button>
-
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="d-block text-center card-footer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
-
-                    </div>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Nuevo Acompañante-->
-
-        <div class="modal fade" id="nuevoregistroacompanante" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Registro de Acompañante</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" action="includes/registroacompanante.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-                                    <input type="hidden" id="idp" name="idp" value="" required>
-
-                                    <label for="acompanante">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="acompanante" name='acompanante' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedula">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="edad">Edad</label>
-
-                                    <input type="text" class="form-control" id="edad" name="edad" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="sexo">Sexo</label>
-
-                                    <select id="sexo" name="sexo" class="form-control">
-
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="estado">Estado</label>
-
-                                    <select id="estado" name="estado" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="municipio">Municipio</label>
-
-                                    <select id="municipio" name="municipio" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="parroquia">Parroquia</label>
-
-                                    <select id="parroquia" name="parroquia" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="submit1" class="btn btn-primary">Registrar</button>
-
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Editar Acompañante -->
-
-        <div class="modal fade" id="editaracompanante" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title" id="exampleModalLongTitle">Editar de Acompañante</h5>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <form class="needs-validation" action="includes/mod.acompanante.inc.php" method="post" novalidate>
-
-                        <div class="modal-body">
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <input type="hidden" name="idaEditarA" id="idaEditarA">
-
-                                    <label for="acompananteEditarA">Nombre y Apellido</label>
-
-                                    <input type="text" class="form-control" id="acompananteEditarA" name='acompananteEditarA' placeholder="Nombre y Apellido" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))" maxlength="30" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="cedulaEditarA">Cedula</label>
-
-                                    <input type="text" class="form-control" id="cedulaEditarA" name="cedulaEditarA" placeholder="Cedula" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="edadEditarA">Edad</label>
-
-                                    <input type="text" class="form-control" id="edadEditarA" name="edadEditarA" placeholder="Edad" onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))" maxlength="8" required>
-
-                                    <div class="invalid-feedback">
-                                        Debe rellenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-2 mb-3">
-
-                                    <label for="sexoEditarA">Sexo</label>
-
-                                    <select id="sexoEditarA" name="sexoEditarA" class="form-control">
-
-                                        <option value="M">Masculino</option>
-                                        <option value="F">Femenino</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form-row">
-
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="estadoEditarA">Estado</label>
-
-                                    <select id="estadoEditarA" name="estadoEditarA" class="form-control">
-
-                                        <option value="Bolivar">Bolivar</option>
-                                        <option value="Anzoategui">Anzoategui</option>
-                                        <option value="Merida">Merida</option>
-                                        <option value="Trujillo">Trujillo</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="municipioEditarA">Municipio</label>
-
-                                    <select id="municipioEditarA" name="municipioEditarA" class="form-control">
-
-                                        <option value="Sucre">Sucre</option>
-                                        <option value="Cedeno">Cedeno</option>
-                                        <option value="Angostura del Orinoco">Angostura del Orinoco</option>
-                                        <option value="Padre Chien">Padre Chien</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4 mb-3">
-
-                                    <label for="parroquiaEditarA">Parroquia</label>
-
-                                    <select id="parroquiaEditarA" name="parroquiaEditarA" class="form-control">
-
-                                        <option value="Marhuanta">Marhuanta</option>
-                                        <option value="Vista Hermosa">Vista Hermosa</option>
-                                        <option value="Catedral">Catedral</option>
-                                        <option value="Sabanita">Sabanita</option>
-
-                                    </select>
-
-                                    <div class="invalid-feedback">
-                                        Debe llenar este campo.
-                                    </div>
-
-                                    <div class="valid-feedback">
-                                        Listo.
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="modificar" class="btn btn-primary">Registrar</button>
-
-                        </div>
-
-                    </form>
-
-                    <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                </div>
-            </div>
-
-        </div>
-
     <?php
 } else {
     ?> <script>
@@ -1530,6 +475,70 @@ if (isset($_SESSION['Asis'])) {
     ?>
     <script>
         $(document).ready(function() {
+
+            var dataTable = $("#tabla").DataTable({
+                "order": [],
+                columnDefs: [{
+                        responsivePriority: 5,
+                        targets: 0
+                    },
+                    {
+                        responsivePriority: 5,
+                        targets: 12
+                    }
+                ],
+                responsive: true
+
+                    ,
+                "language": {
+                    "decimal": "",
+                    "emptyTable": "No hay datos disponibles en la tabla",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+
+                }
+            });
+
+            function abirPDF(id) {
+    const currentUrl = window.location.href;
+    const pathArray = currentUrl.split('/');
+    if (pathArray[pathArray.length - 1].includes('.php')) {
+      pathArray.pop(); // Elimina el último elemento (nombre del archivo)
+      pathArray[pathArray.length - 1] += '/';
+    }
+    pathArray.join('/');
+
+    const baseUrl = pathArray.join('/')
+
+    const relativePath = 'FPDF/generadorPDF.php';
+
+    // Construye la URL completa
+    const fullUrl = `${baseUrl}${relativePath}?id=${id}`;
+
+    window.open(fullUrl, '_blank').focus();
+  }
+  $(document).on("click", ".generadorPDF", function (e) {
+    var id = e.target.id;
+    abirPDF(id);
+  })
+
+
+
+
             $('.btn-habitacion').click(function(event) {
                 event.preventDefault(); // Evita que la página se refresque
                 var idp = $(this).data('idp');
