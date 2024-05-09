@@ -1,0 +1,2 @@
+id,nroComprobante,Proveedor,rifProveedor,direccionProveedor,fEmision,fEntrega,fFactura,totalFacturado,baseImponible,fechaRegistro
+38,20240500000001,fernando,j-22222222,"calle bolivar abasto nro 23",2024-05-17,2024-05-23,2024-05-03,12312.00,234.00,"2024-05-08 11:12:37"

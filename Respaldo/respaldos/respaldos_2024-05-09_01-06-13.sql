@@ -18,8 +18,10 @@ CREATE TABLE `comprobante` (
   `ivaRetenido` decimal(11,2) DEFAULT NULL,
   `nroFactura` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO comprobante VALUES ('38','20240500000001','fernando','j-22222222','calle bolivar abasto nro 23','2024-05-17','2024-05-23','2024-05-03','control','12312.00','234.00','2024-05-08 11:12:37','37.44','28.08','factura');
+INSERT INTO comprobante VALUES ('40','20240500000002','ALVARO','j-1111111','calle PAEZ','2024-05-08','2024-05-16','2024-05-08','z7szxcsfet','40.00','34.48','2024-05-08 13:16:52','5.52','4.14','0001334545');
 
 -- Respaldo de la tabla proveedor
 CREATE TABLE `proveedor` (
@@ -31,12 +33,10 @@ CREATE TABLE `proveedor` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO proveedor VALUES ('5','fernando','j-22222222','calle bolivar abasto nro 23','Luis');
 INSERT INTO proveedor VALUES ('6','ALVARO','j-1111111','calle PAEZ','calle PAEZ');
 INSERT INTO proveedor VALUES ('7','raul.ca','4535646576575','','juan');
 INSERT INTO proveedor VALUES ('17','ALVARO','j-1111111','calle PAEZ','alvaro');
 INSERT INTO proveedor VALUES ('20','manolo','j-r408906677','123123','asd');
-INSERT INTO proveedor VALUES ('24','1wqwqw','R246801358','123123','1');
 
 -- Respaldo de la tabla respaldos
 CREATE TABLE `respaldos` (
@@ -45,10 +45,8 @@ CREATE TABLE `respaldos` (
   `nombre` varchar(40) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `fecha` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idr`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO respaldos VALUES ('105','-- Respaldo de la base de datos feb\n\n-- Respaldo de la tabla comprobante\nCREATE TABLE `comprobante` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `nroComprobante` varchar(50) NOT NULL,\n  `proveedor` varchar(250) NOT NULL,\n  `rifProveedor` varchar(250) NOT N','respaldos_2024-05-08_10-30-12.sql','2024-05-08 10:30:12');
-INSERT INTO respaldos VALUES ('106','-- Respaldo de la base de datos feb\n\n-- Respaldo de la tabla comprobante\nCREATE TABLE `comprobante` (\n  `id` int(11) NOT NULL AUTO_INCREMENT,\n  `nroComprobante` varchar(50) NOT NULL,\n  `proveedor` varchar(250) NOT NULL,\n  `rifProveedor` varchar(250) NOT N','respaldos_2024-05-08_10-30-27.sql','2024-05-08 10:30:27');
 
 -- Respaldo de la tabla usuarios
 CREATE TABLE `usuarios` (
@@ -61,10 +59,7 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(20) NOT NULL,
   `foto` varchar(255) NOT NULL,
   PRIMARY KEY (`idu`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO usuarios VALUES ('1','26883154','123456','Nombre de mi Mascota','Coffee','1','SuperUsuario','');
-INSERT INTO usuarios VALUES ('2','11171674','123456','Mi color favorito','Verde','2','Administrador','');
-INSERT INTO usuarios VALUES ('3','25932740','123456','Hotel?','Trivago','3','Asistente','');
-INSERT INTO usuarios VALUES ('13','26138965','123456','quien?','yo','2','Daniel Gomez','user-default.jpg');
 

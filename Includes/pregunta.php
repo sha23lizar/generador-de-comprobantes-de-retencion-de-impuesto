@@ -34,7 +34,7 @@
          <body>
 
              <div class="login-box">
-                 <img src="../../src/img/funesboLOGO.png" class="avatar shadow border border-dark" alt="Avatar Image">
+                 <img src="../assets/images/avatars/user-default.jpg" class="avatar shadow border" alt="Avatar Image">
                  <div class="h2 text-center">
                      <strong><?php echo $mostrar['pregunta']; ?></strong>
                  </div>

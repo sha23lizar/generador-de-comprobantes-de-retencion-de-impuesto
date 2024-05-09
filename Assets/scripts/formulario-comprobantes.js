@@ -112,9 +112,8 @@ export class FormularioComprobantes {
         let valorBaseImponible = this.inputBaseImponible.value
         if ((valorBaseImponible * 10) > (this.inputTotalFactura.value * 10)) {
             this.inputBaseImponible.value = this.inputTotalFactura.value
-            return
         }
-        this.impuestoIva.value = (valorBaseImponible * 0.16).toFixed(2)
+        this.impuestoIva.value = (this.inputBaseImponible.value * 0.16).toFixed(2)
         this.ivaRetenido.value = (this.impuestoIva.value * 0.75).toFixed(2)
     }
 

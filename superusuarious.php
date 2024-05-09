@@ -514,10 +514,10 @@ if (isset($_SESSION['Super'])) {
 
                                     <label for="contra">Contraseña</label>
 
-                                    <input type="text" id="contra" name="contra" class="form-control" placeholder="Contraseña" required>
+                                    <input type="text" id="contra" name="contra" class="form-control" minlength="6" maxlength="15" placeholder="Contraseña" required>
 
                                     <div class="invalid-feedback">
-                                        Debe llenar este campo.
+                                        La contraseña debe tener entre 6 y 15 caracteres.
                                     </div>
 
                                     <div class="valid-feedback">
@@ -626,11 +626,11 @@ if (isset($_SESSION['Super'])) {
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="cedula">Cedula</label>
-                                <input type="text" placeholder="cedula" class="form-control editar cedula" name="cedula">
+                                <input type="text" placeholder="cedula" maxlength="8" class="form-control editar cedula" name="cedula">
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="contra">Contraseña</label>
-                                <input type="text" placeholder="contraseña" class="form-control editar contra" name="contra">
+                                <input type="text" placeholder="contraseña" minlength="6" maxlength="15" class="form-control editar contra" name="contra" >
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="pregunta">Pregunta de seguridad</label>

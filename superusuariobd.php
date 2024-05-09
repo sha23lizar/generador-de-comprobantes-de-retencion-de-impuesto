@@ -218,43 +218,59 @@ if (isset($_SESSION['Super'])) {
                                             </form>
                                         </div>
                                     </div>
+
+
+
+
+
+
+
+
+                                    
+
                                     <div class="table-responsive p-2">
                                         <table id="tabla" class="align-middle mb-0 table table-borderless table-striped table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">id</th>
-                                                    <th class="text-center">Nombre</th>
-                                                    <th class="text-center">Fecha</th>
+                                                    
+                                                    <th class="text-center">Respaldo</th>
+                                                    
                                                     <th class="text-center">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <?php
-                                                require 'includes/bd.inc.php';
-                                                $sql = "SELECT * from respaldos";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($mostrar = mysqli_fetch_array($result)) {
+
+                                                require 'includes/clas.php';
+                                                $files = scandir(BACKUP_PATH);
+                                                $files = array_diff($files, array('.', '..')); // Remove . and ..
+                                                foreach ($files as $file) {
+                                                    $filePath = $dir . $file;
+                                                    $fileInfo = pathinfo($filePath);
+                                                    $fileMtime = filemtime($filePath);
+                                                    $fileDate = date("d/m/Y g:i a", $fileMtime);
+
                                                 ?>
                                                     <tr>
-                                                        <td class="text-center"><?php echo $mostrar['idr']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['nombre']; ?></td>
-                                                        <td class="text-center"><?php echo date("d/m/Y g:i a", strtotime($mostrar['fecha'])); ?></td>
+
+                                                        <td class="text-center"><?php echo $fileInfo['filename']; ?></td>
+                                                        
                                                         <td class="text-center">
                                                             <div class="row">
 
                                             
                                                                 <form class="form col-sm" action="includes/descargarBaseDeDatos.php" method="post">
-                                                                    <input type="hidden" name="idr" value="<?php echo $mostrar['idr']; ?>">
+                                                                    <input type="hidden" name="filePath" value="<?php echo $fileInfo['filename']; ?>">
                                                                     <button class="btn btn-success btn-lg" type="submit" name="descargar" data-toggle="tooltip" data-placement="left" title="Descargar"><i class="pe-7s-download"></i>
                                                                     </button>
                                                                 </form>
                                                                 <form class="form col-sm" action="includes/restaurarbd.php" method="post">
-                                                                    <input type="hidden" name="idr" value="<?php echo $mostrar['idr']; ?>">
+                                                                    <input type="hidden" name="filePath" value="<?php echo $fileInfo['filename']; ?>">
                                                                     <button class="btn btn-info btn-lg" type="submit" name="restaurar" data-toggle="tooltip" data-placement="left" title="Restaurar respaldo"><i class="pe-7s-upload"></i>
                                                                     </button>
                                                                 </form>
                                                                 <form class="form col-sm" action="includes/eliminarbd.php" method="post">
-                                                                    <input type="hidden" name="idr" value="<?php echo $mostrar['idr']; ?>">
+                                                                    <input type="hidden" name="filePath" value="<?php echo $fileInfo['filename']; ?>">
                                                                     <button class="btn btn-danger btn-lg" type="submit" name="eliminar" data-toggle="tooltip" data-placement="left" title="Eliminar respaldo" onclick="return confirm('¿Esta seguro que quiere Eliminar este respaldo?');"><i class="pe-7s-trash"></i>
                                                                     </button>
                                                                 </form>
@@ -262,6 +278,12 @@ if (isset($_SESSION['Super'])) {
                                                         </td>
                                                     </tr>
                                                 <?php } ?>
+
+
+
+
+
+
                                             </tbody>
                                         </table>
                                     </div>

@@ -82,9 +82,9 @@ if (isset($_SESSION['Super'])) {
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
-          <li><a class="nav-link scrollto" href="#about">Sobre nosotros</a></li>
-          <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contactenos</a></li>
+          <li><a class="nav-link scrollto" href="#about">Reseña Historica</a></li>
+          <li><a class="nav-link scrollto" href="#services">Mision y Vision</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Dirección</a></li>
           <li><a class="nav-link scrollto" href="login.php">Iniciar Sesion</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -189,14 +189,13 @@ if (isset($_SESSION['Super'])) {
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Contactanos</h2>
-          <h3><span>Contactanos</span></h3>
+          <h2>Dirección</h2>
+          <h3><span>Dirección</span></h3>
         </div>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-6">
             <div style="border:1px solid #ffffff2e; border-radius: 10px;" class="glass-effect info-box mb-4">
               <a class="bi bi-geo-alt"></a>
-              <h3>Direccion</h3>
               <p>3FV6+RHV, Cdad. Bolívar 8001, Bolívar</p>
             </div>
           </div>
@@ -209,30 +208,7 @@ if (isset($_SESSION['Super'])) {
             </div>
           </div>
 
-           <div class="col-lg-6">
-            <form action="includes/contactanos.php" method="post" role="form" class="glass-effect php-email-form" style="border-radius: 10px;">
-              <div class="row">
-                <div class="col form-group">
-                  <input style="border-radius: 5px" type="text" name="name" class="form-control" id="name" placeholder="Nombre y Apellido" required>
-                </div>
-                <div class="col form-group">
-                  <input style="border-radius: 5px" type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <input style="border-radius: 5px" type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
-              </div>
-              <div class="form-group">
-                <textarea style="border-radius: 5px" class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Cargando</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Su mensaje ha sido enviado, Muchas Gracias!</div>
-              </div>
-              <div class="text-center"><button class="bi bi-chat-left-text-fill shadow" type="submit"> Enviar mensaje</button></div>
-            </form>
-          </div>
+           
 
         </div>
 

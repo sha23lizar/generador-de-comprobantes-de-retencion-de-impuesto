@@ -1,20 +1,23 @@
 <?php
+if (isset($_POST['filePath'])) {
+    $filePath = "../Respaldo/respaldos/" . $_POST['filePath'].".sql";
+    deleteFile($filePath);
+}
 
-    include ("bd.inc.php");
+function deleteFile($filePath)
+{
+    if (file_exists($filePath)) {
+        unlink($filePath);
+        $response = array(
+            header("refresh:0.3;url=preloader.php"),
 
-    if(isset($_REQUEST['eliminar'])){
-
-    $idr=$_REQUEST['idr'];
-    $sql = "DELETE FROM respaldos WHERE idr='$idr'";
-    mysqli_query($conn,$sql);
-
-    if($sql==true){
-        header("Location: ./preloader.php");
-        exit();
-        }
-
-    }else {
-        header("Location: ./preloaderError.php");
-        exit();
+        );
+    } else {
+        $response = array(
+            "type" => "error",
+            "message" => "File not found"
+        );
     }
+
+}
 ?>
