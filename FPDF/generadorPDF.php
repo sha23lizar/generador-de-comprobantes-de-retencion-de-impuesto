@@ -7,9 +7,14 @@ include("../includes/funciones.php");
 $conn->set_charset("utf8");
 
 
+
 // $id = $_POST['id'];
 $id = $_GET['id'];
 $Datos = "SELECT * FROM comprobante WHERE id = $id ";
+// if (!mysqli_set_charset($conn,"utf8")){
+//     echo "error de codificacion";
+//     return true;
+// }
 
 $ResultDatos = mysqli_query($conn, $Datos);
 
@@ -30,7 +35,7 @@ function Header()
     $this->Ln(5);
 
     $this->Cell(80);
-    $this->Cell(30,10,'LO MEJOR EN EDUCACION.',0,0,'C');
+    $this->Cell(30,10,'LO MEJOR EN EDUCACI'.utf8_decode("Ó").'N.',0,0,'C');
     $this->Ln(5);
 
     $this->Cell(80);
@@ -47,14 +52,14 @@ function Header()
     // INICIO - COMPROBANTE
     $this->SetFont('Arial','B',10);
     $this->Cell(80);
-    $this->Cell(30,10,'COMPROBANTE DE RETENCION',0,0,'C');
+    $this->Cell(30,10,'COMPROBANTE DE RETENCI'.utf8_decode("Ó").'N',0,0,'C');
     $this->Ln(5);
     $this->Cell(80);
     $this->Cell(30,10,'IMPUESTO AL VALOR AGREGADO (IVA)',0,0,'C');
     $this->Ln(5);
     $this->Cell(80);
     $this->SetFont('Arial','',10);
-    $this->Cell(30,10,'Providencia Administrativa No SNAT/2015/0049 del 10/08/2.015',0,0,'C');
+    $this->Cell(30,10,'Providencia Administrativa N'.utf8_decode("º").' SNAT/2015/0049 del 10/08/2.015',0,0,'C');
     $this->Ln(20);
     // FINAL - COMPROBANTE
 }
@@ -66,11 +71,11 @@ function Footer(){
     $this->Cell(30,10,'________________________',0,0,'C');
     $this->Ln(10);
     $this->Cell(80);
-    $this->Cell(30,10,'FIRMA Y SELLO DEL AGENTE DE RETENCION',0,0,'C');
+    $this->Cell(30,10,'FIRMA Y SELLO DEL AGENTE DE RETENCI'.utf8_decode("Ó").'N',0,0,'C');
     $this->SetFont('Arial','',5);
     $this->Ln(10);
     $this->Cell(80);
-    $this->Cell(30,10,'ESTE COMPROBANTE SE EMITE EN FUNCION A LO ESTABLECIDO EN EL ATICULO 10 DE LA PROVIDENCIA ADMINISTRATIVA No SNAT/2015/0049 DE FECHA 10/08/2.015',0,0,'C');
+    $this->Cell(30,10,'ESTE COMPROBANTE SE EMITE EN FUNCI'.utf8_decode("Ó").'N A LO ESTABLECIDO EN EL ATICULO 10 DE LA PROVIDENCIA ADMINISTRATIVA N'.utf8_decode("º").' SNAT/2015/0049 DE FECHA 10/08/2.015',0,0,'C');
 }
 
 }
@@ -82,7 +87,6 @@ $pdf->AddPage();
 // $ProveedorSeleccionado = isset($_POST['proveedor_id']) ? $_POST['proveedor_id'] : null;
 while($Filas = $ResultDatos->fetch_assoc()){
 
-
     
     if (true) {
 // if ($Filas['id'] === $ProveedorSeleccionado) {
@@ -90,9 +94,9 @@ while($Filas = $ResultDatos->fetch_assoc()){
 // INICIO - DATOS DE LA INSTITUCION
 
     $pdf->SetFont('Arial', 'B', 6);
-    $pdf->Cell(63,15,"NOMBRE O RAZON SOCIAL DEL AGENTE DE RETENCION", 1, 0,'C', 0);
+    $pdf->Cell(63,15,"NOMBRE O RAZON SOCIAL DEL AGENTE DE RETENCIN", 1, 0,'C', 0);
     $pdf->Cell(63,15,"RIF. DEL AGENTE DE RETENCION", 1, 0,'C', 0);
-    $pdf->Cell(63,15, 'No DE COMPROBANTE',1, 0,'C', 0);
+    $pdf->Cell(63,15, 'N'.utf8_decode("º").' DE COMPROBANTE',1, 0,'C', 0);
     $pdf->Ln(5);
 
     $pdf->SetFont('Arial','',5);
@@ -130,15 +134,15 @@ while($Filas = $ResultDatos->fetch_assoc()){
     $pdf->Cell(63,10,$Filas['proveedor'], 0, 0,'C', 0);
     $pdf->Cell(63,10,$Filas['rifProveedor'], 0, 0,'C', 0);
     $pdf->SetFont('Arial', 'B', 5);
-    $pdf->Cell(31,10,"ANO: ".substr($Filas['nroComprobante'],0,4),0, 0,'C', 0);
+    $pdf->Cell(31,10,"A".utf8_decode("Ñ")."O: ".substr($Filas['nroComprobante'],0,4),0, 0,'C', 0);
     $pdf->Cell(31,10,"MES: ".substr($Filas['nroComprobante'],4,2),0, 0,'C', 0);
     $pdf->Ln(10);
 
     $pdf->SetFont('Arial', 'B', 3);
-    $pdf->Cell(10,5,"OPERACION Nro", 1, 0,'C', 0);
+    $pdf->Cell(10,5,"OPERACION N".utf8_decode("º"), 1, 0,'C', 0);
     $pdf->Cell(20,5,"FECHA FACTURA", 1, 0,'C', 0);
-    $pdf->Cell(10,5,'Nro FACTURA',1, 0,'C', 0);
-    $pdf->Cell(25,5,'Nro CONTROL FACTURA y/ Maquina Fiscal',1, 0,'C', 0);
+    $pdf->Cell(10,5,'N'.utf8_decode("º").' FACTURA',1, 0,'C', 0);
+    $pdf->Cell(25,5,'N'.utf8_decode("º").' CONTROL FACTURA y/ Maquina Fiscal',1, 0,'C', 0);
     $pdf->Cell(25,5,'TOTAL FACTURADO INCLUYENDO IVA',1, 0,'C', 0);
     $pdf->Cell(20,5,"BASE IMPONIBLE", 1, 0,'C', 0);
     $pdf->Cell(20,5,"% ALIC.", 1, 0,'C', 0);
