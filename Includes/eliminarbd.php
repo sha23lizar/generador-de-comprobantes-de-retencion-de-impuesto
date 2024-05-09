@@ -9,12 +9,12 @@
     mysqli_query($conn,$sql);
 
     if($sql==true){
-        header("Location: ../superusuariobd?delete=success");
+        header("Location: ./preloader.php");
         exit();
         }
 
     }else {
-        header("Location: ../superusuariobd?error");
+        header("Location: ./preloaderError.php");
         exit();
     }
 ?>

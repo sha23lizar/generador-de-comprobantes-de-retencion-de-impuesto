@@ -14,7 +14,7 @@ if (isset($_SESSION['Admin'])) {
         <meta http-equiv="Content-Language" content="en">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Colegio Sion</title>
-        <link rel="shortcut icon" href="../src/img/funesboLOGOt.PNG">
+        <link rel="shortcut icon" href="./Assets/Images/Logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
@@ -98,17 +98,8 @@ if (isset($_SESSION['Admin'])) {
 
                                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
 
-                                                <?php
-                                                $idu = $_SESSION['idu'];
-                                                require 'includes/bd.inc.php';
-                                                $sql = "SELECT * from usuarios where idu='$idu'";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($mostrar = mysqli_fetch_array($result)) {
-                                                ?>
-
-                                                    <img width="45" height="45" class="rounded-circle" src="assets/images/avatars/<?php echo $mostrar['foto'];
-                                                                                                                                } ?>" alt="">
-                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                                <img width="45" height="45" class="rounded-circle" src="assets/images/avatars/user-default.jpg" alt="">
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
 
                                             </a>
 
@@ -219,10 +210,7 @@ if (isset($_SESSION['Admin'])) {
                                 </div>
                                 <div class="page-title-actions">
                                     <div class="d-inline-block">
-                                        <a href="./Manual%20Usuario%20FUNESBO.pdf" class="btn-shadow btn btn-danger">
-                                            <i class="metismenu-icon pe-7s-notebook"></i>
-                                            Manual de Usuario
-                                        </a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -276,11 +264,13 @@ if (isset($_SESSION['Admin'])) {
                                             <!-- <table id="tabla" class="table table-striped align-middle mb-0 " style="width: 200px;"> -->
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">nro Comprobante</th>
+                                                <th class="text-center">nro Comprobante</th>
                                                     <th class="text-center">Periodo Fiscal</th>
                                                     <th class="text-center">proveedor</th>
                                                     <th class="text-center">rif Proveedor</th>
                                                     <th class="text-center">direccion Proveedor</th>
+                                                    <th class="text-center">nro Factura</th>
+                                                    <th class="text-center">nro Control</th>
                                                     <th class="text-center">f.Factura</th>
                                                     <th class="text-center">f.Emision</th>
                                                     <th class="text-center">f.Entrega</th>
@@ -293,96 +283,7 @@ if (isset($_SESSION['Admin'])) {
                                                     <th class="text-center">Eliminar</th>
                                                 </tr>
                                             </thead>
-                                            <!-- <tbody>
-                                                <?php
-                                                require 'includes/bd.inc.php';
-                                                $sql = "SELECT * from pacientes";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($mostrar = mysqli_fetch_array($result)) {
-                                                ?>
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            <div>
-                                                                <button class="btn btn-primary btn-habitacion" data-target="#modalacompañantes" data-toggle="modal" data-placement="left" data-idp="<?php echo $mostrar['idp']; ?>" title="Ver Acompañantes">
-                                                                    <?php echo $mostrar['idh']; ?>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="text-center"><?php echo $mostrar['paciente']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['cedula']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['edad']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['sexo']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['estado']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['municipio']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['parroquia']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['patologia']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['fechai']; ?></td>
-                                                        <td class="text-center"><?php echo $mostrar['fechae']; ?></td>
-                                                        <td class="text-center">
-                                                            <?php
-                                                            $statush = $mostrar['statush'];
-                                                            $idp = $mostrar['idp'];
-                                                            $idh = $mostrar['idh'];
-
-                                                            if ($statush == '1') {
-                                                            ?>
-                                                                <div>
-                                                                    <form action="includes/cambiarestado.inc.php" method="post">
-                                                                        <input type="hidden" name="idp" value="<?php echo $idp; ?>">
-                                                                        <input type="hidden" name="idh" value="<?php echo $idh; ?>">
-                                                                        <button class="btn btn-warning" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                            Ocupada
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
-                                                            <?php
-                                                            } else {
-                                                            ?>
-                                                                <div class="btn btn-success">Disponible</div>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <div class="row">
-
-                                                                <button class="btn btn-primary" data-target="#editarpaciente" data-toggle="modal" data-placement="left" data-idpeditar="<?php echo $mostrar['idp']; ?>" title="Modificar Solicitud"><i class="pe-7s-note"></i></button>
-
-                                                                <form action="includes/eli.paciente.inc.php" method="post">
-                                                                    <input type="hidden" name="idp" value="<?php echo $mostrar['idp']; ?>">
-                                                                    <input type="hidden" name="idh" value="<?php echo $mostrar['idh']; ?>">
-                                                                    <button class="btn btn-danger" type="submit" name="eliminar" data-toggle="tooltip" data-placement="left" title="Eliminar Paciente" onclick="return confirm('¿Esta seguro que quiere Eliminar al Paciente?');"><i class="pe-7s-trash"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody> -->
-                                            <!-- <tbody>
-                                                <tr>
-                                                    <th class="text-center">20240100000846</th>
-                                                    <th class="text-center">Comercial unique center, C.A</th>
-                                                    <th class="text-center">11-01-2024</th>
-                                                    <th class="text-center">15-01-2024</th>
-                                                    <th class="text-center">16-01-2024</th>
-                                                    <th class="text-center">00006790</th>
-                                                    <th class="text-center">Z1B8046526</th>
-                                                    <th class="text-center">359.69</th>
-                                                    <th class="text-center">310.08</th>
-                                                    <th class="text-center">49.61</th>
-                                                    <th class="text-center">37.21</th>
-                                                    <td class="text-center">
-                                                        <div>
-                                                            <button class="btn btn-warning" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                Editar
-                                                            </button>
-                                                            <button class="btn btn-danger" type="submit" name="cambiar" data-toggle="tooltip" data-placement="left" title="Cambiar status">
-                                                                PDF
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                            </tbody> -->
+                                            
                                         </table>
                                     </div>
                                     <div class="d-block text-center card-footer">
@@ -498,25 +399,7 @@ if (isset($_SESSION['Admin'])) {
 
                                 <span toggle="#contra" class="fa fa-fw fa-eye field_icon toggle-password"></span>
 
-                                <div>
-
-                                    <?php
-                                    $idu = $_SESSION['idu'];
-                                    require 'includes/bd.inc.php';
-                                    $sql = "SELECT * from usuarios where idu='$idu'";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($mostrar = mysqli_fetch_array($result)) {
-                                    ?>
-
-                                        <img id="uploadPreview1" class="card border" style="display: none;" src="../assets/images/avatars/<?php echo $mostrar['foto'];
-                                                                                                                                        } ?>" />
-
-                                        <div class="card-body">
-                                            <input id="uploadImage1" type="file" name="images1" onchange="previewImage(1);" />
-                                            <p>Ingrese un formato de imagen PNG O JPG</p>
-                                        </div>
-
-                                </div>
+                                
 
                             </div>
                         </div>
@@ -599,15 +482,6 @@ if (isset($_SESSION['Admin'])) {
 
                                     </div>
 
-                                    <!-- <selec proveedor" name="proveedor" class="form-control">
-
-                                        <option value="Bolivar">Comercial Auioneit CA</option>
-                                        <option value="Anzoategui">Refrescos Guatire</option>
-                                        <option value="Merida">Helados cali CA</option>
-                                        <option value="Trujillo">Comercial watire center, C.A</option>
-
-                                    </select> -->
-
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
                                     </div>
@@ -624,7 +498,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="">Rif Proveedor</label>
 
-                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' placeholder="ejemplo: j-298400870" required>
+                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' maxlength="11" placeholder="ejemplo: j-298400870" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -662,7 +536,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="">nro de Factura</label>
 
-                                    <input type="text" class="form-control nroFactura" placeholder="ejemplo: 00004567" name="nroFactura" required>
+                                    <input type="text" class="form-control nroFactura" maxlength="15"placeholder="ejemplo: 00004567" name="nroFactura" required>
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
                                     </div>
@@ -677,7 +551,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="">nro de control</label>
 
-                                    <input type="text" class="form-control nroControl" name="nroControl" placeholder="ejemplo: Z1B8046526" required>
+                                    <input type="text" class="form-control nroControl" name="nroControl" maxlength="25" placeholder="ejemplo: Z1B8046526" required>
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
                                     </div>
@@ -775,7 +649,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="">total facturado</label>
 
-                                    <input type="number" class="total-facturado form-control" placeholder="1.0" step="0.01" min="0" name='totalFacturado' placeholder="total facturado" required>
+                                    <input type="number" class="total-facturado form-control"  placeholder="1.0" step="0.01" min="0" name='totalFacturado' placeholder="total facturado" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -791,7 +665,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="patologia">base imponible</label>
 
-                                    <input type="number" class="base-imponible form-control baseImponible" placeholder="1.0" step="0.01" min="0" name='baseImponible' placeholder="base imponible" required>
+                                    <input type="number" class="base-imponible form-control baseImponible"  placeholder="1.0" step="0.01" min="0" name='baseImponible' placeholder="base imponible" required>
 
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
@@ -925,15 +799,6 @@ if (isset($_SESSION['Admin'])) {
 
                                     </div>
 
-                                    <!-- <selec proveedor" name="proveedor" class="form-control">
-
-                                        <option value="Bolivar">Comercial Auioneit CA</option>
-                                        <option value="Anzoategui">Refrescos Guatire</option>
-                                        <option value="Merida">Helados cali CA</option>
-                                        <option value="Trujillo">Comercial watire center, C.A</option>
-
-                                    </select> -->
-
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
                                     </div>
@@ -950,7 +815,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="">Rif Proveedor</label>
 
-                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' placeholder="ejemplo: j-298400870" required>
+                                    <input type="text" class="form-control rifProveedor" name='rifProveedor' maxlength="11" placeholder="ejemplo: j-298400870" required>
 
                                     <div class="invalid-feedback">
                                         Debe rellenar este campo.
@@ -988,7 +853,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="">nro de Factura</label>
 
-                                    <input type="text" class="form-control nroFactura" placeholder="ejemplo: 00004567" name="nroFactura" required>
+                                    <input type="text" class="form-control nroFactura" maxlength="15" placeholder="ejemplo: 00004567" name="nroFactura" required>
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
                                     </div>
@@ -1003,7 +868,7 @@ if (isset($_SESSION['Admin'])) {
 
                                     <label for="">nro de control</label>
 
-                                    <input type="text" class="form-control nroControl" name="nroControl" placeholder="ejemplo: Z1B8046526" required>
+                                    <input type="text" class="form-control nroControl" name="nroControl" maxlength="25" placeholder="ejemplo: Z1B8046526" required>
                                     <div class="invalid-feedback">
                                         Debe llenar este campo.
                                     </div>
@@ -1188,51 +1053,9 @@ if (isset($_SESSION['Admin'])) {
         </script> <?php
 
                 }
-                    ?>
-
-    <?php
-    if (isset($_GET['success']) && $_GET['success'] == 1) {
     ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Credenciales correctos.',
-                text: 'Sesion iniciada',
-                timer: 2000,
-                showConfirmButton: false
-            });
-        </script>
-    <?php
-    }
-    ?>
-    <script>
-        $(document).ready(function() {
-            $('.btn-habitacion').click(function(event) {
-                event.preventDefault(); // Evita que la página se refresque
-                var idp = $(this).data('idp');
-                $('#tabla-acompanantes-body').empty();
-                $.ajax({
-                    url: 'administrador.php',
-                    method: 'POST',
-                    data: {
-                        idp: idp
-                    },
-                    success: function(response) {
-                        var contenido = $(response).find('#contenido-modal'); // Selecciona solo el contenido que deseas mostrar
-                        $('#tabla-acompanantes-body').html(contenido);
-                        $('#idp').val(idp); // Establece el valor de idp en el campo oculto
-                        $('#modalacompañantes').modal('show');
-                    }
-                });
-            });
-        });
-    </script>
 
-    <!-- JS PARA EDITAR LOS PACIENTES, DEBE IR ANTES DE LA ETIQUETA <BODY/> -->
-    <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaledit.js"></script>
-    <!-- JS PARA EDITAR LOS PACIENTES, DEBE IR ANTES DE LA ETIQUETA <BODY/> -->
-    <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaleditacompanante.js"></script>
-
+   
     </body>
 
     </html>

@@ -41,15 +41,14 @@ if (isset($_SESSION['Super'])) {
     <link rel="stylesheet" href="./css/master.css">
     <link href="./css/main.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
-    
     <!-- Se declaran archivos, scripts y css -->
+
+    <script src="./assets/scripts/sweetalert2.min.js"></script>
 </head>
 
 <!-- aqui es donde está lo que se ve en pantalla -->
 
 <body style="background-image: url(./assets/images/background-index.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
-
-
 <div class="login-box">
 
 <div class="login-box border border-dark shadow">
@@ -69,23 +68,19 @@ if (isset($_SESSION['Super'])) {
             <!-- PASSWORD INPUT -->
 
             <label for="password">Contraseña</label>
-            <input type="password" placeholder="Introduzca su contraseña" maxlength="15" name="pwd" required />
+            <input type="password" placeholder="Introduzca su contraseña" maxlength="15" minlength="6" name="pwd" required />
 
             <input type="submit" name="submit2" class="btn btn-primary pull-right" value="Iniciar Sesión">
 
             <a href="#modalrecuperacion" data-toggle="modal">Olvidó su contraseña?</a>
             <br>
-            <a href="#modalregistro" data-toggle="modal">No tiene usuario? Registrese!</a>
 
         </form>
-                    <a href="index.php">Volver al inicio</a>
+
         </div>
         </div>
             
-    <script type="text/javascript" charset="utf8" src="../src/DataTables/jQuery-3.3.1/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="./assets/scripts/main.js"></script>
-    <script type="text/javascript" charset="utf8" src="../src/DataTables/DataTables-1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaledit.js"></script>
     <script src="./assets/scripts/sweetalert.js"></script>
 
     <!-- Esto es PHP para saber que sesion es la que se va a iniciar -->
@@ -103,23 +98,6 @@ if (isset($_SESSION['Super'])) {
     }
     ?>
 
-    <?php
-    if (isset($_GET['success']) && $_GET['success'] == 2) {
-    ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Credenciales correctos.',
-                text: 'Iniciando sesion...',
-                timer: 4000,
-                showConfirmButton: false
-            }).then(function() {
-                window.location.href = '../administrador.php';
-            });
-        </script>
-    <?php
-    }
-    ?>
 
   <!-- Archivos JS -->
   <script src="css/js/main.js"></script>
@@ -335,5 +313,6 @@ if (isset($_SESSION['Super'])) {
     </div>
 
 </div>
+
 
 </html>

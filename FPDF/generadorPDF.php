@@ -106,7 +106,7 @@ while($Filas = $ResultDatos->fetch_assoc()){
     // INICIO - DATOS DEL AGENTE DE RETENCION
 
     $pdf->SetFont('Arial', 'B', 7);
-    $pdf->Cell(100,15,"DIRECCION FISCAL DEL AGENTE DE RETENTCION", 1, 0,'C', 0);
+    $pdf->Cell(100,15,"DIRECCION FISCAL DEL AGENTE DE RETENCION", 1, 0,'C', 0);
     $pdf->SetFont('Arial', 'B', 5.5);
     $pdf->Cell(44.5,15,"F. EMISION", 1, 0,'C', 0);
     $pdf->Cell(44.5,15, 'F. ENTREGA',1, 0,'C', 0);

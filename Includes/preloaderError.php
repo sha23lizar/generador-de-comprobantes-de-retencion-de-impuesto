@@ -116,7 +116,7 @@ body{
             </div>
          </div>
          <div class="text">
-            Ese numero de rif ya existe. Espere un momento
+            La operacion no se pudo completar correctamente. Espere un momento
          </div>
       </div>
    </body>
@@ -125,6 +125,6 @@ body{
 <?php
     // Espera 3 segundos antes de redirigir al panel del superusuario
     $tiempoEspera = 3; // Tiempo en segundos
-    $urlRedireccion = isset($_GET['redirect']) ? $_GET['redirect'] : '../superusuario.php'; // URL de redirección predeterminada
+    $urlRedireccion = isset($_GET['redirect']) ? $_GET['redirect'] : '../superusuariobd.php'; // URL de redirección predeterminada
     echo "<script>setTimeout(function() { window.location.href = '$urlRedireccion'; }, $tiempoEspera * 2000);</script>";
 ?>

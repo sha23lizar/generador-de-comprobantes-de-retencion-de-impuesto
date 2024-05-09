@@ -8,9 +8,9 @@ export class DataTableModule {
             },
             columnDefs: [
                 {responsivePriority: 5, targets: 0},
-                {responsivePriority: 5, targets: 12},
-                {responsivePriority: 5, targets: 13},
-                {responsivePriority: 5, targets: 14}
+                {responsivePriority: 5, targets: 14},
+                {responsivePriority: 5, targets: 15},
+                {responsivePriority: 5, targets: 16}
             ],
             responsive: true,
 

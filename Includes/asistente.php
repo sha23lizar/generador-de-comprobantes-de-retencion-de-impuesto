@@ -14,7 +14,7 @@ if (isset($_SESSION['Asis'])) {
         <meta http-equiv="Content-Language" content="en">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Colegio Sion</title>
-        <link rel="shortcut icon" href="../src/img/funesboLOGOt.PNG">
+        <link rel="shortcut icon" href="./Assets/Images/Logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
@@ -24,8 +24,6 @@ if (isset($_SESSION['Asis'])) {
         <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
         <link href="./css/datatables.min.css" rel="stylesheet">
 
-
-
         <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
@@ -33,15 +31,12 @@ if (isset($_SESSION['Asis'])) {
         <script type="text/javascript" src="./assets/scripts/dataTables.bootstrap4.js"></script>
         <script type="text/javascript" src="./assets/scripts/dataTables.responsive.js"></script>
         <script type="text/javascript" src="./assets/scripts/responsive.bootstrap4.js"></script>
-
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
-        <!-- <script type="module" src="./assets/scripts/pagina-principal.js"></script> -->
-
+        <script type="module" src="./assets/scripts/pagina-principal.js"></script>
     </head>
 
     <body>
         <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-            <div class="app-header header-shadow bg-primary header-text-light">
+        <div class="app-header header-shadow bg-primary header-text-light">
                 <div class="app-header__logo">
 
                     <div class="header__pane ml-auto">
@@ -103,17 +98,8 @@ if (isset($_SESSION['Asis'])) {
 
                                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
 
-                                                <?php
-                                                $idu = $_SESSION['idu'];
-                                                require 'includes/bd.inc.php';
-                                                $sql = "SELECT * from usuarios where idu='$idu'";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($mostrar = mysqli_fetch_array($result)) {
-                                                ?>
-
-                                                    <img width="45" height="45" class="rounded-circle" src="assets/images/avatars/<?php echo $mostrar['foto'];
-                                                                                                                                } ?>" alt="">
-                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                                <img width="45" height="45" class="rounded-circle" src="assets/images/avatars/user-default.jpg" alt="">
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
 
                                             </a>
 
@@ -181,6 +167,7 @@ if (isset($_SESSION['Asis'])) {
                                         Inicio
                                     </a>
                                 </li>
+                                
                                 <li class="app-sidebar__heading">Ayuda</li>
                                 <li>
                                     <a href="./Manual%20Tecnico%20FUNESBO.pdf">
@@ -198,12 +185,11 @@ if (isset($_SESSION['Asis'])) {
                         <div class="app-page-title">
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
-                                    <img class="img-thumbnail" src="../src/img/funesboLOGOt.PNG" width="70" height="60" alt="logo">
+
                                     <div class="ml-2">
 
                                         <?php
                                         $idu = $_SESSION['idu'];
-                                        require 'includes/bd.inc.php';
                                         $sql = "SELECT * from usuarios where idu='$idu'";
                                         $result = mysqli_query($conn, $sql);
                                         while ($mostrar = mysqli_fetch_array($result)) {
@@ -223,12 +209,25 @@ if (isset($_SESSION['Asis'])) {
                                 </div>
                             </div>
                         </div>
-
+                        <h2>Comprobantes</h2>
                         <div class="row">
-                            <div class="col-md-12" style="max-width:99%">
+                            <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-header py-3 d-sm-flex align-item-center justify-content-between">
-                                        Comprobantes
+                                        <div class="py-3 align-item-center justify-content-between">
+                                            
+                                        </div>
+                                        Listado
+                                        <div class="py-3 align-item-center justify-content-between">
+                                            <!-- <a href="pdf.php" class="btn-shadow btn btn-danger">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Generar PDF
+                                            </a> -->
+                                            <a href="includes/excel.php?export=true" class="btn-shadow btn btn-success">
+                                                <i class="fa fa-file-excel"></i>
+                                                Generar EXCEL
+                                            </a>
+                                        </div>
                                     </div>
                                     <?php
                                     if (empty($_GET['alert'])) {
@@ -251,7 +250,6 @@ if (isset($_SESSION['Asis'])) {
                                     }
                                     ?>
 
-                                    <!-- <div class="table-responsive p-2"> -->
                                     <div class="table-responsive p-2">
                                         <table id="tabla" class="table table-striped table-bordered nowrap" style="width:100%">
                                             <!-- <table id="tabla" class="table table-striped align-middle mb-0 " style="width: 200px;"> -->
@@ -262,8 +260,6 @@ if (isset($_SESSION['Asis'])) {
                                                     <th class="text-center">proveedor</th>
                                                     <th class="text-center">rif Proveedor</th>
                                                     <th class="text-center">direccion Proveedor</th>
-                                                    <th class="text-center">nro Factura</th>
-                                                    <th class="text-center">nro Control</th>
                                                     <th class="text-center">f.Factura</th>
                                                     <th class="text-center">f.Emision</th>
                                                     <th class="text-center">f.Entrega</th>
@@ -272,34 +268,10 @@ if (isset($_SESSION['Asis'])) {
                                                     <th class="text-center">impuesto iva (16%)</th>
                                                     <th class="text-center">iva retenido (75%)</th>
                                                     <th class="text-center">PDF</th>
+
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <?php
-                                                require 'includes/conexion.php';
-                                                $sql = "SELECT * from comprobante";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($mostrar = mysqli_fetch_array($result)) {
-                                                ?>
-                                                    <tr>
-                                                        <td><?php echo substr($mostrar["nroComprobante"], 6, 12); ?></td>
-                                                        <td><?php echo substr($mostrar["nroComprobante"], 0, 4)."-".substr($mostrar["nroComprobante"], 4, 2); ?></td>
-                                                        <td><?php echo $mostrar['proveedor']; ?></td>
-                                                        <td><?php echo $mostrar['rifProveedor']; ?></td>
-                                                        <td><?php echo $mostrar['direccionProveedor']; ?></td>
-                                                        <td><?php echo $mostrar['nroFactura']; ?></td>
-                                                        <td><?php echo $mostrar['nroControl']; ?></td>
-                                                        <td><?php echo $mostrar['fFactura']; ?></td>
-                                                        <td><?php echo $mostrar['fEmision']; ?></td>
-                                                        <td><?php echo $mostrar['fEntrega']; ?></td>
-                                                        <td><?php echo $mostrar['totalFacturado']; ?></td>
-                                                        <td><?php echo $mostrar['baseImponible']; ?></td>
-                                                        <td><?php echo $mostrar['impuestoIva']; ?></td>
-                                                        <td><?php echo $mostrar['ivaRetenido']; ?></td>
-                                                        <td><?php echo '<button type="button" name="Generar PDF" id="' . $mostrar["id"] . '" class="btn btn-danger btn-xs generadorPDF">PDF</button>' ?></td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
+                                            
                                         </table>
                                     </div>
                                     <div class="d-block text-center card-footer">
@@ -320,7 +292,6 @@ if (isset($_SESSION['Asis'])) {
                 </div>
             </div>
         </div>
-
 
         <!-- Modales -->
 
@@ -364,7 +335,6 @@ if (isset($_SESSION['Asis'])) {
 
                                     $idu = $_SESSION['idu'];
 
-                                    include 'includes/bd.inc.php';
 
                                     $sql = "SELECT * FROM usuarios WHERE idu='$idu'";
                                     $result = mysqli_query($conn, $sql);
@@ -416,24 +386,7 @@ if (isset($_SESSION['Asis'])) {
 
                                 <span toggle="#contra" class="fa fa-fw fa-eye field_icon toggle-password"></span>
 
-                                <div>
-
-                                    <?php
-                                    $idu = $_SESSION['idu'];
-                                    require 'includes/bd.inc.php';
-                                    $sql = "SELECT * from usuarios where idu='$idu'";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($mostrar = mysqli_fetch_array($result)) {
-                                    ?>
-
-                                        <img id="uploadPreview1" class="card border" width="150" height="150" src="../architectui-html-free/assets/images/avatars/<?php echo $mostrar['foto'];
-                                                                                                                                                                } ?>" />
-
-                                        <div class="card-body">
-                                            <input id="uploadImage1" type="file" name="images1" onchange="previewImage(1);" />
-                                        </div>
-
-                                </div>
+                                
 
                             </div>
                         </div>
@@ -444,10 +397,11 @@ if (isset($_SESSION['Asis'])) {
                     </form>
 
                     <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                    <script type="text/javascript" src="../src/bootstrap4/js/passwordhidder.js"></script>
                 </div>
             </div>
         </div>
+
+        
 
     <?php
 } else {
@@ -457,114 +411,9 @@ if (isset($_SESSION['Asis'])) {
         </script> <?php
 
                 }
-                    ?>
-
-    <?php
-    if (isset($_GET['success']) && $_GET['success'] == 1) {
     ?>
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Credenciales correctos.',
-                text: 'Sesion iniciada',
-                timer: 2000,
-                showConfirmButton: false
-            });
-        </script>
-    <?php
-    }
-    ?>
-    <script>
-        $(document).ready(function() {
 
-            var dataTable = $("#tabla").DataTable({
-                "order": [],
-                columnDefs: [{
-                        responsivePriority: 5,
-                        targets: 0
-                    },
-                    {
-                        responsivePriority: 5,
-                        targets: 14
-                    }
-                ],
-                responsive: true
-
-                    ,
-                "language": {
-                    "decimal": "",
-                    "emptyTable": "No hay datos disponibles en la tabla",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-
-                }
-            });
-
-            function abirPDF(id) {
-    const currentUrl = window.location.href;
-    const pathArray = currentUrl.split('/');
-    if (pathArray[pathArray.length - 1].includes('.php')) {
-      pathArray.pop(); // Elimina el último elemento (nombre del archivo)
-      pathArray[pathArray.length - 1] += '/';
-    }
-    pathArray.join('/');
-
-    const baseUrl = pathArray.join('/')
-
-    const relativePath = 'FPDF/generadorPDF.php';
-
-    // Construye la URL completa
-    const fullUrl = `${baseUrl}${relativePath}?id=${id}`;
-    window.open(fullUrl, '_blank').focus();
-  }
-  $(document).on("click", ".generadorPDF", function (e) {
-    var id = e.target.id;
-    abirPDF(id);
-  })
-
-
-
-
-            $('.btn-habitacion').click(function(event) {
-                event.preventDefault(); // Evita que la página se refresque
-                var idp = $(this).data('idp');
-                $('#tabla-acompanantes-body').empty();
-                $.ajax({
-                    url: 'asistente.php',
-                    method: 'POST',
-                    data: {
-                        idp: idp
-                    },
-                    success: function(response) {
-                        var contenido = $(response).find('#contenido-modal'); // Selecciona solo el contenido que deseas mostrar
-                        $('#tabla-acompanantes-body').html(contenido);
-                        $('#idp').val(idp); // Establece el valor de idp en el campo oculto
-                        $('#modalacompañantes').modal('show');
-                    }
-                });
-            });
-        });
-    </script>
-
-    <!-- JS PARA EDITAR LOS PACIENTES, DEBE IR ANTES DE LA ETIQUETA <BODY/> -->
-    <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaledit.js"></script>
-    <!-- JS PARA EDITAR LOS PACIENTES, DEBE IR ANTES DE LA ETIQUETA <BODY/> -->
-    <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/modaleditacompanante.js"></script>
-
+    
     </body>
 
     </html>

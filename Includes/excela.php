@@ -7,7 +7,7 @@ if($_GET['export'] == 'true'){
 $query = mysqli_query($conn, 'select * from proveedor'); // Get data from Database from table
  
  
-    $delimiter = ";";
+    $delimiter = ",";
     $filename = "proveedor/" . date('d/m/Y') . ".csv"; // Create file name
      
     //create a file pointer

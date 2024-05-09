@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para seleccionar los datos de los usuarios
-$sql = "SELECT * FROM usuarios WHERE idu = '".$_POST["idu"]."' LIMIT 1";
+$sql = "SELECT * FROM usuarios WHERE idu = ".$_POST["idu"]." LIMIT 1";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

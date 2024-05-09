@@ -14,7 +14,7 @@ if (isset($_SESSION['Super'])) {
         <meta http-equiv="Content-Language" content="en">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Colegio Sion</title>
-        <link rel="shortcut icon" href="../src/img/funesboLOGOt.PNG">
+        <link rel="shortcut icon" href="./Assets/Images/Logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
@@ -40,10 +40,10 @@ if (isset($_SESSION['Super'])) {
 
 
         <script>
-            $(document).on("click", ".btn-editar-usuario", function() {
-                // var idu = $(this).data('id');
-                // $("#idu").val(idu);
-            });
+            // $(document).on("click", ".btn-editar-usuario", function() {
+            //     // var idu = $(this).data('id');
+            //     // $("#idu").val(idu);
+            // });
         </script>
 
     </head>
@@ -110,21 +110,14 @@ if (isset($_SESSION['Super'])) {
                                     <div class="widget-content-left">
                                         <div class="btn-group">
 
+                                            
                                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
 
-                                                <?php
-                                                $idu = $_SESSION['idu'];
-
-                                                $sql = "SELECT * from usuarios where idu='$idu'";
-                                                $result = mysqli_query($conn, $sql);
-                                                while ($mostrar = mysqli_fetch_array($result)) {
-                                                ?>
-
-                                                    <img width="45" height="45" class="rounded-circle" src="assets/images/avatars/<?php echo $mostrar['foto'];
-                                                                                                                                } ?>" alt="">
-                                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                                <img width="45" height="45" class="rounded-circle" src="assets/images/avatars/user-default.jpg" alt="">
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
 
                                             </a>
+
 
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
 
@@ -274,10 +267,10 @@ if (isset($_SESSION['Super'])) {
                                                 <tr>
                                                     <th class="text-center">Usuario</th>
                                                     <th class="text-center">Cedula</th>
-                                                    <th class="text-center">contraseña'</th>
-                                                    <th class="text-center">pregunta'</th>
-                                                    <th class="text-center">respuesta'</th>
-                                                    <th class="text-center">Rol</th>
+                                                    <th class="text-center">contraseña</th>
+                                                    <th class="text-center">pregunta</th>
+                                                    <th class="text-center">respuesta</th>
+                                                    <th class="text-center">nivel</th>
                                                     <th class="text-center">Acciones</th>
                                                 </tr>
                                             </thead>
@@ -446,24 +439,7 @@ if (isset($_SESSION['Super'])) {
 
                                 <span toggle="#contra" class="fa fa-fw fa-eye field_icon toggle-password"></span>
 
-                                <div>
-
-                                    <?php
-                                    $idu = $_SESSION['idu'];
-
-                                    $sql = "SELECT * from usuarios where idu='$idu'";
-                                    $result = mysqli_query($conn, $sql);
-                                    while ($mostrar = mysqli_fetch_array($result)) {
-                                    ?>
-
-                                        <img id="uploadPreview1" class="card border" width="150" height="150" src="../architectui-html-free/assets/images/avatars/<?php echo $mostrar['foto'];
-                                                                                                                                                                } ?>" />
-                                        <p>Ingrese un formato de imagen PNG O JPG</p>
-                                        <div class="card-body">
-                                            <input id="uploadImage1" type="file" name="images1" onchange="previewImage(1);" />
-                                        </div>
-
-                                </div>
+                                
 
                             </div>
                         </div>
@@ -474,7 +450,6 @@ if (isset($_SESSION['Super'])) {
                     </form>
 
                     <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
-                    <script type="text/javascript" src="../src/bootstrap4/js/passwordhidder.js"></script>
                 </div>
             </div>
         </div>
@@ -740,7 +715,7 @@ if (isset($_SESSION['Super'])) {
                 $(document).on("click", ".btn-editar-usuario", function(e) {
                     var idu = e.target.id;
                     if (!idu) {
-                        alert("No se encontro el ID");
+                        // alert("No se encontro el ID");
                         return
                     }
                     $.ajax({

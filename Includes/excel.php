@@ -110,7 +110,7 @@ if(isset($_GET['export'])){
         // Si es un nuevo archivo, agregar encabezados de columna
         if(filesize($filename) == 0) {
             // Establecer delimitador y encabezados de columna
-            $delimiter = ";";
+            $delimiter = ",";
             $fields = array('id', 'nroComprobante', 'Proveedor', 'rifProveedor', 'direccionProveedor', 'fEmision', 'fEntrega', 'fFactura', 'totalFacturado', 'baseImponible', 'fechaRegistro');
             fputcsv($f, $fields, $delimiter);
         }
@@ -120,7 +120,7 @@ if(isset($_GET['export'])){
 
         // Escribir cada fila de datos al archivo CSV
         while($row = $query->fetch_assoc()){
-            $lineData = array($row['id'], $row['nroComprobante'], $row['rifProveedor'], $row['direccionProveedor'], $row['fEmision'], $row['fEntrega'], $row['fFactura'], $row['totalFacturado'], $row['baseImponible'], $row['fechaRegistro']);
+            $lineData = array($row['id'], $row['nroComprobante'], $row['proveedor'], $row['rifProveedor'], $row['direccionProveedor'], $row['fEmision'], $row['fEntrega'], $row['fFactura'], $row['totalFacturado'], $row['baseImponible'], $row['fechaRegistro']);
             fputcsv($f, $lineData, $delimiter);
         }
 

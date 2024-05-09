@@ -36,6 +36,8 @@
         $sub_array[] = $row["proveedor"];
         $sub_array[] = $row["rifProveedor"];
         $sub_array[] = $row["direccionProveedor"];
+        $sub_array[] = $row["nroFactura"];
+        $sub_array[] = $row["nroControl"];
         $sub_array[] = revertirFecha($row["fFactura"]);
         $sub_array[] = revertirFecha($row["fEmision"]);
         $sub_array[] = revertirFecha($row["fEntrega"]);
