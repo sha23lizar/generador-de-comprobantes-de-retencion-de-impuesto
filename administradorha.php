@@ -145,9 +145,6 @@ if (isset($_SESSION['Admin'])) {
 
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
 
-                                                <button type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#modaleditaruser">Editar perfil</button>
-
-                                                <div tabindex="-1" class="dropdown-divider"></div>
 
                                                 <button type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                                                     Cerrar

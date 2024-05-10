@@ -10,6 +10,7 @@
     if(isset($_POST['search']['value'])) {
         $query .= "WHERE rifProveedor LIKE '%".$_POST['search']['value']."%'";
         $query .= "OR nombreProveedor LIKE '%".$_POST['search']['value']."%'";
+        $query .= "OR direccionProveedor LIKE '%".$_POST['search']['value']."%'";
     }
 
     if (isset($_POST['order'])) {

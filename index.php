@@ -193,7 +193,7 @@ if (isset($_SESSION['Super'])) {
           <h3><span>Dirección</span></h3>
         </div>
         <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div style="border:1px solid #ffffff2e; border-radius: 10px;" class="glass-effect info-box mb-4">
               <a class="bi bi-geo-alt"></a>
               <p>3FV6+RHV, Cdad. Bolívar 8001, Bolívar</p>
@@ -202,9 +202,9 @@ if (isset($_SESSION['Super'])) {
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <div>
-              <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d493.75823447834097!2d-63.53864920121428!3d8.094764916993393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8dce87cc2e183e57%3A0x3a3a2da1384468a1!2sIglesia%20Sion!5e0!3m2!1ses!2sve!4v1712792156700!5m2!1ses!2sve" frameborder="0" style="border:0; width: 100%; height: 384px; border-radius: 10px;" allowfullscreen></iframe>
+              <img src="./assets/images/mapa.png" alt="" srcset="">
             </div>
           </div>
 

@@ -16,13 +16,20 @@ if (isset($_SESSION['Super'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
+       
         <link href="./css/main.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="../src/DataTables/datatables.min.css">
-        <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
+        <link href="./css/dataTables.bootstrap4.css" rel="stylesheet">
+        <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
+        <link href="./css/datatables.min.css" rel="stylesheet">
 
-        <script src="./assets/scripts/sweetalert2.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/main.js"></script>
+        <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.bootstrap4.js"></script>
+        <script type="text/javascript" src="./assets/scripts/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="./assets/scripts/responsive.bootstrap4.js"></script>
 
-        <script type="text/javascript" charset="utf8" src="../src/bootstrap4/js/fotopreview.js"></script>
     </head>
 
     <body>
@@ -96,10 +103,7 @@ if (isset($_SESSION['Super'])) {
 
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
 
-                                                <button type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#modaleditaruser">Editar perfil</button>
-
-                                                <div tabindex="-1" class="dropdown-divider"></div>
-
+                                           
                                                 <button type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                                                     Cerrar
                                                     Sesion
@@ -432,6 +436,72 @@ if (isset($_SESSION['Super'])) {
 
                 <script type="text/javascript" src="./assets/scripts/validarformularios.js"></script>
                 <script type="text/javascript" src="../src/bootstrap4/js/passwordhidder.js"></script>
+                <script>
+            // #tablausuarios
+            $(document).ready(function() {
+
+                var dataTable = $("#tabla").DataTable({
+
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No hay datos disponibles en la tabla",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                });
+                // btn-editar-usuario
+
+                var idModalProveedor = "#modalProveedor";
+                var idForm = "#form-proveedor";
+
+                // Funcionalidad editar
+                $(document).on("click", ".btn-editar-usuario", function(e) {
+                    var idu = e.target.id;
+                    if (!idu) {
+                        // alert("No se encontro el ID");
+                        return
+                    }
+                    $.ajax({
+                        url: "./includes/obtener_usuario.php",
+                        method: "POST",
+                        data: {
+                            idu: idu
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            let dataUser = data[0];
+                            document.querySelector(".editar.cedula").value = dataUser.cedula
+                            document.querySelector(".editar.contra").value = dataUser.contra
+                            document.querySelector(".editar.pregunta").value = dataUser.pregunta
+                            document.querySelector(".editar.respuesta").value = dataUser.respuesta
+                            document.querySelector(".editar.rol").value = dataUser.rol; // Asegúrate de que el ID se esté envian 
+                            document.querySelector(".editar.usuario").value = dataUser.usuario
+                            document.querySelector(".editar.idu").value = dataUser.idu
+                            document.querySelector("#btnOpenModalEdit").click();
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            alert("error: " + textStatus + " " + errorThrown);
+                        }
+                    })
+                })
+
+
+            });
+        </script>
             </div>
         </div>
     </div>
