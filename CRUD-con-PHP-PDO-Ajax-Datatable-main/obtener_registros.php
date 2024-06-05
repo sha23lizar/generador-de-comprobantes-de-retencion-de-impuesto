@@ -8,12 +8,16 @@
     $query = "SELECT * FROM proveedor ";
 
     if(isset($_POST['search']['value'])) {
-        $query .= "WHERE rifProveedor LIKE '%".$_POST['search']['value']."%'";
-        $query .= "OR nombreProveedor LIKE '%".$_POST['search']['value']."%'";
-        $query .= "OR direccionProveedor LIKE '%".$_POST['search']['value']."%'";
+         $query .= "WHERE rifProveedor LIKE '%".$_POST['search']['value']."%'";
+         $query .= "OR nombreProveedor LIKE '%".$_POST['search']['value']."%'";
+         $query .= "OR seudonimo LIKE '%".$_POST['search']['value']."%'";
+         $query .= "OR direccionProveedor LIKE '%".$_POST['search']['value']."%'";
     }
 
     if (isset($_POST['order'])) {
+        // if (!isset($_POST['order']['0']['column'])) {
+        //     $_POST['order']['0']['column'] = "seudonimo";
+        // }
         $query .= "ORDER BY " . $_POST['order']['0']['column'] . " " . $_POST['order']['0']['dir'] . " ";
     } else {
         $query .= "ORDER BY id DESC ";

@@ -1,0 +1,4 @@
+id,nroComprobante,Proveedor,rifProveedor,direccionProveedor,fEmision,fEntrega,fFactura,totalFacturado,baseImponible,fechaRegistro
+38,20240500000001,fernando,j-22222222,"calle bolivar abasto nro 23",2024-05-17,2024-05-23,2024-05-03,12312.00,234.00,"2024-05-08 11:12:37"
+41,20240500000002,ALVARO,j-1111111,"calle PAEZ",2024-05-09,2024-05-09,2024-05-09,567.00,234.00,"2024-05-09 11:38:04"
+42,20240500000003,manolo,j-r408906677,123123,2024-05-09,2024-05-09,2024-05-09,455.00,223.00,"2024-05-09 11:38:58"

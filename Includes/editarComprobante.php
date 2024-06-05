@@ -26,7 +26,7 @@ $nroFactura = $_POST['nroFactura'];
 $id = $_POST['id'];
 
 // Prepara la consulta SQL para insertar los datos en la tabla
-$sql = "UPDATE comprobante SET proveedor = '$proveedor', rifProveedor = '$rifProveedor', direccionProveedor = '$direccionProveedor', fEmision = '$fEmision', fEntrega = '$fEntrega', fFactura = '$fFactura', nroControl = '$nroControl', totalFacturado = '$totalFacturado', baseImponible = '$baseImponible', impuestoIva = '$impuestoIva', ivaRetenido = '$ivaRetenido', nroFactura = '$nroFactura' WHERE id = '$id'";
+$sql = "UPDATE comprobante SET nroComprobante = '$nroComprobante', proveedor = '$proveedor', rifProveedor = '$rifProveedor', direccionProveedor = '$direccionProveedor', fEmision = '$fEmision', fEntrega = '$fEntrega', fFactura = '$fFactura', nroControl = '$nroControl', totalFacturado = '$totalFacturado', baseImponible = '$baseImponible', impuestoIva = '$impuestoIva', ivaRetenido = '$ivaRetenido', nroFactura = '$nroFactura' WHERE id = '$id'";
 
 $conn->query($sql);
 // Ejecuta la consulta y verifica si fue exitosa

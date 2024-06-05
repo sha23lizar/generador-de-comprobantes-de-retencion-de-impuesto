@@ -1,11 +1,13 @@
 <?php
 // Conectar a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "feb"; // Reemplaza con el nombre de tu base de datos
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "feb"; // Reemplaza con el nombre de tu base de datos
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// $conn = new mysqli($servername, $username, $password, $dbname);
+
+include("./conexion.php");
 
 // Verificar la conexión
 if ($conn->connect_error) {

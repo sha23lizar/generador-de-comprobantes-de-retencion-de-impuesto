@@ -70,7 +70,7 @@
          <script>
              alert("Cedula Invalida, intentelo de nuevo");
 
-             window.location.href = "../../architectui-html-free/login.php";
+             window.location.href = "../login.php";
          </script>
 
      <?php } ?>

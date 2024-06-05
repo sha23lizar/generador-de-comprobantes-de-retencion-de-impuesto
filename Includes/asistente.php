@@ -216,7 +216,7 @@ if (isset($_SESSION['Asis'])) {
                                             
                                         </div>
                                         Listado
-                                        <div class="py-3 align-item-center justify-content-between">
+                                        <div class="py-3 align-item-center justify-content-between" style="visibility: hidden;">
                                             <!-- <a href="pdf.php" class="btn-shadow btn btn-danger">
                                                 <i class="fa fa-file-pdf"></i>
                                                 Generar PDF

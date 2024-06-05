@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['Admin'])) {
+if ($_SESSION['rol']==2) {
 ?>
 
     <!doctype html>
@@ -21,7 +21,7 @@ if (isset($_SESSION['Admin'])) {
         <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
 
 
-        <link href="./cRUD-con-PHP-PDO-Ajax-Datatable-main/bootstrap/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="./CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/bootstrap/icon/font/bootstrap-icons.min.css" />
         <link rel="stylesheet" href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/DataTables/datatables.css" />
         <link rel="stylesheet" href="./CRUD-con-PHP-PDO-Ajax-Datatable-main/css/styles.css" />
@@ -161,66 +161,9 @@ if (isset($_SESSION['Admin'])) {
                 </div>
             </div>
 
-            <div class="app-main">
-                <div class="app-sidebar sidebar-shadow bg-dark sidebar-text-light">
-                    <div class="app-header__logo">
-                        <div class="logo-src"></div>
-                        <div class="header__pane ml-auto">
-                            <div>
-                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="app-header__mobile-menu">
-                        <div>
-                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="app-header__menu">
-                        <span>
-                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                                <span class="btn-icon-wrapper">
-                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
-                                </span>
-                            </button>
-                        </span>
-                    </div>
-                    <div class="scrollbar-sidebar">
-                        <div class="app-sidebar__inner">
-                            <ul class="vertical-nav-menu">
-                                <li class="app-sidebar__heading text-center">MENÚ</li>
+            <div class="app-main">                
+                <?php include("./Includes/componentes/sliderbar.php")?>
 
-                                <li>
-                                    <a href="administrador.php" style="opacity: 1;" >
-                                        <i class="metismenu-icon pe-7s-home"></i>
-                                        Inicio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="administradorha.php" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-door-lock"></i>
-                                        Proveedores
-                                    </a>
-                                </li>
-                                <li class="app-sidebar__heading">Ayuda</li>
-                                <li>
-                                    <a href="./Manual%20Tecnico%20FUNESBO.pdf">
-                                        <i class="metismenu-icon pe-7s-notebook"></i>
-                                        Manual tecnico
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="app-main__outer">
                     <div class="app-main__inner">
@@ -266,13 +209,17 @@ if (isset($_SESSION['Admin'])) {
                                             </a>
                                         </div>
                                         Listado
-                                        <div class="py-3 align-item-center justify-content-between">
-                                            
-                                            <a href="includes/excela.php?export=true" id="buttom" class="btn-shadow btn btn-success">
+                                        <div class="py-3 align-item-center justify-content-between" style="visibility: hidden;">
+                                            <!-- <a href="pdf.php" class="btn-shadow btn btn-danger">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Generar PDF
+                                            </a> -->
+                                            <a href="includes/excel.php?export=true" class="btn-shadow btn btn-success">
                                                 <i class="fa fa-file-excel"></i>
                                                 Generar EXCEL
                                             </a>
                                         </div>
+                                        
 
                                     </div>
                                 </div>
@@ -380,8 +327,8 @@ if (isset($_SESSION['Admin'])) {
                                     },
                                     success: function(data) {
                                         alert(data);
+                                        $("#modalProveedor").modal('hide');
                                         $("#form-proveedor")[0].reset();
-                                        $(idModalProveedor).modal('hide');
                                         dataTable.ajax.reload();
                                     }
                                 });
@@ -389,6 +336,11 @@ if (isset($_SESSION['Admin'])) {
                                 alert('Todos los campos son requeridos');
                             }
                         });
+                        // cerrar modal
+                        document.querySelector(".btn-close-modal-edit").addEventListener("click",()=>{
+                            $(idModalProveedor).modal('hide');
+
+                        })
 
                         // Funcionalidad nuevo
                         $(document).on("click", `a[href="${idModalProveedor}"]`, function(e) {
@@ -514,7 +466,7 @@ if (isset($_SESSION['Admin'])) {
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Editar su usuario</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
@@ -600,11 +552,9 @@ if (isset($_SESSION['Admin'])) {
                 <div class="modal-header">
 
                     <h5 class="modal-title tituloFormProveedor" id="exampleModalLongTitle">Nuevo Proveedor</h5>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close btn-close-modal-edit" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-
                 </div>
 
                 <form class="needs-validation" id="form-proveedor" action="CRUD-con-PHP-PDO-Ajax-Datatable-main/codigodeconexion.php" method="post" novalidate>

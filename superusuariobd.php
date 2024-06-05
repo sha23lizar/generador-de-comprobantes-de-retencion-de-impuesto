@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['Super'])) {
+if ($_SESSION['rol']==1) {
 ?>
 
     <!doctype html>
@@ -16,15 +16,17 @@ if (isset($_SESSION['Super'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
         <meta name="description" content="This is an example dashboard created using build-in elements and components.">
         <meta name="msapplication-tap-highlight" content="no">
-       
-        <link href="./css/main.css" rel="stylesheet">
-        <link href="./css/dataTables.bootstrap4.css" rel="stylesheet">
-        <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
-        <link href="./css/datatables.min.css" rel="stylesheet">
 
-        <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
-        <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
-        <script type="text/javascript" src="./assets/scripts/main.js"></script>
+
+        <link rel="stylesheet" href="./CSS/Iconos/font/bootstrap-icons.css">
+
+
+
+        <link href="./css/main.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
+
+        <script src="./assets/scripts/sweetalert2.min.js"></script>
+        <link href="./css/datatables.min.css" rel="stylesheet">
         <script type="text/javascript" src="./assets/scripts/datatables.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/dataTables.bootstrap4.js"></script>
         <script type="text/javascript" src="./assets/scripts/dataTables.responsive.js"></script>
@@ -120,78 +122,8 @@ if (isset($_SESSION['Super'])) {
             </div>
 
             <div class="app-main">
-                <div class="app-sidebar sidebar-shadow bg-dark sidebar-text-light">
-                    <div class="app-header__logo">
-                        <div class="logo-src"></div>
-                        <div class="header__pane ml-auto">
-                            <div>
-                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="app-header__mobile-menu">
-                        <div>
-                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="app-header__menu">
-                        <span>
-                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                                <span class="btn-icon-wrapper">
-                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
-                                </span>
-                            </button>
-                        </span>
-                    </div>
-                    <div class="scrollbar-sidebar">
-                        <div class="app-sidebar__inner">
-                            <ul class="vertical-nav-menu">
-                                <li class="app-sidebar__heading text-center">MENÚ</li>
+            <?php include("./Includes/componentes/sliderbar.php")?>
 
-                                <li>
-                                    <a href="superusuario.php" style="opacity: 1;">
-                                        <i class="metismenu-icon pe-7s-home"></i>
-                                        Inicio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuarioha.php">
-                                        <i class="metismenu-icon pe-7s-door-lock"></i>
-                                        Proveedores
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuarious.php">
-                                        <i class="metismenu-icon pe-7s-users">
-                                        </i>
-                                        Usuarios
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuariobd.php" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-server"></i>
-                                        Base de datos
-                                    </a>
-                                </li>
-                                <li class="app-sidebar__heading">Ayuda</li>
-                                <li>
-                                    <a href="./Manual%20Tecnico%20FUNESBO.pdf">
-                                        <i class="metismenu-icon pe-7s-notebook"></i>
-                                        Manual tecnico
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="app-main__outer">
                     <div class="app-main__inner">
@@ -212,10 +144,16 @@ if (isset($_SESSION['Super'])) {
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-header">
-                                        <div class="col-sm-12 col-md-6">Lista de Base de Datos</div>
-                                        <div class="col-sm-12 col-md-6">
+                                <div class="main-card mb-3 card justify-content-between">
+                                    <div class="card-header justify-content-between">
+                                        <div class="">
+                                        <form enctype="multipart/form-data" class="form-horizontal"  method="POST">
+                                                <button class="btn btn-primary pull-right" type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#subirModal" title="Subir respaldo de base de datos">Subir Respaldo
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">Lista de Base de Datos</div>
+                                        <div class="col-sm-12 col-md-3">
                                             <form action="includes/respaldobd.php">
                                                 <button class="btn btn-primary pull-right" type="submit" data-toggle="tooltip" title="Respaldar base de datos">Respaldar base de datos
                                                 </button>
@@ -346,6 +284,31 @@ if (isset($_SESSION['Super'])) {
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="login.php">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- subir Modal-->
+    <div class="modal fade" id="subirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Subir Respalo de Base de Datos</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" class="form-horizontal"  method="POST" action="includes/subirbd.php">
+                         <input class="" type="file" name="archivo" value="subir_imagen"  /><br><br>
+                        <!-- <input type="submit" value="registrar" name="btnregistrar" class=""> -->
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <input type="submit" value="Añadir" name="btnregistrar" class="btn btn-primary">
+                            
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

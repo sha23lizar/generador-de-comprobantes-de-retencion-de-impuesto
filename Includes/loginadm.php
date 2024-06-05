@@ -23,33 +23,23 @@ if ($row = $res->fetch_assoc()) {
   $usuario = $row['usuario'];
   $foto = $row['foto'];
   
-  if ($cedula == $username && $pass == $password && $rol == '1') {
+  if ($cedula == $username && $pass == $password) {
     
     session_start();
-    $_SESSION['Super'] = $rol;
+    $_SESSION['rol'] = $rol;
     $_SESSION['usuario'] = $usuario;
     $_SESSION['idu'] = $idu;
     $_SESSION['foto'] = $foto;
     
-    header("Location: ../superusuario.php?success=1");
-  } elseif ($cedula == $username && $pass == $password && $rol == '2') {
-    session_start();
-    
-    $_SESSION['Admin'] = $rol;
-    $_SESSION['usuario'] = $usuario;
-    $_SESSION['idu'] = $idu;
-    $_SESSION['foto'] = $foto;
-    
-    header("Location: ../administrador.php?success=1");
-  } elseif ($cedula == $username && $pass == $password && $rol == '3') {
-    session_start();
-    
-    $_SESSION['Asis'] = $rol;
-    $_SESSION['usuario'] = $usuario;
-    $_SESSION['idu'] = $idu;
-    $_SESSION['foto'] = $foto;
-    
-    header("Location: ../asistente.php?success=1");
+    if ($_SESSION['rol'] == 1) {
+        header("Location: ../superusuario.php?success=1");
+    }elseif ($_SESSION['rol'] == 2) {
+        header("Location: ../administrador.php?success=1");
+        
+    }elseif($_SESSION['rol'] == 3){
+        header("Location: ../asistente.php?success=1");
+
+    }
   }
 }
   else { 

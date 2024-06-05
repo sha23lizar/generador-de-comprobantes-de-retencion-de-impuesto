@@ -1,9 +1,10 @@
 export class DataTableModule {
-    constructor(contentTable) {
+    constructor(contentTable, url) {
+        this.url = url
         this.contentTable
         this.dataTable = $(contentTable).DataTable({
             "ajax": {
-                url: "./includes/obtener_comprobantesJSON.php",
+                url: this.url,
                 type: "POST"
             },
             columnDefs: [

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['Super'])) {
+if ($_SESSION['rol']==1) {
 ?>
 
     <?php require 'bd.inc.php'; ?>
@@ -23,6 +23,7 @@ if (isset($_SESSION['Super'])) {
         <link href="./css/dataTables.bootstrap4.css" rel="stylesheet">
         <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
         <link href="./css/datatables.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./CSS/Iconos/font/bootstrap-icons.css">
 
         <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
         <script type="text/javascript" src="./assets/scripts/popper.min.js"></script>
@@ -125,78 +126,8 @@ if (isset($_SESSION['Super'])) {
             </div>
 
             <div class="app-main">
-                <div class="app-sidebar sidebar-shadow bg-dark sidebar-text-light">
-                    <div class="app-header__logo">
-                        <div class="logo-src"></div>
-                        <div class="header__pane ml-auto">
-                            <div>
-                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="app-header__mobile-menu">
-                        <div>
-                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="app-header__menu">
-                        <span>
-                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                                <span class="btn-icon-wrapper">
-                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
-                                </span>
-                            </button>
-                        </span>
-                    </div>
-                    <div class="scrollbar-sidebar">
-                        <div class="app-sidebar__inner">
-                            <ul class="vertical-nav-menu">
-                                <li class="app-sidebar__heading text-center">MENÚ</li>
-
-                                <li>
-                                    <a href="superusuario.php" style="opacity: 1;" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-home"></i>
-                                        Inicio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuarioha.php">
-                                        <i class="metismenu-icon pe-7s-door-lock"></i>
-                                        Proveedores
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuarious.php">
-                                        <i class="metismenu-icon pe-7s-users">
-                                        </i>
-                                        Usuarios
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuariobd.php">
-                                        <i class="metismenu-icon pe-7s-server"></i>
-                                        Base de datos
-                                    </a>
-                                </li>
-                                <li class="app-sidebar__heading">Ayuda</li>
-                                <li>
-                                    <a href="./Manual%20Tecnico%20FUNESBO.pdf">
-                                        <i class="metismenu-icon pe-7s-notebook"></i>
-                                        Manual tecnico
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <?php include("./Includes/componentes/sliderbar.php")?>
+                
 
                 <div class="app-main__outer">
                     <div class="app-main__inner">
@@ -240,7 +171,7 @@ if (isset($_SESSION['Super'])) {
                                             </a>
                                         </div>
                                         Listado
-                                        <div class="py-3 align-item-center justify-content-between">
+                                        <div class="py-3 align-item-center justify-content-between" style="visibility: hidden;">
                                             <!-- <a href="pdf.php" class="btn-shadow btn btn-danger">
                                                 <i class="fa fa-file-pdf"></i>
                                                 Generar PDF

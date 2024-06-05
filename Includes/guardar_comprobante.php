@@ -47,19 +47,3 @@ if (true) {
     $conn->close();
 }
 ?>
-
-
-CREATE TABLE comprobante (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nroComprobante VARCHAR(50) NOT NULL,
-    proveedor VARCHAR(100) NOT NULL,
-    rifProveedor VARCHAR(20),
-    direccionProveedor VARCHAR(255),
-    fEmision DATE NOT NULL,
-    fEntrega DATE NOT NULL,
-    fFactura DATE NOT NULL,
-    nroControl VARCHAR(20) NOT NULL,
-    totalFacturado DECIMAL(10,2) NOT NULL,
-    baseImponible DECIMAL(10,2) NOT NULL,
-    fechaRegistro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);

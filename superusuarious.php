@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['Super'])) {
+if ($_SESSION['rol']==1) {
 ?>
 
     <?php require 'bd.inc.php'; ?>
@@ -25,6 +25,7 @@ if (isset($_SESSION['Super'])) {
         <link href="./css/responsive.bootstrap4.css" rel="stylesheet">
         <link href="./css/datatables.min.css" rel="stylesheet">
 
+        <link rel="stylesheet" href="./CSS/Iconos/font/bootstrap-icons.css">
 
 
         <script type="text/javascript" src="./assets/scripts/jquery-3.7.1.min.js"></script>
@@ -110,7 +111,7 @@ if (isset($_SESSION['Super'])) {
                                     <div class="widget-content-left">
                                         <div class="btn-group">
 
-                                            
+
                                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
 
                                                 <img width="45" height="45" class="rounded-circle" src="assets/images/avatars/user-default.jpg" alt="">
@@ -121,7 +122,7 @@ if (isset($_SESSION['Super'])) {
 
                                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
 
-                                           
+
 
                                                 <button type="button" tabindex="0" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                                                     Cerrar
@@ -139,78 +140,9 @@ if (isset($_SESSION['Super'])) {
             </div>
 
             <div class="app-main">
-                <div class="app-sidebar sidebar-shadow bg-dark sidebar-text-light">
-                    <div class="app-header__logo">
-                        <div class="logo-src"></div>
-                        <div class="header__pane ml-auto">
-                            <div>
-                                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="app-header__mobile-menu">
-                        <div>
-                            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="app-header__menu">
-                        <span>
-                            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                                <span class="btn-icon-wrapper">
-                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
-                                </span>
-                            </button>
-                        </span>
-                    </div>
-                    <div class="scrollbar-sidebar">
-                        <div class="app-sidebar__inner">
-                            <ul class="vertical-nav-menu">
-                                <li class="app-sidebar__heading text-center">MENÚ</li>
+            <?php include("./Includes/componentes/sliderbar.php")?>
+                
 
-                                <li>
-                                    <a href="superusuario.php" style="opacity: 1;">
-                                        <i class="metismenu-icon pe-7s-home"></i>
-                                        Inicio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuarioha.php">
-                                        <i class="metismenu-icon pe-7s-door-lock"></i>
-                                        Proveedores
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuarious.php" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-users">
-                                        </i>
-                                        Usuarios
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="superusuariobd.php">
-                                        <i class="metismenu-icon pe-7s-server"></i>
-                                        Base de datos
-                                    </a>
-                                </li>
-                                <li class="app-sidebar__heading">Ayuda</li>
-                                <li>
-                                    <a href="./Manual%20Tecnico%20FUNESBO.pdf">
-                                        <i class="metismenu-icon pe-7s-notebook"></i>
-                                        Manual tecnico
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <div class="app-main__outer">
                     <div class="app-main__inner">
                         <div class="app-page-title">
@@ -437,7 +369,7 @@ if (isset($_SESSION['Super'])) {
 
                                 <span toggle="#contra" class="fa fa-fw fa-eye field_icon toggle-password"></span>
 
-                                
+
 
                             </div>
                         </div>
@@ -628,7 +560,7 @@ if (isset($_SESSION['Super'])) {
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="contra">Contraseña</label>
-                                <input type="text" placeholder="contraseña" minlength="6" maxlength="15" class="form-control editar contra" name="contra" >
+                                <input type="text" placeholder="contraseña" minlength="6" maxlength="15" class="form-control editar contra" name="contra">
                             </div>
                             <div class="fl-flex-label mb-3 px-2 col-12">
                                 <label for="pregunta">Pregunta de seguridad</label>
@@ -710,7 +642,46 @@ if (isset($_SESSION['Super'])) {
                 var idForm = "#form-proveedor";
 
                 // Funcionalidad editar
-                $(document).on("click", ".btn-editar-usuario", function(e) {
+                function eventosBtnsUsuarios() {
+                    var btnsEditarUsuario = document.querySelectorAll(".btn-editar-usuario")
+
+                    btnsEditarUsuario.forEach((element) => {
+                        element.addEventListener("click", function(e) {
+                            e.preventDefault()
+                            var idu = e.target.id;
+                            if (!idu) {
+                                // alert("No se encontro el ID");
+                                return
+                            }
+                            $.ajax({
+                                url: "./includes/obtener_usuario.php",
+                                method: "POST",
+                                data: {
+                                    idu: idu
+                                },
+                                dataType: "json",
+                                success: function(data) {
+                                    let dataUser = data[0];
+                                    document.querySelector(".editar.cedula").value = dataUser.cedula
+                                    document.querySelector(".editar.contra").value = dataUser.contra
+                                    document.querySelector(".editar.pregunta").value = dataUser.pregunta
+                                    document.querySelector(".editar.respuesta").value = dataUser.respuesta
+                                    document.querySelector(".editar.rol").value = dataUser.rol; // Asegúrate de que el ID se esté envian 
+                                    document.querySelector(".editar.usuario").value = dataUser.usuario
+                                    document.querySelector(".editar.idu").value = dataUser.idu
+                                    document.querySelector("#btnOpenModalEdit").click();
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    alert("error: " + textStatus + " " + errorThrown);
+                                }
+                            })
+                        })
+                    })
+                }
+                eventosBtnsUsuarios()
+
+                // $(document).on("click", ".btn-editar-usuario", function(e) {
+                $(document).on("click", ".btn-editar-usuariososos", function(e) {
                     var idu = e.target.id;
                     if (!idu) {
                         // alert("No se encontro el ID");
@@ -739,8 +710,6 @@ if (isset($_SESSION['Super'])) {
                         }
                     })
                 })
-
-
             });
         </script>
 
